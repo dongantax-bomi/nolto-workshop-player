@@ -4,6 +4,7 @@ import json
 import re
 import subprocess
 from pathlib import Path
+from curate import excluded
 
 root=Path(__file__).resolve().parent
 data=json.loads((root/'songs_filled.json').read_text(encoding='utf-8'))
@@ -15,9 +16,15 @@ for s, source in zip(data,original):
     assert s['id']==int(source['id']) and s['artist']==source['artist'] and s['title']==source['title']
     if s.get('youtube_id'):
         assert re.fullmatch(r'[A-Za-z0-9_-]{11}',s['youtube_id'])
-        assert 8<=round(s['end_sec']-s['start_sec'],2)<=15
-        assert 2<=len(s['answer_lyrics'].splitlines())<=4
+        assert 25<=round(s['end_sec']-s['start_sec'],2)<=35
+        assert 4<=len(s['answer_lyrics'].splitlines())<=20
         assert s['embed_verified'] is True
+        assert s['source_type']=='official_art_track' and s['audit_version']==4
+        assert s['evidence']['auto_generated'] is True
+        assert s['evidence']['provider'].startswith('Provided to YouTube by')
+        assert not excluded(s['video_title'])
+        assert s['duration_delta_sec']<=2.5
+        assert 0<=s['start_sec']<s['end_sec']<=s['video_duration']
 html=(root/'index.html').read_text(encoding='utf-8')
 embedded=html.split('<script id="songData" type="application/json">')[1].split('</script>')[0]
 assert json.loads(embedded)==data

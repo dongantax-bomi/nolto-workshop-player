@@ -5,13 +5,13 @@ class PreparationTests(unittest.TestCase):
     def test_multiple_lrc_timestamps_and_order(self):
         self.assertEqual(parse_lrc('[00:12.50][00:02.00]original line\n[ar:Tester]\n[00:08.20]next line'),[(2.0,'original line'),(8.2,'next line'),(12.5,'original line')])
 
-    def test_window_has_two_to_four_whole_lines(self):
-        lines=[(0,'intro'),(10,'line A'),(14,'line B'),(19,'line C'),(23,'line D'),(28,'line E')]
+    def test_window_has_25_to_35_seconds_of_whole_lines(self):
+        lines=[(0,'intro')]+[(10+i*5,'original line '+str(i)) for i in range(12)]
         start,end,answer=choose_section(lines,180)
-        self.assertTrue(8<=end-start<=15)
-        self.assertTrue(2<=len(answer.splitlines())<=4)
+        self.assertTrue(25<=end-start<=35)
+        self.assertTrue(4<=len(answer.splitlines())<=20)
         self.assertEqual(start,10)
-        self.assertNotIn('line D',answer)
+        self.assertNotIn('original line 6',answer)
 
     def test_no_invented_timing_when_no_window(self):
         with self.assertRaises(ValueError): choose_section([(10,'one'),(40,'two')],180)
@@ -33,10 +33,10 @@ class PreparationTests(unittest.TestCase):
         self.assertGreaterEqual(rank(right,song),100)
 
     def test_fast_hint_uses_density_without_inventing_words(self):
-        lines=[(10,'a'),(14,'b'),(19,'c'),(23,'d'),(30,'many words for a faster passage'),(34,'more words for the next passage'),(39,'another full original sentence'),(43,'end marker')]
+        lines=[(10+i*5,'a short line' if i<7 else 'many more words in this fast original passage') for i in range(16)]
         self.assertEqual(choose_section(lines,180)[0],10)
         start,end,answer=choose_section(lines,180,'1절 랩')
-        self.assertGreaterEqual(start,23)
+        self.assertGreaterEqual(start,30)
         self.assertTrue(all(line in [x[1] for x in lines] for line in answer.splitlines()))
 
 if __name__=='__main__': unittest.main()

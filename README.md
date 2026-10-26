@@ -15,7 +15,7 @@
 - 미사용 곡 랜덤 출제, 사용 기록, 두 팀 점수판
 - 전체 화면 발표 모드와 키보드 단축키
 
-원본 100곡 중 99곡에 영상·싱크 가사 기반 구간이 입력되어 있습니다. 자동 후보의 특정 화자와 랩 위치·타이밍은 진행자가 사전 청취 후 확인하세요. 83번 밤양갱은 미준비 상태입니다. 자세한 내용은 [사용안내](사용안내.md)와 [검증결과](검증결과.md)를 참고하세요.
+원본 100곡 중 97곡을 공식 앨범 음원과 25~35초 싱크 가사 구간으로 준비했습니다. 77번 I AM, 91번 Small girl, 95번 like JENNIE는 충분한 근거를 확보하지 못해 미준비로 남겼습니다. 전곡 청취 및 특정 멤버의 파트는 확인하지 않았습니다. [사용안내](사용안내.md)와 [검증결과](검증결과.md)를 참고하세요.
 
 ## 다른 노트북에서 진행하기
 
@@ -27,7 +27,7 @@
 
 ```sh
 python prepare.py --rebuild
-python -m unittest -v test_prepare
+python -m unittest -v test_prepare test_curate
 python validate_delivery.py
 python build_site.py
 ```

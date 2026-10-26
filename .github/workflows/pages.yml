@@ -26,7 +26,7 @@ jobs:
         run: python3 prepare.py --rebuild
       - name: Check selection rules and delivery data
         run: |
-          python3 -m unittest -v test_prepare
+          python3 -m unittest -v test_prepare test_curate
           python3 validate_delivery.py
           node test_playback.cjs
       - name: Build static website

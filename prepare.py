@@ -1,5 +1,5 @@
 """100곡 데이터 준비. Python 3.10+, 선택: YOUTUBE_API_KEY 또는 yt-dlp."""
-import argparse, concurrent.futures, csv, difflib, hashlib, json, os, re, subprocess, sys, time
+import argparse, concurrent.futures, csv, difflib, hashlib, json, os, re, subprocess, sys, time,unicodedata
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -28,7 +28,7 @@ def request(url, params=None):
             time.sleep(attempt + 1)
     raise RuntimeError(str(error))
 
-def norm(s): return re.sub(r'[^a-z0-9가-힣]', '', s.lower())
+def norm(s): return re.sub(r'[^a-z0-9가-힣]', '', unicodedata.normalize('NFKC',s).lower().replace('₩','w'))
 
 def parse_lrc(text):
     lines = []
@@ -39,27 +39,39 @@ def parse_lrc(text):
             lines.append((int(m)*60+float(s), lyric))
     return sorted(lines)
 
-def choose_section(lines, duration, hint=''):
-    # 타임스탬프만으로 화자/랩/후렴을 확정할 수 없으므로 초기 벌스 후보를 제안한다.
+def choose_section(lines, duration, hint='', min_seconds=25, max_seconds=35):
+    """Choose whole timed lines with no long instrumental break; never pad timing."""
+    lines=sorted(set(lines))
     candidates=[]
-    for i, (start, lyric) in enumerate(lines):
-        if not lyric or start < 8 or start > min(65, duration*.4): continue
-        for count in (3, 2, 4):
-            if i+count >= len(lines): continue
-            end = lines[i+count][0]
-            part = lines[i:i+count]
-            if 8 <= end-start <= 15 and all(x[1] for x in part):
-                answer='\n'.join(x[1] for x in part)
-                score=-start
-                if '랩' in hint or '빠른' in hint:
-                    score=len(re.sub(r'\s','',answer))/(end-start)-start*.015
-                if '영어' in hint:
-                    score+=sum(c.isascii() and c.isalpha() for c in answer)/max(len(answer),1)*15
-                candidates.append((score,round(start,2),round(end,2),answer))
-    if candidates:
-        _,start,end,answer=max(candidates,key=lambda x:x[0])
-        return start,end,answer
-    raise ValueError('8~15초, 2~4줄 구간 후보 없음')
+    counts={}
+    for _,text in lines:
+        key=norm(text)
+        if key: counts[key]=counts.get(key,0)+1
+    limit=min(95,duration*.48) if '1절' in hint or '첫 소절' in hint or '랩' not in hint else duration-35
+    for i,(start,text) in enumerate(lines):
+        if not text or start<3 or start>limit: continue
+        for j in range(i+1,min(i+25,len(lines))):
+            end=lines[j][0]
+            length=end-start
+            if length>max_seconds: break
+            if length<min_seconds: continue
+            part=lines[i:j]
+            nonempty=[line for _,line in part if line]
+            if not 4<=len(nonempty)<=20: continue
+            if any(not lines[k][1] and lines[k+1][0]-lines[k][0]>3 for k in range(i,j)): continue
+            if any(lines[k+1][0]-lines[k][0]>12 for k in range(i,j)): continue
+            answer='\n'.join(nonempty)
+            density=len(re.sub(r'\s','',answer))/length
+            if density<.8: continue
+            repeated=sum(counts.get(norm(line),0)>1 for line in nonempty)/len(nonempty)
+            score=-abs(length-30)*.7-repeated*5-start*.015
+            if '랩' in hint or '빠른' in hint: score+=density*2
+            else: score-=start*.08
+            if '영어' in hint: score+=sum(c.isascii() and c.isalpha() for c in answer)/max(len(answer),1)*5
+            candidates.append((score,round(start,2),round(end,2),answer))
+    if not candidates: raise ValueError('25~35초의 연속 가창 구간 없음')
+    _,start,end,answer=max(candidates,key=lambda x:x[0])
+    return start,end,answer
 
 def video_candidates(song):
     artist_en,title_en=names(song)
@@ -205,6 +217,10 @@ def main():
     args=p.parse_args()
     if args.rebuild:
         write_outputs(json.loads((ROOT/'songs_filled.json').read_text(encoding='utf-8')))
+        return
+    if not args.init:
+        from curate import main as curate_main
+        curate_main()
         return
     with (ROOT/'songs.csv').open(encoding='utf-8-sig',newline='') as f: songs=list(csv.DictReader(f))
     for s in songs:
