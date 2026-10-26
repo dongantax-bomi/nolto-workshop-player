@@ -28,6 +28,7 @@ jobs:
         run: |
           python3 -m unittest -v test_prepare
           python3 validate_delivery.py
+          node test_playback.cjs
       - name: Build static website
         run: python3 build_site.py
       - uses: actions/configure-pages@v5
