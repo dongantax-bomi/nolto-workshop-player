@@ -29,6 +29,8 @@ run('window.onYouTubeIframeAPIReady()');events.onReady();
 assert.equal(loads,1,'ready must play the queued song without a second click');
 state=1;time=40;events.onStateChange({data:1});tick();
 assert.equal(run('used.has(1)'),true);
+state=3;events.onStateChange({data:3});assert.match(get('status').textContent,/버퍼링/);
+state=1;events.onStateChange({data:1});assert.match(get('status').textContent,/듣는 중/);
 time=50.1;tick();assert.equal(run('active'),false);
 const before=loads;run('play()');
 assert.equal(loads,before,'replay must reuse loaded video');
