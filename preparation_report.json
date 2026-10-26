@@ -1,0 +1,10 @@
+{
+  "total": 100,
+  "filled_candidates": 99,
+  "embed_allowed": 99,
+  "verified": 0,
+  "missing": 1,
+  "needs_review": 100,
+  "target": 80,
+  "target_met": true
+}
