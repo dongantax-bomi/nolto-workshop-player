@@ -79,4 +79,6 @@ assert.equal(run('used.has(1)'),false);
 get('resumeBtn').onclick();events.onStateChange({data:1});tick();
 assert.equal(run('used.has(1)'),true);
 time=50.1;tick();assert.equal(run('active'),false,'resumed question must still stop at its end');
+run('selectSong(songs[0],true)');
+assert.equal(time,30,'choosing a song with a lead-in must not reveal the question first');
 console.log('PASS: queued playback/lead-in, lead-in checkpoint, exact-position resume, replay end guard, stale events, delay recovery');
