@@ -57,12 +57,14 @@
   },
   "7": {
     "lyric_id": 20756142,
-    "first_line": 23,
-    "stop_before_line": 31,
-    "reason": "자신감과 무대의 열기를 묘사하는 랩을 문맥이 끝나는 지점까지 선정. 일본어 자료를 한국어 자료로 교체.",
+    "first_line": 49,
+    "stop_before_line": 60,
+    "reason": "널리 알려진 후렴을 도입으로 듣고, 2절 랩이 시작되기 전에 대기. 따라잡아 보라는 도전과 자신감, 다른 감각과 걸음을 묘사하는 랩을 한 문제로 선정. 반복 추임새와 다음 멜로디 구간은 문제에서 제외.",
     "youtube_id": "oM4KBLQRCM8",
-    "start_sec": 64.5,
-    "end_sec": 86.96000000000001
+    "start_sec": 131.07,
+    "end_sec": 159.07,
+    "lead_in_first_line": 40,
+    "revision": 3
   },
   "8": {
     "lyric_id": 13460758,
@@ -75,12 +77,14 @@
   },
   "9": {
     "lyric_id": 4781589,
-    "first_line": 4,
-    "stop_before_line": 9,
-    "reason": "상대를 위해 하루를 보내는 행동에서 곁을 지키는 상대에 대한 결론까지 한 단락.",
+    "first_line": 34,
+    "stop_before_line": 41,
+    "reason": "익숙한 후렴의 마지막 세 줄을 도입으로 듣고, 새 한국어 브리지 앞에서 대기. 곁을 지켜주는 사람과 함께라면 두렵지 않다는 마음에서 손을 잡아 달라는 부탁까지 일곱 줄을 문제로 선정.",
     "youtube_id": "r-el8_35fU8",
-    "start_sec": 23.91,
-    "end_sec": 43.67
+    "start_sec": 133.02,
+    "end_sec": 155.65,
+    "lead_in_first_line": 31,
+    "revision": 3
   },
   "10": {
     "lyric_id": 33960118,
