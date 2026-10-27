@@ -59,7 +59,15 @@ def search(query):
     return entries
 
 def excluded(title):
-    return bool(re.search(r'\b(?:mv|m/v|music video|live|cover|remix|instrumental|inst|karaoke|piano|sped|slowed|performance|teaser|reaction|originally|japanese|jpn|chinese|mandarin)\b|뮤직비디오|노래방|직캠|라이브|안무|연주|반주|일본어|중국어',title,re.I))
+    return bool(re.search(r'\b(?:mv|m/v|music video|live|cover|remix|edit|acapella|acoustic|instrumental|inst|karaoke|piano|sped|slowed|performance|teaser|reaction|originally|japan|japanese|jpn|chinese|mandarin|spanish|portuguese|tagalog|french|thai|vietnamese|indonesian)\b|english\s+(?:ver\.?|version)|française|sing.along|\b8d\b|뮤직비디오|노래방|직캠|라이브|안무|연주|반주|일본어|중국어',title,re.I))
+
+def recording_version_allowed(v):
+    # Search cards can truncate '(Inst.)' or omit the album entirely. Inspect the
+    # recording's actual catalog title/album/provider, not just the search title.
+    desc=v.get('description','')
+    recording_titles=[line.split(' · ',1)[0] for line in desc.splitlines() if ' · ' in line]
+    if excluded(v.get('title','')) or any(excluded(title) for title in recording_titles): return False
+    return not re.search(r'YGEX|AVEX|NOLZA|Famous Singers|TV SHOW|Fantastic Duo|Anniversary Edition|Sincerely yours|New Version|\b2\.0\b',desc,re.I)
 
 def title_matches(value,song):
     artist,title=names(song)
@@ -73,12 +81,13 @@ def artist_matches(value,song):
     return any(norm(a) in value for a in [artist,song['artist']]+alternates.get(song['artist'],[]) if norm(a))
 
 def art_matches(v,song):
-    if not is_art_track(v) or excluded(v['title']) or not title_matches(v['title'],song): return False
+    if not is_art_track(v) or not recording_version_allowed(v) or not title_matches(v['title'],song): return False
+    if not artist_matches(v.get('channel',''),song): return False
     # Album metadata before the credits is the recording identity, not a title keyword search.
     identity=v.get('catalog_performer','')
     for line in v.get('description','').splitlines()[1:]:
         if ' · ' in line:
-            identity=' · '.join(line.split(' · ')[1:])
+            identity=line.split(' · ')[1]
             break
     return artist_matches(identity,song) and v['embed_verified'] and v['playability'] in ['OK','OEMBED_AVAILABLE']
 
@@ -110,28 +119,47 @@ def cached_lyrics():
     return result
 
 LYRICS={}
+def section_specs():
+    return json.loads((ROOT/'section_overrides.json').read_text(encoding='utf-8'))
+
+def passage_from_lines(lyric,spec):
+    lines=parse_lrc(lyric['syncedLyrics'])
+    first,last=spec['first_line'],spec['stop_before_line']
+    if not 0<=first<last<len(lines): raise ValueError('Invalid editorial line range')
+    return lines[first][0],lines[last][0],'\n'.join(t for _,t in lines[first:last] if t),not bool(lines[last][1])
+
 def apply_section_overrides(rows, lyrics):
     """Editorial passage selection; LRC boundaries still need listening review."""
-    overrides=json.loads((ROOT/'section_overrides.json').read_text(encoding='utf-8'))
+    overrides=section_specs()
     for row in rows:
         spec=overrides.get(str(row['id']))
         if not spec or not row.get('youtube_id'): continue
         if row.get('lyric_id')!=spec['lyric_id']:
             raise ValueError(f"Editorial section requires the reviewed lyric source: {row['id']}")
-        lines=parse_lrc(lyrics[spec['lyric_id']]['syncedLyrics'])
-        first,last=spec['first_line'],spec['stop_before_line']
-        start,end=lines[first][0],lines[last][0]
+        if spec.get('youtube_id') and row['youtube_id']!=spec['youtube_id']:
+            raise ValueError(f"Editorial section requires the reviewed recording: {row['id']}")
+        start,end,answer,rest=passage_from_lines(lyrics[spec['lyric_id']],spec)
         if not 0<=start<end<=row['video_duration']: raise ValueError('Invalid editorial section')
-        row.update(start_sec=start,end_sec=end,answer_lyrics='\n'.join(t for _,t in lines[first:last] if t),
-                   section_method='editorial_passage_lrc_boundary',section_revision=1,
+        row.update(start_sec=start,end_sec=end,answer_lyrics=answer,status='candidate',
+                   section_method='editorial_passage_lrc_boundary',section_revision=2,
+                   section_content_reviewed=True,boundary_verified=False,
+                   boundary_basis='lrc_rest_marker' if rest else 'lyric_section_transition',
                    section_rationale=spec['reason'],
-                   review_notes=spec['reason']+' 가사 내용으로 선정한 구간이며 실제 가창 종료·마디·줄 싱크는 청취 확인 전입니다.')
+                   review_notes=spec['reason']+' 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.')
     return rows
 
 def lyric_matches(item,song):
-    return title_matches(item.get('trackName',''),song) and artist_matches(item.get('artistName',''),song) and not excluded(item.get('trackName',''))
+    text=item.get('syncedLyrics') or ''
+    native=song['id'] in [60,79,82,97,98] or len(re.findall(r'[가-힣]',text))>=20
+    return native and not re.search(r'[ぁ-ヿ一-鿿]',text) and title_matches(item.get('trackName',''),song) and artist_matches(item.get('artistName',''),song) and not excluded(item.get('trackName',''))
 
 def lyrics_for(song,more=False):
+    spec=section_specs().get(str(song['id']))
+    if spec:
+        item=LYRICS.get(spec['lyric_id']) or request('https://lrclib.net/api/get/'+str(spec['lyric_id']))
+        if not lyric_matches(item,song): raise ValueError('Reviewed lyric identity/language mismatch')
+        LYRICS[item['id']]=item
+        return [item]
     matches=[m for m in LYRICS.values() if lyric_matches(m,song)]
     if matches and not more: return matches
     artist,title=names(song)
@@ -144,12 +172,17 @@ def lyrics_for(song,more=False):
 
 def find_pair(v,lyrics,song):
     options=[]
+    spec=section_specs().get(str(song['id']))
     for lyric in lyrics:
         if not lyric.get('duration'): continue
         delta=abs(v['duration']-float(lyric['duration']))
         if delta>2.5: continue
         try:
-            start,end,answer=choose_section(parse_lrc(lyric['syncedLyrics']),v['duration'],song['section_hint'])
+            if spec:
+                if lyric.get('id')!=spec['lyric_id'] or spec.get('youtube_id',v['id'])!=v['id']: continue
+                start,end,answer,_=passage_from_lines(lyric,spec)
+            else:
+                start,end,answer=choose_section(parse_lrc(lyric['syncedLyrics']),v['duration'],song['section_hint'])
         except ValueError: continue
         if song['id'] in [60,79,82,97,98]:
             letters=[c for c in answer if c.isalpha()]
@@ -186,6 +219,11 @@ def fill_strict(song,old):
         return None
     artist,title=names(song)
     entries=[]
+    spec=section_specs().get(str(song['id']))
+    catalog_path=ROOT/'recording_catalog.json'
+    if spec and catalog_path.exists():
+        pinned=json.loads(catalog_path.read_text(encoding='utf-8')).get(str(song['id']))
+        if pinned and pinned['id']==spec.get('youtube_id'): entries.append(pinned)
     if old.get('youtube_id'): entries.append({'id':old['youtube_id'],'title':old.get('video_title','')})
     for version in ['v3','v2']:
         path=CACHE/f"youtube-{version}-{song['id']}.json"
@@ -219,11 +257,11 @@ def fill_strict(song,old):
             pair=find_pair(v,lyrics,song)
             if pair: selected=v,pair;break
     if not selected:
-        row['review_notes']='공식 앨범 음원과 길이가 일치하는 싱크 가사/25~35초 구간을 확보하지 못했습니다. 뮤비 대체 금지.' if audio else '임베드 가능한 공식 앨범 Art Track 미확보. 뮤비 대체 금지.'
+        row['review_notes']='공식 앨범 음원과 일치하는 가사 자료 및 선정 구간을 확보하지 못했습니다. 뮤비 대체 금지.' if audio else '임베드 가능한 공식 앨범 Art Track 미확보. 뮤비 대체 금지.'
         row['checked_candidates']=len(checked)
         return row
     v,(delta,_,lyric,start,end,answer)=selected
-    row.update(youtube_id=v['id'],start_sec=start,end_sec=end,answer_lyrics=answer,status='candidate',embed_verified=True,source_type='official_art_track',video_title=v['title'],video_channel=v['channel'],video_duration=v['duration'],audio_duration=lyric['duration'],duration_delta_sec=round(delta,2),lyric_source=f'https://lrclib.net/api/get/{lyric["id"]}',lyric_id=lyric['id'],lyric_track=lyric['trackName'],lyric_artist=lyric['artistName'],evidence={'provider':v['description'].splitlines()[0],'auto_generated':True,'channel_id':v['channel_id'],'method':v.get('metadata_origin','youtube_player_metadata'),'embed_check':'oembed' if v['playability']=='OEMBED_AVAILABLE' else 'player_metadata'},section_method='same_recording_duration_matched_lrc',review_notes='공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.',checked_candidates=len(checked))
+    row.update(youtube_id=v['id'],start_sec=start,end_sec=end,answer_lyrics=answer,status='candidate',embed_verified=True,source_type='official_art_track',video_title=v['title'],video_channel=v['channel'],video_duration=v['duration'],audio_duration=lyric['duration'],duration_delta_sec=round(delta,2),lyric_source=f'https://lrclib.net/api/get/{lyric["id"]}',lyric_id=lyric['id'],lyric_track=lyric['trackName'],lyric_artist=lyric['artistName'],evidence={'provider':v['description'].splitlines()[0],'auto_generated':True,'channel_id':v['channel_id'],'method':v.get('metadata_origin','youtube_player_metadata'),'embed_check':'oembed' if v['playability']=='OEMBED_AVAILABLE' else 'player_metadata'},section_method='same_recording_duration_matched_lrc',review_notes='공식 앨범 음원 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.',checked_candidates=len(checked))
     return row
 
 def main():

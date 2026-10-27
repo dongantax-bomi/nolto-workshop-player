@@ -4,10 +4,12 @@ import json
 import re
 import subprocess
 from pathlib import Path
-from curate import excluded
+from curate import excluded,art_matches
 
 root=Path(__file__).resolve().parent
 data=json.loads((root/'songs_filled.json').read_text(encoding='utf-8'))
+sections=json.loads((root/'section_overrides.json').read_text(encoding='utf-8'))
+catalog=json.loads((root/'recording_catalog.json').read_text(encoding='utf-8'))
 with (root/'songs.csv').open(encoding='utf-8-sig',newline='') as f:
     original=list(csv.DictReader(f))
 assert len(data)==len(original)==100
@@ -16,13 +18,24 @@ for s, source in zip(data,original):
     assert s['id']==int(source['id']) and s['artist']==source['artist'] and s['title']==source['title']
     if s.get('youtube_id'):
         assert re.fullmatch(r'[A-Za-z0-9_-]{11}',s['youtube_id'])
-        assert 25<=round(s['end_sec']-s['start_sec'],2)<=35
-        assert 4<=len(s['answer_lyrics'].splitlines())<=20
+        spec=sections[str(s['id'])]
+        assert s['section_method']=='editorial_passage_lrc_boundary'
+        assert s['section_content_reviewed'] is True and s['section_revision']==2
+        assert s['lyric_id']==spec['lyric_id'] and s['youtube_id']==spec['youtube_id']
+        assert s['start_sec']==spec['start_sec'] and s['end_sec']==spec['end_sec']
+        assert s['section_rationale']==spec['reason']
+        assert s['boundary_verified'] is False  # No listening claim inferred from text review.
+        assert len(s['answer_lyrics'].splitlines())>=4
+        if s['id'] not in [60,79,82,97,98,91,94]: assert len(re.findall('[가-힣]',s['answer_lyrics']))>=10
+        assert not re.search('[ぁ-ヿ一-鿿]',s['answer_lyrics'])
         assert s['embed_verified'] is True
         assert s['source_type']=='official_art_track' and s['audit_version']==4
         assert s['evidence']['auto_generated'] is True
         assert s['evidence']['provider'].startswith('Provided to YouTube by')
         assert not excluded(s['video_title'])
+        recording=catalog[str(s['id'])]
+        assert recording['id']==s['youtube_id'] and recording['title']==s['video_title']
+        assert recording['duration']==s['video_duration'] and art_matches(recording,s)
         assert s['duration_delta_sec']<=2.5
         assert 0<=s['start_sec']<s['end_sec']<=s['video_duration']
 html=(root/'index.html').read_text(encoding='utf-8')

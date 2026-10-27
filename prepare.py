@@ -204,6 +204,7 @@ def write_outputs(songs):
             if song.get('status')!='verified': w.writerow({k:song.get(k,'') for k in w.fieldnames})
     count=sum(bool(s.get('youtube_id') and isinstance(s.get('start_sec'),(int,float)) and s.get('end_sec',0)>s['start_sec']) for s in songs)
     report={'total':len(songs),'filled_candidates':count,'embed_allowed':sum(s.get('embed_verified') is True for s in songs),'verified':sum(s.get('status')=='verified' for s in songs),'missing':len(songs)-count,'needs_review':sum(s.get('status')!='verified' for s in songs),'target':80,'target_met':count>=80}
+    report.update(content_reviewed=sum(s.get('section_content_reviewed') is True for s in songs),boundary_listened=sum(s.get('boundary_verified') is True for s in songs))
     (ROOT/'preparation_report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
     print(json.dumps(report),flush=True)
 

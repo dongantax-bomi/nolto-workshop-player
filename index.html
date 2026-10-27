@@ -5,7 +5,7 @@
 </style></head><body>
 <header><div><div class="eyebrow">JEJU WORKSHOP · 10.29 — 10.31</div><div class="brand">놀토 <b>받쓰 클럽</b><span class="small muted"> / 진행자 플레이어</span></div></div><div class="toolbar"><button id="importBtn">JSON 불러오기</button><button id="exportBtn">JSON 내보내기</button><button id="presentBtn">⛶ 발표 모드</button><input class="hidden" type="file" id="file" accept=".json,application/json"></div></header>
 <main><section class="panel library"><div class="panel-heading"><h2>오늘의 플레이리스트</h2><span class="badge" id="count"></span></div><input class="search" id="search" placeholder="가수 또는 곡 제목 검색" aria-label="곡 검색"><div class="filters"><select id="year" aria-label="연도"><option value="">모든 연도</option></select><select id="difficulty" aria-label="난이도"><option value="">모든 난이도</option><option value="1">★ 쉬움</option><option value="2">★★ 보통</option><option value="3">★★★ 어려움</option></select><select id="genre" aria-label="장르"><option value="">모든 장르</option></select></div><div class="row"><button id="randomBtn" class="primary">↝ 랜덤 곡 뽑기</button><label class="small muted"><input type="checkbox" id="readyOnly"> 준비된 곡만</label><button id="resetUsed" class="small">사용 기록 초기화</button></div><div class="small muted" id="stats" style="margin-top:12px"></div><div class="list" id="list"></div></section>
-<div><section class="panel now"><div class="row"><span class="eyebrow">NOW PLAYING</span><span class="badge" id="songBadge">곡을 선택하세요</span></div><h1 id="title">한 소절에 집중할 시간.</h1><p id="artist">왼쪽에서 곡을 고르거나 랜덤으로 뽑아보세요.</p><div class="stage"><div id="player"></div><div class="cover" id="cover"><div class="disc"></div><strong>귀를 쫑긋, 정답은 비밀!</strong><span class="small muted">영상 화면을 가리고 있습니다</span></div></div><div class="row" style="justify-content:space-between"><label class="small muted"><input id="mask" type="checkbox" checked> 영상 가리기</label><span class="small muted" id="clock">00:00 / 00:00</span></div><progress id="progress" max="1" value="0"></progress><div id="status" class="status" role="status" aria-live="polite">데이터를 준비한 뒤 곡을 선택해 주세요.</div><div class="controls"><button class="primary" id="playBtn" disabled>▶ 다시 듣기 <span class="small">Space</span></button><button id="pauseBtn">Ⅱ 일시정지</button><button id="preloadBtn" disabled>미리 로딩</button><button id="answerBtn" disabled>정답 공개 ↵</button></div><div class="timing"><div class="timebox"><span class="small muted">시작</span><button data-adjust="start_sec,-1" aria-label="시작 1초 앞">−1</button><output id="start">—</output><button data-adjust="start_sec,1" aria-label="시작 1초 뒤">+1</button></div><div class="timebox"><span class="small muted">끝</span><button data-adjust="end_sec,-1" aria-label="끝 1초 앞">−1</button><output id="end">—</output><button data-adjust="end_sec,1" aria-label="끝 1초 뒤">+1</button></div></div><div class="answer" id="answer"><span class="muted">정답은 아직 비밀입니다.</span></div><details id="editDetails"><summary>진행자 설정 · 영상 / 구간 / 정답 직접 수정</summary><div class="editor"><div class="notice" id="notes">자동 후보는 행사 전에 청취 확인해 주세요.</div><label>유튜브 영상 ID<input id="videoInput" placeholder="11자리 영상 ID" style="width:100%"></label><div class="row"><label>시작(초) <input id="startInput" type="number" min="0" step="0.1"></label><label>끝(초) <input id="endInput" type="number" min="0" step="0.1"></label></div><label>정답 가사<textarea id="lyricsInput" style="width:100%" placeholder="사용 권한이 있는 가사를 입력하세요"></textarea></label><label><input type="checkbox" id="verifiedInput"> 직접 청취하고 구간·임베드 재생을 확인했습니다</label><button id="saveEdit" class="primary">설정 저장</button><button id="unuseBtn">이 곡 사용 표시 취소</button></div></details></section><section class="panel"><div class="panel-heading"><h2>팀 스코어</h2><button id="resetScore" class="small">점수 초기화</button></div><div class="scoreboard" id="scoreboard"></div></section></div></main>
+<div><section class="panel now"><div class="row"><span class="eyebrow">NOW PLAYING</span><span class="badge" id="songBadge">곡을 선택하세요</span></div><h1 id="title">한 소절에 집중할 시간.</h1><p id="artist">왼쪽에서 곡을 고르거나 랜덤으로 뽑아보세요.</p><p class="small muted" id="sectionReason" style="margin-bottom:12px"></p><div class="stage"><div id="player"></div><div class="cover" id="cover"><div class="disc"></div><strong>귀를 쫑긋, 정답은 비밀!</strong><span class="small muted">영상 화면을 가리고 있습니다</span></div></div><div class="row" style="justify-content:space-between"><label class="small muted"><input id="mask" type="checkbox" checked> 영상 가리기</label><span class="small muted" id="clock">00:00 / 00:00</span></div><progress id="progress" max="1" value="0"></progress><div id="status" class="status" role="status" aria-live="polite">데이터를 준비한 뒤 곡을 선택해 주세요.</div><div class="controls"><button class="primary" id="playBtn" disabled>▶ 다시 듣기 <span class="small">Space</span></button><span style="display:inline-flex;gap:8px"><button id="pauseBtn">Ⅱ 일시정지</button><button id="resumeBtn" disabled>▶ 이어서 재생</button></span><button id="preloadBtn" disabled>미리 로딩</button><button id="answerBtn" disabled>정답 공개 ↵</button></div><div class="timing"><div class="timebox"><span class="small muted">시작</span><button data-adjust="start_sec,-1" aria-label="시작 1초 앞">−1</button><output id="start">—</output><button data-adjust="start_sec,1" aria-label="시작 1초 뒤">+1</button></div><div class="timebox"><span class="small muted">끝</span><button data-adjust="end_sec,-1" aria-label="끝 1초 앞">−1</button><output id="end">—</output><button data-adjust="end_sec,1" aria-label="끝 1초 뒤">+1</button></div></div><div class="answer" id="answer"><span class="muted">정답은 아직 비밀입니다.</span></div><details id="editDetails"><summary>진행자 설정 · 영상 / 구간 / 정답 직접 수정</summary><div class="editor"><div class="notice" id="notes">자동 후보는 행사 전에 청취 확인해 주세요.</div><label>유튜브 영상 ID<input id="videoInput" placeholder="11자리 영상 ID" style="width:100%"></label><div class="row"><label>시작(초) <input id="startInput" type="number" min="0" step="0.1"></label><label>끝(초) <input id="endInput" type="number" min="0" step="0.1"></label></div><label>정답 가사<textarea id="lyricsInput" style="width:100%" placeholder="사용 권한이 있는 가사를 입력하세요"></textarea></label><label><input type="checkbox" id="verifiedInput"> 직접 청취하고 구간·임베드 재생을 확인했습니다</label><button id="saveEdit" class="primary">설정 저장</button><button id="unuseBtn">이 곡 사용 표시 취소</button></div></details></section><section class="panel"><div class="panel-heading"><h2>팀 스코어</h2><button id="resetScore" class="small">점수 초기화</button></div><div class="scoreboard" id="scoreboard"></div></section></div></main>
 <footer>Space 다시 듣기 · Enter 정답 공개/숨기기 · R 랜덤 · 입력 중에는 단축키가 동작하지 않습니다. 인터넷 연결이 필요합니다. 자동 후보는 사전 청취를 권장합니다.</footer>
 <script id="songData" type="application/json">[
   {
@@ -36,13 +36,20 @@
     "evidence": {
       "provider": "Provided to YouTube by YouTube CSV2DDEX",
       "auto_generated": true,
-      "channel_id": "UCh3JvEbg-3dwJ0Ou2gXj0vQ"
+      "channel_id": "UCh3JvEbg-3dwJ0Ou2gXj0vQ",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
     "section_method": "editorial_passage_lrc_boundary",
-    "review_notes": "영어 소개와 반복 구호를 제외하고, 상대의 이중적인 태도를 지적하는 첫 벌스 전체를 한 문제로 선정. 후렴 직전까지 포함. 가사 내용으로 선정한 구간이며 실제 가창 종료·마디·줄 싱크는 청취 확인 전입니다.",
+    "review_notes": "영어 소개와 반복 구호를 제외하고, 상대의 이중적인 태도를 지적하는 첫 벌스 전체를 한 문제로 선정. 후렴 직전까지 포함. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
     "checked_candidates": 12,
-    "section_revision": 1,
-    "section_rationale": "영어 소개와 반복 구호를 제외하고, 상대의 이중적인 태도를 지적하는 첫 벌스 전체를 한 문제로 선정. 후렴 직전까지 포함."
+    "section_revision": 2,
+    "section_rationale": "영어 소개와 반복 구호를 제외하고, 상대의 이중적인 태도를 지적하는 첫 벌스 전체를 한 문제로 선정. 후렴 직전까지 포함.",
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 2,
@@ -53,9 +60,9 @@
     "section_hint": "랩 파트 (정용화)",
     "difficulty": 3,
     "youtube_id": "BRIGlW12qpk",
-    "start_sec": 25.74,
+    "start_sec": 20.61,
     "end_sec": 56.13,
-    "answer_lyrics": "거봐 이미 너는 딴 곳을 보고 있어\nCheck it One Two Three 시계바늘만 쳐다보는게\n말 안해도 다른 사람 생긴걸 알아\n요즘 넌 나 아닌 다른 사람과 만남이 잦더라\n이제는 먼저 전화도 걸지 않더라\n나랑 있을 때는 하루가 일초라도\n넌 내 앞에선 요즘 하늘만 보더라\nOh I know your mind Oh 이미 너와 나의 거리\n멀어진 그리고 벌어진 남보다 못한 우리 사이",
+    "answer_lyrics": "봐봐 나를 봐봐 똑바로 내 두눈을 봐\n거봐 이미 너는 딴 곳을 보고 있어\nCheck it One Two Three 시계바늘만 쳐다보는게\n말 안해도 다른 사람 생긴걸 알아\n요즘 넌 나 아닌 다른 사람과 만남이 잦더라\n이제는 먼저 전화도 걸지 않더라\n나랑 있을 때는 하루가 일초라도\n넌 내 앞에선 요즘 하늘만 보더라\nOh I know your mind Oh 이미 너와 나의 거리\n멀어진 그리고 벌어진 남보다 못한 우리 사이",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -72,11 +79,20 @@
     "evidence": {
       "provider": "Provided to YouTube by YG PLUS",
       "auto_generated": true,
-      "channel_id": "UCAiXJcqDrDKtKDIXV7NWhVg"
+      "channel_id": "UCAiXJcqDrDKtKDIXV7NWhVg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 8
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대의 달라진 눈빛과 연락, 멀어진 관계를 차례로 관찰하는 첫 벌스 전체. 반복 후렴 직전까지. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 8,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대의 달라진 눈빛과 연락, 멀어진 관계를 차례로 관찰하는 첫 벌스 전체. 반복 후렴 직전까지.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 3,
@@ -106,11 +122,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Kakao Entertainment",
       "auto_generated": true,
-      "channel_id": "UCTUR0sVEkD8T5MlSHqgaI_Q"
+      "channel_id": "UCTUR0sVEkD8T5MlSHqgaI_Q",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 8
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "좋은 날씨와 달리 고백 앞에서 망설이는 첫 벌스의 질문들을 한 덩어리로 선정. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 8,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "좋은 날씨와 달리 고백 앞에서 망설이는 첫 벌스의 질문들을 한 덩어리로 선정.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 4,
@@ -120,7 +145,7 @@
     "genre": "아이돌",
     "section_hint": "1절 랩 (CL)",
     "difficulty": 2,
-    "youtube_id": "J7wLK10MLR4",
+    "youtube_id": "rnxZyt3f708",
     "start_sec": 51.47,
     "end_sec": 82.19,
     "answer_lyrics": "넌 뒤를 따라오지만 난 앞만 보고 질주해\n네가 앉은 테이블 위를 뛰어다녀 I don't care\n건드리면 감당 못해 I'm hot hot hot hot fire\n뒤집어지기 전에 제발 누가 날 좀 말려\n옷장을 열어 가장 상큼한 옷을 걸치고\n거울에 비친 내 얼굴을 꼼꼼히 살피고\n지금은 여덟 시 약속 시간은 여덟 시 반\n도도한 걸음으로 나선 이 밤",
@@ -128,25 +153,32 @@
     "embed_verified": true,
     "source_type": "official_art_track",
     "audit_version": 4,
-    "video_title": "I AM THE BEST “NOLZA in Japan”Ver.",
+    "video_title": "내가 제일 잘 나가 (I Am The Best)",
     "video_channel": "2NE1 - Topic",
-    "video_duration": 208,
-    "audio_duration": 208.730907,
-    "duration_delta_sec": 0.73,
-    "lyric_source": "https://lrclib.net/api/get/20271843",
-    "lyric_id": 20271843,
-    "lyric_track": "I Am the Best (내가 제일 잘 나가)",
+    "video_duration": 211,
+    "audio_duration": 211.0,
+    "duration_delta_sec": 0.0,
+    "lyric_source": "https://lrclib.net/api/get/7062146",
+    "lyric_id": 7062146,
+    "lyric_track": "내가 제일 잘 나가",
     "lyric_artist": "2NE1",
     "evidence": {
-      "provider": "Provided to YouTube by YGEX",
+      "provider": "Provided to YouTube by YG Entertainment",
       "auto_generated": true,
-      "channel_id": "UC1dkZ--Bna3y4Cd-wwbteNw"
+      "channel_id": "UC1dkZ--Bna3y4Cd-wwbteNw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
     "section_method": "editorial_passage_lrc_boundary",
-    "review_notes": "자기소개성 반복 구호와 alright 반복을 제외하고, 질주하는 태도에서 외출 준비로 이어지는 여덟 줄의 벌스를 한 문제로 선정. 후렴 직전까지 포함. 가사 내용으로 선정한 구간이며 실제 가창 종료·마디·줄 싱크는 청취 확인 전입니다.",
+    "review_notes": "자기소개성 반복 구호와 alright 반복을 제외하고, 질주하는 태도에서 외출 준비로 이어지는 여덟 줄의 벌스를 한 문제로 선정. 후렴 직전까지 포함. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
     "checked_candidates": 1,
-    "section_revision": 1,
-    "section_rationale": "자기소개성 반복 구호와 alright 반복을 제외하고, 질주하는 태도에서 외출 준비로 이어지는 여덟 줄의 벌스를 한 문제로 선정. 후렴 직전까지 포함."
+    "section_revision": 2,
+    "section_rationale": "자기소개성 반복 구호와 alright 반복을 제외하고, 질주하는 태도에서 외출 준비로 이어지는 여덟 줄의 벌스를 한 문제로 선정. 후렴 직전까지 포함.",
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 5,
@@ -157,9 +189,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "Pws7laZhyP0",
-    "start_sec": 32.82,
-    "end_sec": 62.64,
-    "answer_lyrics": "자꾸 눈이 가네요 그대 눈빛이\n(나는 참 맘에 드네요)\n옆으로 가고 싶지만\n용기가 않나서\n가슴이 떨려와\n(나는 참 망설이네요)\n몰라 어떡해 난 몰라\n미치겠어 널 놓치기 싫어\n너에게로 점점 다가갈래 점점\n내 앞에서 떠날 수 없게\nRoly-Poly, Roly, Roly-Poly",
+    "start_sec": 30.87,
+    "end_sec": 59.54,
+    "answer_lyrics": "어디서 오셨나요?\n자꾸 눈이 가네요 그대 눈빛이\n(나는 참 맘에 드네요)\n옆으로 가고 싶지만\n용기가 않나서\n가슴이 떨려와\n(나는 참 망설이네요)\n몰라 어떡해 난 몰라\n미치겠어 널 놓치기 싫어\n너에게로 점점 다가갈래 점점\n내 앞에서 떠날 수 없게",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -176,11 +208,20 @@
     "evidence": {
       "provider": "Provided to YouTube by kakao Entertainment",
       "auto_generated": true,
-      "channel_id": "UCn8HautpfHcctdk1v0_7Bww"
+      "channel_id": "UCn8HautpfHcctdk1v0_7Bww",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대를 발견한 순간부터 망설임을 넘어 다가가겠다는 결심까지 첫 벌스와 연결부 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대를 발견한 순간부터 망설임을 넘어 다가가겠다는 결심까지 첫 벌스와 연결부 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 6,
@@ -191,9 +232,9 @@
     "section_hint": "1절 벌스 (도입~후렴 전)",
     "difficulty": 2,
     "youtube_id": "4AgDYTuZWOw",
-    "start_sec": 10.28,
-    "end_sec": 41.13,
-    "answer_lyrics": "강남스타일\n낮에는 따사로운 인간적인 여자\n커피 한 잔의 여유를 아는 품격 있는 여자\n밤이 오면 심장이 뜨거워지는 여자\n그런 반전 있는 여자\n나는 사나이\n낮에는 너만큼 따사로운 그런 사나이\n커피 식기도 전에 원샷 때리는 사나이\n밤이 오면 심장이 터져버리는 사나이",
+    "start_sec": 14.7,
+    "end_sec": 43.58,
+    "answer_lyrics": "낮에는 따사로운 인간적인 여자\n커피 한 잔의 여유를 아는 품격 있는 여자\n밤이 오면 심장이 뜨거워지는 여자\n그런 반전 있는 여자\n나는 사나이\n낮에는 너만큼 따사로운 그런 사나이\n커피 식기도 전에 원샷 때리는 사나이\n밤이 오면 심장이 터져버리는 사나이\n그런 사나이",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -210,11 +251,20 @@
     "evidence": {
       "provider": "Provided to YouTube by YG Entertainment",
       "auto_generated": true,
-      "channel_id": "UC3gsgELlsob7AFi-mHOqNkg"
+      "channel_id": "UC3gsgELlsob7AFi-mHOqNkg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 7
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "낮과 밤이 다른 여자와 자신을 나란히 설명하는 두 단락을 함께 선정. 구호와 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 7,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "낮과 밤이 다른 여자와 자신을 나란히 설명하는 두 단락을 함께 선정. 구호와 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 7,
@@ -224,31 +274,40 @@
     "genre": "아이돌",
     "section_hint": "1절 랩 (지드래곤)",
     "difficulty": 3,
-    "youtube_id": "GFn7yafL2HU",
-    "start_sec": 41.45,
-    "end_sec": 71.58,
-    "answer_lyrics": "Fantastic baby\nDance, I wanna dance, dance, dance, dan-dance\nWow, fantastic baby\nいかがかね? 僕ちゃんは perfect\n弱点探すのなんて 100年早い baby\n真っ赤な太陽よりも fire\n直視すれば burn\nNah na-na nah-nah\nまだずっと凝り固まってるみなさん単純に\nこれからjumpって言ったら 飛び跳ねな on one, two, three",
+    "youtube_id": "oM4KBLQRCM8",
+    "start_sec": 64.5,
+    "end_sec": 86.96000000000001,
+    "answer_lyrics": "하나부터 열까지 모든 게 다 한 수위\n모래 벌판 위를 미친 듯이\n뛰어봐도 거뜬한 우리\n하늘은 충분히 너무나 푸르니까\n아무것도 묻지 말란 말이야\n느끼란 말이야 내가 누군지\n네 심장소리에 맞게 뛰기 시작해\n막이 끝날 때까지 YE",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
     "audit_version": 4,
-    "video_title": "FANTASTIC BABY",
+    "video_title": "Fantastic Baby",
     "video_channel": "BIGBANG - Topic",
-    "video_duration": 232,
+    "video_duration": 231,
     "audio_duration": 232.0,
-    "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/28746234",
-    "lyric_id": 28746234,
-    "lyric_track": "1230-BIGBANG (빅뱅) - FANTASTIC BABY",
-    "lyric_artist": "BIGBANG (빅뱅)",
+    "duration_delta_sec": 1.0,
+    "lyric_source": "https://lrclib.net/api/get/20756142",
+    "lyric_id": 20756142,
+    "lyric_track": "FANTASTIC BABY",
+    "lyric_artist": "BIGBANG",
     "evidence": {
-      "provider": "Provided to YouTube by YGEX",
+      "provider": "Provided to YouTube by YG Entertainment",
       "auto_generated": true,
-      "channel_id": "UCI5OIwx9z32Zurb8t4Umzwg"
+      "channel_id": "UCI5OIwx9z32Zurb8t4Umzwg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "자신감과 무대의 열기를 묘사하는 랩을 문맥이 끝나는 지점까지 선정. 일본어 자료를 한국어 자료로 교체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "자신감과 무대의 열기를 묘사하는 랩을 문맥이 끝나는 지점까지 선정. 일본어 자료를 한국어 자료로 교체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 8,
@@ -278,11 +337,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Genie Music Corporation",
       "auto_generated": true,
-      "channel_id": "UCSXA96tQPhroQWotU51h4Mg"
+      "channel_id": "UCSXA96tQPhroQWotU51h4Mg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "밤거리를 함께 걷자는 제안과 손을 잡은 설렘이 연결되는 첫 벌스 네 줄. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "밤거리를 함께 걷자는 제안과 손을 잡은 설렘이 연결되는 첫 벌스 네 줄.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 9,
@@ -292,31 +360,40 @@
     "genre": "발라드·솔로",
     "section_hint": "1절 벌스",
     "difficulty": 2,
-    "youtube_id": "gg0KrhGv0ts",
-    "start_sec": 23.97,
-    "end_sec": 54.1,
-    "answer_lyrics": "널 위해서 매일 웃고\n널 위해서 기도하고\n네 생각에 잠들고 널 부르며 눈을 떠\n내 옆에서 지켜주고 내 옆에서 감싸주는\n넌 나의 천국인걸\nYou're my only one way\n오직 너를 원해\n내가 네 곁에 있음에 감사해",
+    "youtube_id": "r-el8_35fU8",
+    "start_sec": 23.91,
+    "end_sec": 43.67,
+    "answer_lyrics": "널 위해서 매일 웃고\n널 위해서 기도하고\n네 생각에 잠들고 널 부르며 눈을 떠\n내 옆에서 지켜주고 내 옆에서 감싸주는\n넌 나의 천국인걸",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
     "audit_version": 4,
-    "video_title": "Heaven",
-    "video_channel": "Release - Topic",
-    "video_duration": 228,
-    "audio_duration": 226.45551,
-    "duration_delta_sec": 1.54,
-    "lyric_source": "https://lrclib.net/api/get/15920853",
-    "lyric_id": 15920853,
+    "video_title": "Heaven (HEAVEN)",
+    "video_channel": "Ailee - Topic",
+    "video_duration": 211,
+    "audio_duration": 212.0,
+    "duration_delta_sec": 1.0,
+    "lyric_source": "https://lrclib.net/api/get/4781589",
+    "lyric_id": 4781589,
     "lyric_track": "Heaven",
-    "lyric_artist": "에일리",
+    "lyric_artist": "에일리 (Ailee)",
     "evidence": {
-      "provider": "Provided to YouTube by UMAG",
+      "provider": "Provided to YouTube by Kakao Entertainment",
       "auto_generated": true,
-      "channel_id": "UCQzUHMmh9k2VoUHouCZAzqg"
+      "channel_id": "UCrBP154FanZWf4D8oItOZyQ",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대를 위해 하루를 보내는 행동에서 곁을 지키는 상대에 대한 결론까지 한 단락. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대를 위해 하루를 보내는 행동에서 곁을 지키는 상대에 대한 결론까지 한 단락.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 10,
@@ -328,8 +405,8 @@
     "difficulty": 2,
     "youtube_id": "VclPp-1r6e0",
     "start_sec": 7.75,
-    "end_sec": 37.16,
-    "answer_lyrics": "아직도 내가 니 거라는\n착각은 그만\n예전의 그때 내가 아냐\n아침이 밝는 소리에\n꽃은 저만치 폈는데\n여전히 정신 못 차려 왜\nI'm sick and tired 너의 위선에\n어설픈 liar ooh 이제 좀 꺼져줄래\nI think I'm going going crazy ooh",
+    "end_sec": 32.19,
+    "answer_lyrics": "아직도 내가 니 거라는\n착각은 그만\n예전의 그때 내가 아냐\n아침이 밝는 소리에\n꽃은 저만치 폈는데\n여전히 정신 못 차려 왜\nI'm sick and tired 너의 위선에\n어설픈 liar ooh 이제 좀 꺼져줄래",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -346,11 +423,20 @@
     "evidence": {
       "provider": "Provided to YouTube by YG Entertainment Inc.",
       "auto_generated": true,
-      "channel_id": "UCGbytHFBK3JxnHd4pE01Uig"
+      "channel_id": "UCGbytHFBK3JxnHd4pE01Uig",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 9
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "예전과 달라진 자신을 설명하고 상대의 위선을 거절하는 첫 벌스. 소개 멘트와 반복 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 9,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "예전과 달라진 자신을 설명하고 상대의 위선을 거절하는 첫 벌스. 소개 멘트와 반복 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 11,
@@ -361,9 +447,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "Y7n5JX0zxSw",
-    "start_sec": 22.48,
+    "start_sec": 29.57,
     "end_sec": 52.38,
-    "answer_lyrics": "알랑가 몰라 아리까리하면 까리해\n알랑가 몰라, we like, we-we-we like party, hey\n있잖아 말이야, 이 사람으로 말씀드리자면 말이야\n용기 패기 똘끼 멋쟁이 말이야\n너가 듣고픈 말 하고픈 게 난데 말이야\nDamn, girl, you so freaking sexy",
+    "answer_lyrics": "있잖아 말이야, 이 사람으로 말씀드리자면 말이야\n용기 패기 똘끼 멋쟁이 말이야\n너가 듣고픈 말 하고픈 게 난데 말이야\nDamn, girl, you so freaking sexy",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -380,11 +466,20 @@
     "evidence": {
       "provider": "Provided to YouTube by YG Entertainment Inc.",
       "auto_generated": true,
-      "channel_id": "UC3gsgELlsob7AFi-mHOqNkg"
+      "channel_id": "UC3gsgELlsob7AFi-mHOqNkg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 10
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "자신을 소개하는 말장난이 이어지는 랩 단락 전체. 반복 구호 앞에서 종료. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 10,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "자신을 소개하는 말장난이 이어지는 랩 단락 전체. 반복 구호 앞에서 종료.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 12,
@@ -395,9 +490,9 @@
     "section_hint": "1절 랩 파트",
     "difficulty": 3,
     "youtube_id": "rjMcJHfzoIs",
-    "start_sec": 16.95,
-    "end_sec": 47.12,
-    "answer_lyrics": "sumi jakku meotneunda nega nal hyanghae geoleoonda\nnareul bomyeo utneunda neodo naege kkeulrineunji\nnunapi da kamkamhae nega ttuleojyeora chyeodabol ttaen\ngwitgae gakkawojin sumsori oh wait\nnal michige mandeuneun neoingeol\namudo neol mot boge neo jeoldae\npume gamchugo sipeo I'm so serious\nneol norineun siseondeul yo nae ane ileonan",
+    "start_sec": 17.2,
+    "end_sec": 38.4,
+    "answer_lyrics": "숨이 자꾸 멎는다\n네가 날 향해 걸어온다\n나를 보며 웃는다\n너도 내게 끌리는지\n눈앞이 다 캄캄해\n네가 뚫어져라 쳐다볼 땐\n귓가에 가까워진 숨소리 Oh wait\n날 미치게 만드는 너인걸",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -407,18 +502,27 @@
     "video_duration": 207,
     "audio_duration": 207.0,
     "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/22777375",
-    "lyric_id": 22777375,
+    "lyric_source": "https://lrclib.net/api/get/18077168",
+    "lyric_id": 18077168,
     "lyric_track": "으르렁 (Growl)",
-    "lyric_artist": "엑소 (EXO)",
+    "lyric_artist": "EXO (엑소)",
     "evidence": {
       "provider": "Provided to YouTube by SM Entertainment",
       "auto_generated": true,
-      "channel_id": "UCEUX9tUYqTFfPQdAgVNsKTA"
+      "channel_id": "UCEUX9tUYqTFfPQdAgVNsKTA",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대가 다가오는 장면부터 숨소리와 감정의 변화까지 첫 벌스. 로마자 가사를 한국어로 교체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대가 다가오는 장면부터 숨소리와 감정의 변화까지 첫 벌스. 로마자 가사를 한국어로 교체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 13,
@@ -428,31 +532,40 @@
     "genre": "아이돌",
     "section_hint": "1절 벌스",
     "difficulty": 2,
-    "youtube_id": "bHK-0__rrtA",
-    "start_sec": 14.06,
-    "end_sec": 43.97,
-    "answer_lyrics": "다같이 one\n빠빠빠빠\n빠빠빠빠\n날따라 two\n빠빠빠빠\n빠빠빠빠\n소리쳐 호 (호)\n뛰어봐 쿵 (쿵)\n날따라 해(해)\n엄마도 파파도 같이Go\n빠빠빠빠\n빠빠빠빠\n신나게 Go\n빠빠빠빠\n빠빠빠빠\n소리쳐 호 (호)\n뛰어봐 쿵 (쿵)\n날따라 해(해)\n팝!",
+    "youtube_id": "K3nuw2EVki4",
+    "start_sec": 124.26,
+    "end_sec": 139.16,
+    "answer_lyrics": "Yo come on, 날 따라 Follow\n두 손을 올리고\n뛰뛰뛰 뛰어보고 맘껏 소리 쳐보고\nHey, you guys\n벗어나 day life\n다같이 Let's say ready go",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
     "audit_version": 4,
-    "video_title": "빠빠빠 2.0",
+    "video_title": "Bar Bar Bar",
     "video_channel": "Crayon Pop - Topic",
     "video_duration": 181,
-    "audio_duration": 181.0,
-    "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/29339728",
-    "lyric_id": 29339728,
+    "audio_duration": 180.0,
+    "duration_delta_sec": 1.0,
+    "lyric_source": "https://lrclib.net/api/get/12866324",
+    "lyric_id": 12866324,
     "lyric_track": "빠빠빠",
-    "lyric_artist": "크레용팝 (CRAYON POP)",
+    "lyric_artist": "크레용팝",
     "evidence": {
       "provider": "Provided to YouTube by UMAG",
       "auto_generated": true,
-      "channel_id": "UCQudhPWHI_j8GM_ynZDrQMg"
+      "channel_id": "UCQudhPWHI_j8GM_ynZDrQMg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "반복 후렴 대신 두 손을 들고 일상에서 벗어나자는 브리지 전체. 짧은 쉬운 문제로 선정. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "반복 후렴 대신 두 손을 들고 일상에서 벗어나자는 브리지 전체. 짧은 쉬운 문제로 선정.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 14,
@@ -482,11 +595,20 @@
     "evidence": {
       "provider": "Provided to YouTube by YG PLUS (YGE)",
       "auto_generated": true,
-      "channel_id": "UCRfVrZpe3TA-LB4rutWAtkg"
+      "channel_id": "UCRfVrZpe3TA-LB4rutWAtkg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 10
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "분노를 풀 곳 없는 화자의 행동과 외로운 거리를 묘사하는 랩 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 10,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "분노를 풀 곳 없는 화자의 행동과 외로운 거리를 묘사하는 랩 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 15,
@@ -516,11 +638,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Genie Music",
       "auto_generated": true,
-      "channel_id": "UCjjXNVQndGgIP7OXv13eLYQ"
+      "channel_id": "UCjjXNVQndGgIP7OXv13eLYQ",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "처음 만났던 봄의 향기와 벤치, 잊지 못한 마음을 연결하는 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "처음 만났던 봄의 향기와 벤치, 잊지 못한 마음을 연결하는 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 16,
@@ -550,11 +681,20 @@
     "evidence": {
       "provider": "Provided to YouTube by YG Entertainment",
       "auto_generated": true,
-      "channel_id": "UCoouVmju-iRhFtDkCktGzhw"
+      "channel_id": "UCoouVmju-iRhFtDkCktGzhw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 9
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "이별 앞에서 마지막 얼굴을 기억하려는 부탁까지 이어지는 첫 벌스 네 줄. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 9,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "이별 앞에서 마지막 얼굴을 기억하려는 부탁까지 이어지는 첫 벌스 네 줄.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 17,
@@ -565,9 +705,9 @@
     "section_hint": "랩 파트 (LE)",
     "difficulty": 3,
     "youtube_id": "gdQvnOm1Cr0",
-    "start_sec": 132.04,
-    "end_sec": 162.32,
-    "answer_lyrics": "Why don't u know don't u know don't u know yeah ey.\nJust do what you wanna. do what you wanna\n약올리지 말고 내게 확신을 줘넌\n쓸데없는 말은 불필요해. 필요해\n장난아닌 진심 날 선택의 기로에\n서게하지마 날 눈물 젖게 하지마\n(위 아래 위 위 아래 위 아래 위 위 아래)\n자꾸 위 아래로 흔들리는 나\nWhy don't u know don't u know don't u know",
+    "start_sec": 85.98,
+    "end_sec": 102.78999999999999,
+    "answer_lyrics": "네 말투 네 표정들 날 헷갈리게 하면서 넌\n흘리지 또 흘리지 (흔들흔들흔들흔들)\n없는 척. 모르는 척 들었다 놨다 하면서 넌\n부리지 끼 부리지 (흔들흔들흔들흔들)",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -584,11 +724,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Yedang Entertainment",
       "auto_generated": true,
-      "channel_id": "UCeWtP2OHP1qgd0mDXZoN8xw"
+      "channel_id": "UCeWtP2OHP1qgd0mDXZoN8xw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 9
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대의 말투와 표정이 사람을 흔드는 상황을 설명하는 두 번째 벌스 네 줄. 반복 구호 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 9,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대의 말투와 표정이 사람을 흔드는 상황을 설명하는 두 번째 벌스 네 줄. 반복 구호 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 18,
@@ -618,11 +767,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Kakao Entertainment",
       "auto_generated": true,
-      "channel_id": "UCB3jyzD6aGS8izEObRIAYBw"
+      "channel_id": "UCB3jyzD6aGS8izEObRIAYBw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 10
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "곁으로 오라는 초대와 여름 장면을 이어가는 첫 벌스. 반복 제목 후렴 직전까지. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 10,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "곁으로 오라는 초대와 여름 장면을 이어가는 첫 벌스. 반복 제목 후렴 직전까지.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 19,
@@ -633,9 +791,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "HeRk_RdzI-w",
-    "start_sec": 7.44,
+    "start_sec": 1.57,
     "end_sec": 36.14,
-    "answer_lyrics": "그 속에 나를 쏙 감추고 걸음을 재촉해 걸었어\n그런데 사람들 말이 너만 아직도 왜 그러니\n그제서야 둘러보니 어느새 봄이\n손 잡고 걸을 사람 하나 없는 내게\n달콤한 봄바람이 너무해",
+    "answer_lyrics": "길었던 겨우내 줄곧 품이 좀 남는 밤색 코트\n그 속에 나를 쏙 감추고 걸음을 재촉해 걸었어\n그런데 사람들 말이 너만 아직도 왜 그러니\n그제서야 둘러보니 어느새 봄이\n손 잡고 걸을 사람 하나 없는 내게\n달콤한 봄바람이 너무해",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -652,11 +810,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Kakao Entertainment",
       "auto_generated": true,
-      "channel_id": "UCQqsdh7B1mIxpz-cPu-R3Jg"
+      "channel_id": "UCQqsdh7B1mIxpz-cPu-R3Jg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "겨울 코트에 숨던 화자가 봄과 자신의 외로움을 알아차리는 이야기 단락 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "겨울 코트에 숨던 화자가 봄과 자신의 외로움을 알아차리는 이야기 단락 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 20,
@@ -690,9 +857,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "의미 없는 일상에서 하루살이와 세상을 바라보는 두 단락의 비유 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "의미 없는 일상에서 하루살이와 세상을 바라보는 두 단락의 비유 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 21,
@@ -703,9 +877,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 1,
     "youtube_id": "ZtcM3KhgF-s",
-    "start_sec": 36.89,
-    "end_sec": 69.65,
-    "answer_lyrics": "아무 말 못했던 이름도 몰랐던\n지나간 날들에 눈물이 흘러\n차가운 바람에 숨어 있다\n한줄기 햇살에 몸 녹이다",
+    "start_sec": 13.25,
+    "end_sec": 58.1,
+    "answer_lyrics": "하얗게 피어난 얼음 꽃 하나가\n달가운 바람에 얼굴을 내밀어\n아무 말 못했던 이름도 몰랐던\n지나간 날들에 눈물이 흘러",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -722,11 +896,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Kakao Entertainment",
       "auto_generated": true,
-      "channel_id": "UCjtRpp1nyQDB1MuDQk1tIMA"
+      "channel_id": "UCjtRpp1nyQDB1MuDQk1tIMA",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "얼음꽃과 바람, 지나간 날의 눈물로 연결되는 첫 단락 네 줄. 느린 곡의 호흡을 길이보다 우선. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "얼음꽃과 바람, 지나간 날의 눈물로 연결되는 첫 단락 네 줄. 느린 곡의 호흡을 길이보다 우선.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 22,
@@ -738,8 +921,8 @@
     "difficulty": 2,
     "youtube_id": "yP459cBS4f0",
     "start_sec": 21.96,
-    "end_sec": 51.67,
-    "answer_lyrics": "우리 집에는\n매일 나 홀로 있었지\n아버지는 택시드라이버\n어디냐고 여쭤보면 항상\n\"양화대교\"\n아침이면 머리맡에 놓인\n별사탕에 라면땅에\n새벽마다 퇴근하신 아버지\n주머니를 기다리던\n어린 날의 나를 기억하네\n엄마 아빠 두 누나",
+    "end_sec": 48.47,
+    "answer_lyrics": "우리 집에는\n매일 나 홀로 있었지\n아버지는 택시드라이버\n어디냐고 여쭤보면 항상\n\"양화대교\"\n아침이면 머리맡에 놓인\n별사탕에 라면땅에\n새벽마다 퇴근하신 아버지\n주머니를 기다리던\n어린 날의 나를 기억하네",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -756,11 +939,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Genie Music Corporation",
       "auto_generated": true,
-      "channel_id": "UCdS-U2PcmohOBkzYenZfTcQ"
+      "channel_id": "UCdS-U2PcmohOBkzYenZfTcQ",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 2
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "혼자 있던 어린 시절과 택시 운전을 하던 아버지의 귀가를 회상하는 첫 이야기 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 2,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "혼자 있던 어린 시절과 택시 운전을 하던 아버지의 귀가를 회상하는 첫 이야기 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 23,
@@ -771,9 +963,9 @@
     "section_hint": "1절 랩 파트",
     "difficulty": 3,
     "youtube_id": "1bD_2ITkGwU",
-    "start_sec": 10.6,
-    "end_sec": 41.03,
-    "answer_lyrics": "(Oohh...)\n(Oohh...)\n(Oohh...)\n(Oohh...)\n난 깨어나 까만 밤과 함께\n다 들어와 담엔 누구 차례\n한 치 앞도 볼 수 없는 막장 게릴라\n경배하라 목청이 터지게\n찌질한 분위기를 전환해\n광기를 감추지 못하게 해\n남자들의 품위 여자들의 가식\n이유 모를 자신감이 볼만해\n난 보란 듯이 너무나도 뻔뻔히\n니 몸속에 파고드는 알러지\n이상한 정신의 술렁이는 천지",
+    "start_sec": 28.05,
+    "end_sec": 43.63,
+    "answer_lyrics": "찌질한 분위기를 전환해\n광기를 감추지 못하게 해\n남자들의 품위 여자들의 가식\n이유 모를 자신감이 볼만해\n난 보란 듯이 너무나도 뻔뻔히\n니 몸속에 파고드는 알러지\n이상한 정신의 술렁이는 천지\n오늘 여기 무법지",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -790,11 +982,20 @@
     "evidence": {
       "provider": "Provided to YouTube by YG Entertainment",
       "auto_generated": true,
-      "channel_id": "UCI5OIwx9z32Zurb8t4Umzwg"
+      "channel_id": "UCI5OIwx9z32Zurb8t4Umzwg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 8
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "분위기를 바꾸는 태도와 무법지대의 이미지를 설명하는 랩 단락. 후렴 구호 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 8,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "분위기를 바꾸는 태도와 무법지대의 이미지를 설명하는 랩 단락. 후렴 구호 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 24,
@@ -806,8 +1007,8 @@
     "difficulty": 3,
     "youtube_id": "6KMN61Zsd58",
     "start_sec": 13.25,
-    "end_sec": 43.66,
-    "answer_lyrics": "모두 나를 가지고\n매일 가만 안 두죠\n내가 너무 예쁘죠\n나 때문에 다 힘들죠\n어딜 걷고 있어도\n빨간 바닥인거죠\nRed carpet 같은 기분\n모두 날 쳐다 보죠 oh\n어떤 사람은 어머님이 누구냐고\n신선하게 말 걸어도\n아무 느낌이 안 들죠\n하지만 나도 누군가 하고 사랑에\n빠져보고 싶어 Baby\n잘 들어요 내 Boy\n단 한번도 느껴본 적 없는 걸",
+    "end_sec": 38.85,
+    "answer_lyrics": "모두 나를 가지고\n매일 가만 안 두죠\n내가 너무 예쁘죠\n나 때문에 다 힘들죠\n어딜 걷고 있어도\n빨간 바닥인거죠\nRed carpet 같은 기분\n모두 날 쳐다 보죠 oh\n어떤 사람은 어머님이 누구냐고\n신선하게 말 걸어도\n아무 느낌이 안 들죠\n하지만 나도 누군가 하고 사랑에\n빠져보고 싶어 Baby",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -824,11 +1025,20 @@
     "evidence": {
       "provider": "Provided to YouTube by JYP Entertainment",
       "auto_generated": true,
-      "channel_id": "UCAq0pFGa2w9SjxOq0ZxKVIw"
+      "channel_id": "UCAq0pFGa2w9SjxOq0ZxKVIw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 8
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "주변의 시선과 달리 자신도 사랑하고 싶다는 결론으로 이어지는 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 8,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "주변의 시선과 달리 자신도 사랑하고 싶다는 결론으로 이어지는 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 25,
@@ -839,9 +1049,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "vetSM4axbyQ",
-    "start_sec": 9.67,
-    "end_sec": 39.78,
-    "answer_lyrics": "넌 허리가 몇이니?\n24요\n힙은?\n34요\n어렸을 때부터 난 눈이 좀 달라\n아무리 예뻐도 뒤에 살이 모자라면\n난 눈이 안 가\n긴 생머리에 바람이 불면\n날아갈 것 같이 가냘픈 여자라면\n난 맘이 안 가\n허리는 너무 가는데 힙이 커\n맞는 바지를 찾기 너무 힘들어 Oh Yeah\nShake that booty that booty booty",
+    "start_sec": 16.9,
+    "end_sec": 33.35,
+    "answer_lyrics": "어렸을 때부터 난 눈이 좀 달라\n아무리 예뻐도 뒤에 살이 모자라면\n난 눈이 안 가\n긴 생머리에 바람이 불면\n날아갈 것 같이 가냘픈 여자라면\n난 맘이 안 가",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -858,11 +1068,20 @@
     "evidence": {
       "provider": "Provided to YouTube by JYP Entertainment",
       "auto_generated": true,
-      "channel_id": "UCp7gmGkYArQhD1AFE3_tXKw"
+      "channel_id": "UCp7gmGkYArQhD1AFE3_tXKw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 11
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "자신의 취향을 두 가지 대비로 설명하는 첫 벌스. 대화형 도입과 반복 구호 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 11,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "자신의 취향을 두 가지 대비로 설명하는 첫 벌스. 대화형 도입과 반복 구호 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 26,
@@ -874,8 +1093,8 @@
     "difficulty": 1,
     "youtube_id": "0Q3tgaliAw4",
     "start_sec": 9.88,
-    "end_sec": 37.86,
-    "answer_lyrics": "아픔이 좀 더 작아질까\n의미 없는 만남을 하다가\n어느 날 그대가 흘린 눈물\n왠지 나와 같다 느껴서",
+    "end_sec": 45.13,
+    "answer_lyrics": "아픔이 좀 더 작아질까\n의미 없는 만남을 하다가\n어느 날 그대가 흘린 눈물\n왠지 나와 같다 느껴서\n이렇게 그대를 지키는가 봐요",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -896,9 +1115,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "의미 없는 만남 속에서 상대의 눈물을 알아보고 지키게 된 이유까지 첫 단락. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "의미 없는 만남 속에서 상대의 눈물을 알아보고 지키게 된 이유까지 첫 단락.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 27,
@@ -909,9 +1135,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "Sp_Z2tBVniI",
-    "start_sec": 4.95,
-    "end_sec": 35.01,
-    "answer_lyrics": "Uh, uh-uh-whoa, yeah\n쉽지 않죠? 바쁘죠?\n왜 이렇게까지 해야 하나 싶죠?\n바라는 게 (eh, uh) 더럽게 많죠? (그렇죠, yeah)\n쉬고 싶죠? 시끄럽죠? 다 성가시죠?\n집에 가고 싶죠? (집에 있는데도)\n집에 가고 싶을 거야\n그럴 땐 이 노래를",
+    "start_sec": 9.63,
+    "end_sec": 30.72,
+    "answer_lyrics": "쉽지 않죠? 바쁘죠?\n왜 이렇게까지 해야 하나 싶죠?\n바라는 게 (eh, uh) 더럽게 많죠? (그렇죠, yeah)\n쉬고 싶죠? 시끄럽죠? 다 성가시죠?\n집에 가고 싶죠? (집에 있는데도)\n집에 가고 싶을 거야",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -928,11 +1154,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Genie Music Corporation",
       "auto_generated": true,
-      "channel_id": "UCdS-U2PcmohOBkzYenZfTcQ"
+      "channel_id": "UCdS-U2PcmohOBkzYenZfTcQ",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 3
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "바쁜 하루와 피로, 집에 있어도 돌아가고 싶은 마음을 순서대로 묻는 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 3,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "바쁜 하루와 피로, 집에 있어도 돌아가고 싶은 마음을 순서대로 묻는 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 28,
@@ -943,9 +1178,9 @@
     "section_hint": "1절 벌스 (빠른 구간)",
     "difficulty": 3,
     "youtube_id": "prWVZFgZ3Zc",
-    "start_sec": 74.63,
-    "end_sec": 104.6,
-    "answer_lyrics": "Just get it together\nAnd then baby, cheer up (I need you)\n안절부절 목소리가 여기까지 들려\n땀에 젖은 전화기가 여기서도 보여\n바로바로 대답하는 것도 매력 없어\n메시지만 읽고 확인 안 하는 건 기본\n(오오오) 너무 심했나, boy\n이러다가 지칠까 봐 걱정되긴 하고\n(오오오) 안 그러면, 내가 더\n빠질 것만 같어, 빠질 것만 같어\n아, 답장을 못 해줘서 미안해 (우)",
+    "start_sec": 78.91,
+    "end_sec": 101.53999999999999,
+    "answer_lyrics": "안절부절 목소리가 여기까지 들려\n땀에 젖은 전화기가 여기서도 보여\n바로바로 대답하는 것도 매력 없어\n메시지만 읽고 확인 안 하는 건 기본\n(오오오) 너무 심했나, boy\n이러다가 지칠까 봐 걱정되긴 하고\n(오오오) 안 그러면, 내가 더\n빠질 것만 같어, 빠질 것만 같어",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -962,11 +1197,20 @@
     "evidence": {
       "provider": "Provided to YouTube by JYP Entertainment Corporation",
       "auto_generated": true,
-      "channel_id": "UCAq0pFGa2w9SjxOq0ZxKVIw"
+      "channel_id": "UCAq0pFGa2w9SjxOq0ZxKVIw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 10
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "답장을 늦추는 행동과 마음이 더 커질까 걱정하는 속내가 이어지는 랩 단락. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 10,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "답장을 늦추는 행동과 마음이 더 커질까 걱정하는 속내가 이어지는 랩 단락.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 29,
@@ -977,9 +1221,9 @@
     "section_hint": "1절 랩 (제니)",
     "difficulty": 3,
     "youtube_id": "husJE0_Y_FQ",
-    "start_sec": 9.46,
+    "start_sec": 23.54,
     "end_sec": 38.45,
-    "answer_lyrics": "BLACKPINK in your area\nBLACKPINK in your area\nBeen a bad girl, I know I am\nAnd I'm so hot, I need a fan\nI don't want a boy, I need a man\nClick-clack, badda-bing, badda-boom\n문을 박차면 모두 날 바라봄\n굳이 애써 노력 안 해도\n모든 남자들은 코피가 팡팡팡\n팡팡 파라파라 팡팡팡\n지금 날 위한 축배를, 짠짠짠\nHands up, 내 손엔 bottle full o' Henny\n네가 말로만 듣던 걔가 나야, Jennie",
+    "answer_lyrics": "Click-clack, badda-bing, badda-boom\n문을 박차면 모두 날 바라봄\n굳이 애써 노력 안 해도\n모든 남자들은 코피가 팡팡팡\n팡팡 파라파라 팡팡팡\n지금 날 위한 축배를, 짠짠짠\nHands up, 내 손엔 bottle full o' Henny\n네가 말로만 듣던 걔가 나야, Jennie",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -996,11 +1240,20 @@
     "evidence": {
       "provider": "Provided to YouTube by YG Entertainment Inc.",
       "auto_generated": true,
-      "channel_id": "UCwgqFv6KylHF3ZoDHa-d5pA"
+      "channel_id": "UCwgqFv6KylHF3ZoDHa-d5pA",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "등장부터 자신을 소개하기까지 이어지는 첫 랩 단락. 팀 소개와 반복 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "등장부터 자신을 소개하기까지 이어지는 첫 랩 단락. 팀 소개와 반복 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 30,
@@ -1011,9 +1264,9 @@
     "section_hint": "1절 랩 (제니)",
     "difficulty": 3,
     "youtube_id": "4lQvwoiIXPQ",
-    "start_sec": 31.8,
-    "end_sec": 60.02,
-    "answer_lyrics": "ojik neowa gati hagopa\nnatedo i bamedo\nireotge neoreul wonhae ooh ooh\n(JENNIE) modeun namjadeuli nal maeil check out\ndaebubuni nal gajil su itda chakgak\njeoldae maneun geol wonchi ana mameul wonhae nan\nneon simjangeul doryeonae boyeobwa\naju ssikssikhage ttaeron chic chic hage\nSo hot so hot\nnaega eojjeol jul moreuge hae\nnajimaki bulreojwo\nnae gwitgae doneun hwiparamcheoreom\n(ROSÉ) idaero jinachiji mayo",
+    "start_sec": 38.66,
+    "end_sec": 57.71,
+    "answer_lyrics": "Yeah, 모든 남자들이 날 매일 check out\n대부분이 날 가질 수 있다 착각\n절대 많은 걸 원치 않아, 맘을 원해 난 (uh)\n넌 심장을 도려내 보여봐\n아주 씩씩하게, 때론 chic, chic 하게\nSo hot, so hot, 내가 어쩔 줄 모르게 해 (uh)\n나지막이 불러줘\n내 귓가에 도는 휘파람처럼",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1023,18 +1276,27 @@
     "video_duration": 212,
     "audio_duration": 212.0,
     "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/22777537",
-    "lyric_id": 22777537,
-    "lyric_track": "휘파람 (Whistle)",
-    "lyric_artist": "블랙핑크 (BLΛƆKPIИK)",
+    "lyric_source": "https://lrclib.net/api/get/2456836",
+    "lyric_id": 2456836,
+    "lyric_track": "WHISTLE",
+    "lyric_artist": "BLACKPINK",
     "evidence": {
       "provider": "Provided to YouTube by YG Entertainment Inc.",
       "auto_generated": true,
-      "channel_id": "UCwgqFv6KylHF3ZoDHa-d5pA"
+      "channel_id": "UCwgqFv6KylHF3ZoDHa-d5pA",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "겉모습보다 마음을 원한다는 태도에서 나지막한 고백의 부탁까지 랩 단락 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "겉모습보다 마음을 원한다는 태도에서 나지막한 고백의 부탁까지 랩 단락 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 31,
@@ -1046,8 +1308,8 @@
     "difficulty": 2,
     "youtube_id": "YXCkpXY1cuc",
     "start_sec": 17.67,
-    "end_sec": 47.93,
-    "answer_lyrics": "dagaseoji mothago hemaeigo iteo\njotahajiman dareun goteul bogo iteo\ngakkawojiryeogo hamyeon halsurok\nmeoleojyeo ganeun uri dului maeumcheoreom\nmannaji mothae maemdolgo iteo\nurin machi pyeonghaengseoncheoreom\nmaldo an dwae, urin bandeusi mannal geoya",
+    "end_sec": 51.01,
+    "answer_lyrics": "다가서지 못하고 헤매이고 있어\n좋아하지만 다른 곳을 보고 있어\n가까워지려고 하면 할수록\n멀어져 가는 우리 둘의 마음처럼\n만나지 못해 맴돌고 있어\n우린 마치 평행선처럼\n말도 안 돼, 우린 반드시 만날 거야\n기다릴게, 언제까지나",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1057,18 +1319,27 @@
     "video_duration": 209,
     "audio_duration": 209.0,
     "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/22717196",
-    "lyric_id": 22717196,
-    "lyric_track": "시간을 달려서 (Rough)",
-    "lyric_artist": "여자친구 (GFRIEND)",
+    "lyric_source": "https://lrclib.net/api/get/2270518",
+    "lyric_id": 2270518,
+    "lyric_track": "Rough",
+    "lyric_artist": "GFRIEND",
     "evidence": {
       "provider": "Provided to YouTube by SOURCE MUSIC",
       "auto_generated": true,
-      "channel_id": "UCKrKo2mifcYmM86K_suNz2Q"
+      "channel_id": "UCKrKo2mifcYmM86K_suNz2Q",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 7
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "가까워지려 할수록 멀어지는 마음에서 기다리겠다는 다짐까지 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 7,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "가까워지려 할수록 멀어지는 마음에서 기다리겠다는 다짐까지 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 32,
@@ -1079,9 +1350,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "0i2wOl5PDOw",
-    "start_sec": 8.76,
+    "start_sec": 4.57,
     "end_sec": 38.7,
-    "answer_lyrics": "심장이 막 두근대고 잠은 잘 수가 없어요\n한참 뒤에 별빛이 내리면\n난 다시 잠들 순 없겠죠\n지나간 새벽을 다 새면\n다시 네 곁에 잠들겠죠\n너의 품에 잠든 난 마치\n천사가 된 것만 같아요",
+    "answer_lyrics": "커피를 너무 많이 마셨나 봐요\n심장이 막 두근대고 잠은 잘 수가 없어요\n한참 뒤에 별빛이 내리면\n난 다시 잠들 순 없겠죠\n지나간 새벽을 다 새면\n다시 네 곁에 잠들겠죠\n너의 품에 잠든 난 마치\n천사가 된 것만 같아요",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1098,11 +1369,20 @@
     "evidence": {
       "provider": "Provided to YouTube by NHN BUGS",
       "auto_generated": true,
-      "channel_id": "UCa5qWh5TRLCVFkCO67_gOtw"
+      "channel_id": "UCa5qWh5TRLCVFkCO67_gOtw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 10
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "커피와 잠 못 드는 밤에서 상대의 품에 잠드는 상상까지 연결되는 첫 벌스. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 10,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "커피와 잠 못 드는 밤에서 상대의 품에 잠드는 상상까지 연결되는 첫 벌스.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 33,
@@ -1113,9 +1393,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 1,
     "youtube_id": "-tCUWBHihu4",
-    "start_sec": 17.98,
-    "end_sec": 48.02,
-    "answer_lyrics": "기억도 지워질까?\n해볼 수도 없는 말들을\n내뱉는 걸 알아\n널 힘들게 했고\n눈물로 살게 했던\n미안한 마음에 그런 거야",
+    "start_sec": 14.71,
+    "end_sec": 45.77,
+    "answer_lyrics": "시간을 되돌리면\n기억도 지워질까?\n해볼 수도 없는 말들을\n내뱉는 걸 알아\n널 힘들게 했고\n눈물로 살게 했던\n미안한 마음에 그런 거야",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1132,11 +1412,20 @@
     "evidence": {
       "provider": "Provided to YouTube by MUSIC&NEW",
       "auto_generated": true,
-      "channel_id": "UCACsUruxumQoyZq08UB9RVw"
+      "channel_id": "UCACsUruxumQoyZq08UB9RVw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 7
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "시간과 기억을 되돌리고 싶은 이유가 미안함으로 귀결되는 첫 단락. 빈 가사 시각에서 종료. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 7,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lrc_rest_marker",
+    "section_rationale": "시간과 기억을 되돌리고 싶은 이유가 미안함으로 귀결되는 첫 단락. 빈 가사 시각에서 종료.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 34,
@@ -1166,11 +1455,20 @@
     "evidence": {
       "provider": "Provided to YouTube by MUSIC&NEW",
       "auto_generated": true,
-      "channel_id": "UCusHBpPZ6xALe03NnVXhmtw"
+      "channel_id": "UCusHBpPZ6xALe03NnVXhmtw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 10
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "처음부터 정해져 있던 한 사람과 눈빛의 고백을 묶은 첫 벌스 네 줄. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 10,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "처음부터 정해져 있던 한 사람과 눈빛의 고백을 묶은 첫 벌스 네 줄.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 35,
@@ -1181,9 +1479,9 @@
     "section_hint": "1절 랩 파트",
     "difficulty": 3,
     "youtube_id": "SxAvr92fRg4",
-    "start_sec": 16.54,
-    "end_sec": 45.58,
-    "answer_lyrics": "cheotnune neol alaboge dwaeteo (hmm)\nseoreul bulreowatdeon geotcheoreom (hoo, hoo, hoo-hoo-hoo)\nnae hyeolgwan sok DNAga malhaejwo (hmm)\nnaega chata hemaedeon neoraneun geol (hoo, hoo, hoo-hoo-hoo)\nuri mannameun (mannameun) suhakui gongsik (suhakui gongsik)\njonggyoui yulbeop (yulbeop) ujuui seopri (ujuui seopri)\nnaege jueojin unmyeongui jeunggeo (shoot), neoneun nae kkumui chulcheo (shoot)\nTake it, take it, neoege naemin nae soneun jeonghaejin sukmyeong",
+    "start_sec": 30.48,
+    "end_sec": 45.46,
+    "answer_lyrics": "우리 만남은 (만남은) 수학의 공식 (수학의 공식)\n종교의 율법 (율법) 우주의 섭리 (우주의 섭리)\n내게 주어진 운명의 증거 (shoot), 너는 내 꿈의 출처 (shoot)\nTake it, take it, 너에게 내민 내 손은 정해진 숙명",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1193,18 +1491,27 @@
     "video_duration": 223,
     "audio_duration": 223.0,
     "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/22263225",
-    "lyric_id": 22263225,
+    "lyric_source": "https://lrclib.net/api/get/17326599",
+    "lyric_id": 17326599,
     "lyric_track": "DNA",
-    "lyric_artist": "방탄소년단 (BTS)",
+    "lyric_artist": "방탄소년단",
     "evidence": {
       "provider": "Provided to YouTube by Big Hit Ent.",
       "auto_generated": true,
-      "channel_id": "UC9vrvNSL3xcWGSkV86REBSg"
+      "channel_id": "UC9vrvNSL3xcWGSkV86REBSg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "만남을 공식과 율법, 운명의 증거로 설명하는 랩 한 단락. 로마자 자료를 한국어로 교체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "만남을 공식과 율법, 운명의 증거로 설명하는 랩 한 단락. 로마자 자료를 한국어로 교체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 36,
@@ -1234,11 +1541,20 @@
     "evidence": {
       "provider": "Provided to YouTube by SM Entertainment",
       "auto_generated": true,
-      "channel_id": "UCHmZYTfdTyVKQEJicLiXEOg"
+      "channel_id": "UCHmZYTfdTyVKQEJicLiXEOg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 9
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "여름의 풍경에서 첫눈에 반한 마음과 선택으로 연결되는 벌스와 연결부. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 9,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "여름의 풍경에서 첫눈에 반한 마음과 선택으로 연결되는 벌스와 연결부.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 37,
@@ -1249,9 +1565,9 @@
     "section_hint": "랩 파트 (지드래곤)",
     "difficulty": 3,
     "youtube_id": "2C1Jg04INb4",
-    "start_sec": 131.98,
-    "end_sec": 162.62,
-    "answer_lyrics": "어려서 모든 게 어려워 잔소리에 매 서러워\n꾸중만 듣던 철부지 애\n겨우 스무고개 넘어 기쁨도 잠시 어머\n아프니까 웬 청춘이래\n지은아 오빠는 말이야 지금 막 서른인데\n나는 절대로 아니야 근데 막 어른이 돼\n아직도 한참 멀었는데\n너보다 다섯 살 밖에 안 먹었는데\n스물 위 서른 아래 고맘때 right there\n애도 어른도 아닌 나이 때 그저 나일 때\n가장 찬란하게 빛이 나\n어둠이 드리워질 때도 겁내지 마\n너무 아름다워서 꽃잎 활짝 펴서",
+    "start_sec": 19.97,
+    "end_sec": 56.91,
+    "answer_lyrics": "이상하게도 요즘엔 그냥 쉬운 게 좋아\n하긴 그래도 여전히 코린 음악은 좋더라\nHot pink보다 진한 보라색을 더 좋아해\n또 뭐더라 단추 있는 pajamas, lipstick 좀 짓궂은 장난들",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1268,11 +1584,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Kakao Entertainment",
       "auto_generated": true,
-      "channel_id": "UCTUR0sVEkD8T5MlSHqgaI_Q"
+      "channel_id": "UCTUR0sVEkD8T5MlSHqgaI_Q",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 11
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "좋아하는 음악과 색, 옷을 차례로 나열하며 취향을 드러내는 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 11,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "좋아하는 음악과 색, 옷을 차례로 나열하며 취향을 드러내는 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 38,
@@ -1283,9 +1608,9 @@
     "section_hint": "1절 랩 (송민호)",
     "difficulty": 3,
     "youtube_id": "aYlXNpaQydk",
-    "start_sec": 77.12,
-    "end_sec": 108.05,
-    "answer_lyrics": "프러포즈 같은 세리머니 (oh yeah)\n정해보자 호칭\n허니 말고 자기 아님 달링\n낯간지럽네 상상해봐도\n긴장돼 필요해 a lot of alcohol\n덩치는 산만해도 네 앞에선 작아지네\nOh 내 맘 알까나\n첫눈에 미끄러지듯이 falling in love\n내 맘을 훔친 범인인 건 바로 너\n너의 미모 질투해 여신도 (wow)\n내 심장의 떨림은 진동 brrr\n치명적인 매력이 날 killin'\n섹시해 날 자극하는 hot chili woo",
+    "start_sec": 75.23,
+    "end_sec": 94.21000000000001,
+    "answer_lyrics": "멋지게 골인\n프러포즈 같은 세리머니 (oh yeah)\n정해보자 호칭\n허니 말고 자기 아님 달링\n낯간지럽네 상상해봐도\n긴장돼 필요해 a lot of alcohol\n덩치는 산만해도 네 앞에선 작아지네\nOh 내 맘 알까나",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1302,11 +1627,20 @@
     "evidence": {
       "provider": "Provided to YouTube by YG Entertainment",
       "auto_generated": true,
-      "channel_id": "UCYFMusbxIBk6gosFW0o882A"
+      "channel_id": "UCYFMusbxIBk6gosFW0o882A",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 10
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "고백 뒤의 호칭을 상상하고 긴장하는 화자의 랩 단락. 반복 제목 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 10,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "고백 뒤의 호칭을 상상하고 긴장하는 화자의 랩 단락. 반복 제목 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 39,
@@ -1316,31 +1650,40 @@
     "genre": "아이돌",
     "section_hint": "1절 벌스",
     "difficulty": 2,
-    "youtube_id": "JqJmDLA9Qac",
-    "start_sec": 25.49,
-    "end_sec": 55.7,
-    "answer_lyrics": "그 날을 잊지 못해, babe\n날 보며 환히 웃던 너의 미소에\n홀린 듯 I'm fall in love but 너무 쪽팔림에 (난 그저)\n한마디 말도 못해, babe\n(I wanna you, oh, oh) 너의 눈빛은\n날 자꾸 네 곁을 맴돌게 해\n(Just only you, oh, oh) 굳게 닫힌 내 맘이\n어느새 무너져버려 because of you",
+    "youtube_id": "0ZCCBPeRVLo",
+    "start_sec": 7.39,
+    "end_sec": 38.05,
+    "answer_lyrics": "그 날을 잊지 못해 baby\n날 보며 환히 웃던 너의 미소에\n홀린 듯 I'm fall in love\nBut 너무 쪽팔림에 (난 그저)\n한마디 말도 못 해 baby\nI wanna you-u-u-u\n너의 눈빛은 날 자꾸 니 곁을 맴돌게 해\nJust only you-u-u-u\n굳게 닫힌 내 맘이 어느새 무너져버려 because of you",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
     "audit_version": 4,
-    "video_title": "Rollin' (롤린) (New Version)",
+    "video_title": "롤린 (Rollin`)",
     "video_channel": "Brave girls - Topic",
-    "video_duration": 202,
-    "audio_duration": 202.0,
+    "video_duration": 198,
+    "audio_duration": 198.0,
     "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/8307498",
-    "lyric_id": 8307498,
-    "lyric_track": "Rollin' (New Version)",
+    "lyric_source": "https://lrclib.net/api/get/4254941",
+    "lyric_id": 4254941,
+    "lyric_track": "Rollin'",
     "lyric_artist": "Brave Girls",
     "evidence": {
-      "provider": "Provided to YouTube by Loen Entertainment",
+      "provider": "Provided to YouTube by UMAG Music",
       "auto_generated": true,
-      "channel_id": "UChm_d4qO8txdwS4YadlvpSw"
+      "channel_id": "UChm_d4qO8txdwS4YadlvpSw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "첫 만남의 미소에서 닫힌 마음이 무너지는 순간까지 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "첫 만남의 미소에서 닫힌 마음이 무너지는 순간까지 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 40,
@@ -1352,8 +1695,8 @@
     "difficulty": 1,
     "youtube_id": "97iF07jxJRg",
     "start_sec": 6.62,
-    "end_sec": 37.68,
-    "answer_lyrics": "이제 괜찮니\n너무 힘들었잖아\n우리 그 마무리가\n고작 이별뿐인 건데\n우린 참 어려웠어\n잘 지낸다고\n전해 들었어 가끔",
+    "end_sec": 31.71,
+    "answer_lyrics": "이제 괜찮니\n너무 힘들었잖아\n우리 그 마무리가\n고작 이별뿐인 건데\n우린 참 어려웠어",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1370,11 +1713,20 @@
     "evidence": {
       "provider": "Provided to YouTube by FLUXUS",
       "auto_generated": true,
-      "channel_id": "UC9vrsMkxQUvpugdAbIC9r-w"
+      "channel_id": "UC9vrsMkxQUvpugdAbIC9r-w",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "이별의 끝과 서로에게 어려웠던 관계를 돌아보는 첫 단락 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "이별의 끝과 서로에게 어려웠던 관계를 돌아보는 첫 단락 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 41,
@@ -1386,8 +1738,8 @@
     "difficulty": 2,
     "youtube_id": "hGWMhVbaJNg",
     "start_sec": 29.82,
-    "end_sec": 59.78,
-    "answer_lyrics": "오늘은 오랜만에 네 생각을 하는 날이야\n일부러 난 너와 내가 담겨 있는 노랠 찾아\n오늘은 슬프거나 우울해도 괜찮은 맘이야\n어차피 이 밤이 다 지나가면은 별 수도 없이\n난 또 한동안은 널 잊고 살 테니까",
+    "end_sec": 65.84,
+    "answer_lyrics": "오늘은 오랜만에 네 생각을 하는 날이야\n일부러 난 너와 내가 담겨 있는 노랠 찾아\n오늘은 슬프거나 우울해도 괜찮은 맘이야\n어차피 이 밤이 다 지나가면은 별 수도 없이\n난 또 한동안은 널 잊고 살 테니까\n내 가슴 속에만 품고 살아갈 테니까",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1404,11 +1756,20 @@
     "evidence": {
       "provider": "Provided to YouTube by CJ E&M Music",
       "auto_generated": true,
-      "channel_id": "UCmTdAlgitpNLCFwxynjmjpw"
+      "channel_id": "UCmTdAlgitpNLCFwxynjmjpw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "비 오는 밤에 옛 노래를 찾고 잠시 기억을 꺼내는 이유를 설명하는 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "비 오는 밤에 옛 노래를 찾고 잠시 기억을 꺼내는 이유를 설명하는 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 42,
@@ -1419,9 +1780,9 @@
     "section_hint": "1절 랩 (제니)",
     "difficulty": 3,
     "youtube_id": "IPzouyj7FLA",
-    "start_sec": 79.98,
-    "end_sec": 108.77,
-    "answer_lyrics": "Ah, yeah, ah, yeah\nHit you with that 뚜두뚜두두\nAh, yeah, ah, yeah (뚜두두뚜두뚜두)\nHit you with that, hit you with that\nHit you with that (BLACKPINK!)\n지금 내가 걸어가는 거린\nBLACKPINK four-way 사거리\n동서남북 사방으로, run it\n너네 bucket list 싹 다, I bought it\n널 당기는 것도 멀리 밀치는 것도\n제멋대로 하는 bad girl\n좋건 싫어하건 누가 뭐라 하던\nWhen the bass drop, it's another banger",
+    "start_sec": 21.83,
+    "end_sec": 50.62,
+    "answer_lyrics": "Yeah, 착한 얼굴에 그렇지 못한 태도 (uh)\n가녀린 몸매 속 가려진 volume은 두 배로 (double up)\n거침없이 직진 굳이 보진 않지 눈치 (whoo!)\nBlack 하면 pink, 우린 예쁘장한 savage (BLACKPINK!)\n원할 땐 대놓고 뺏지 (uh)\n넌 뭘 해도 칼로 물 베기 (uh)\n두 손엔 가득한 fat check\n궁금하면 해봐 fact check\n눈 높인 꼭대기\n물 만난 물고기\n좀 독해, 난 toxic\nYou 혹해, I'm foxy",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1442,9 +1803,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "겉모습과 다른 태도 및 자신감을 설명하는 첫 랩 단락. 팀 구호와 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "겉모습과 다른 태도 및 자신감을 설명하는 첫 랩 단락. 팀 구호와 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 43,
@@ -1455,9 +1823,9 @@
     "section_hint": "1절 랩 파트",
     "difficulty": 2,
     "youtube_id": "OmEPFmyKO74",
-    "start_sec": 25.46,
-    "end_sec": 55.36,
-    "answer_lyrics": "降りる幕 ゆっくりと\nEy 平気なフリしてもまだ痛む別れの後遺症\n明日はないと 二人泣いていてもね いつも通りの今日\n長引くほど 胸の傷は広がるんだ Yeah eh eh\n辛いけど 愛し愛された それだけでいいんだ Yeah eh eh\nこの先ずっと 残るキミの記憶\nそっと振り返るよ それで十分で\n恋に落ちた僕たちは\n消えはしない思い出になる",
+    "start_sec": 33.76,
+    "end_sec": 65.49,
+    "answer_lyrics": "에이, 괜찮지만은 않아 이별을 마주한다는 건\n오늘이었던 우리의 어제에 더는 내일이 없다는 건\n아프긴 해도 더 끌었음 상처가 덧나니까, 예, 에, 에\n널 사랑했고 사랑 받았으니 난 이걸로 됐어, 예, 에, 에\n나 살아가면서 가끔씩 떠오를 기억\n그 안에 네가 있다면 그거면 충분해",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1467,18 +1835,27 @@
     "video_duration": 210,
     "audio_duration": 210.0,
     "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/12345062",
-    "lyric_id": 12345062,
-    "lyric_track": "LOVE SCENARIO",
+    "lyric_source": "https://lrclib.net/api/get/6935412",
+    "lyric_id": 6935412,
+    "lyric_track": "사랑을 했다 (LOVE SCENARIO)",
     "lyric_artist": "iKON",
     "evidence": {
       "provider": "Provided to YouTube by YG Entertainment",
       "auto_generated": true,
-      "channel_id": "UCsuyvQXmlEMeV66kphCHCnw"
+      "channel_id": "UCsuyvQXmlEMeV66kphCHCnw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 18
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "이별을 받아들이기 어려운 이유에서 추억이면 충분하다는 결론까지 벌스와 연결부. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 18,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "이별을 받아들이기 어려운 이유에서 추억이면 충분하다는 결론까지 벌스와 연결부.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 44,
@@ -1489,9 +1866,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "NLkfJbvMDAA",
-    "start_sec": 21.56,
-    "end_sec": 51.81,
-    "answer_lyrics": "Yeah, 뿜뿜\n설레어 너와 나의 랑데뷰 (랑데뷰)\n내 마음을 들었다 놨다 해 맘대루 (맘대루)\n지금 내 눈엔, 눈엔, 눈엔, 네 어깨 무릎 발 (oh)\n숨이 탁 막힐 것 같아 난 너만 보면\nWow, wow, 정신을 또 놔 놔 네 매력에\n난, 난 놀라게 돼 또 (hit it, hit it, hit it, ho!)\n우우우, 무슨 말이 필요해? 넌\n숨이 콱 막힐 것 같아 넌",
+    "start_sec": 22.57,
+    "end_sec": 45.55,
+    "answer_lyrics": "설레어 너와 나의 랑데뷰 (랑데뷰)\n내 마음을 들었다 놨다 해 맘대루 (맘대루)\n지금 내 눈엔, 눈엔, 눈엔, 네 어깨 무릎 발 (oh)\n숨이 탁 막힐 것 같아 난 너만 보면\nWow, wow, 정신을 또 놔 놔 네 매력에\n난, 난 놀라게 돼 또 (hit it, hit it, hit it, ho!)",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1508,11 +1885,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Loen Entertainment",
       "auto_generated": true,
-      "channel_id": "UCDtL5zQzU2bp_CFF_gjPx-Q"
+      "channel_id": "UCDtL5zQzU2bp_CFF_gjPx-Q",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 11
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대를 본 설렘과 매력에 놀라는 상황이 이어지는 첫 벌스. 반복 제목 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 11,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대를 본 설렘과 매력에 놀라는 상황이 이어지는 첫 벌스. 반복 제목 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 45,
@@ -1523,9 +1909,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "w4nihuYVTW0",
-    "start_sec": 18.44,
+    "start_sec": 15.48,
     "end_sec": 48.3,
-    "answer_lyrics": "책 속에서나 드라마 속에서\n사랑을 느껴\nUm 사랑을 배워\n내 일처럼 자꾸 가슴이 뛰어\n두근두근거려 설레임에 부풀어 올라\nUm 궁금해서 미칠 것만 같아\nOoh 언젠간 내게도\n이런 일이 실제로 일어날까\n그게 언제쯤일까? 어떤 사람일까?",
+    "answer_lyrics": "매일같이 영화 속에서나\n책 속에서나 드라마 속에서\n사랑을 느껴\nUm 사랑을 배워\n내 일처럼 자꾸 가슴이 뛰어\n두근두근거려 설레임에 부풀어 올라\nUm 궁금해서 미칠 것만 같아\nOoh 언젠간 내게도\n이런 일이 실제로 일어날까\n그게 언제쯤일까? 어떤 사람일까?",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1542,11 +1928,20 @@
     "evidence": {
       "provider": "Provided to YouTube by JYP Entertainment Corporation",
       "auto_generated": true,
-      "channel_id": "UCAq0pFGa2w9SjxOq0ZxKVIw"
+      "channel_id": "UCAq0pFGa2w9SjxOq0ZxKVIw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 10
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "작품 속 사랑을 배우는 화자가 실제 사랑의 시기와 상대를 궁금해하는 첫 단락 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 10,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "작품 속 사랑을 배우는 화자가 실제 사랑의 시기와 상대를 궁금해하는 첫 단락 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 46,
@@ -1556,31 +1951,40 @@
     "genre": "발라드·솔로",
     "section_hint": "1절 벌스",
     "difficulty": 1,
-    "youtube_id": "9cV0JWB_Tjs",
-    "start_sec": 43.78,
-    "end_sec": 69.2,
-    "answer_lyrics": "너의 품은 항상 따뜻했어\n고단했던 나의 하루에 유일한 휴식처 우 워\n나는 너 하나로 충분해\n긴 말 안 해도 눈빛으로 다 아니깐",
+    "youtube_id": "64uidOIH2vY",
+    "start_sec": 15.33,
+    "end_sec": 43.78,
+    "answer_lyrics": "네가 없이 웃을 수 있을까\n생각만 해도 눈물이나\n힘든 시간 날 지켜준 사람\n이제는 내가 그댈 지킬 테니",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
     "audit_version": 4,
-    "video_title": "Every Day, Every Moment (yours) (모든 날, 모든 순간 (yours))",
+    "video_title": "모든 날, 모든 순간 Every day, Every Moment",
     "video_channel": "Paul Kim - Topic",
     "video_duration": 210,
-    "audio_duration": 210.0,
-    "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/28630060",
-    "lyric_id": 28630060,
+    "audio_duration": 210.520816,
+    "duration_delta_sec": 0.52,
+    "lyric_source": "https://lrclib.net/api/get/27025081",
+    "lyric_id": 27025081,
     "lyric_track": "모든 날, 모든 순간",
     "lyric_artist": "폴킴 (Paul Kim)",
     "evidence": {
-      "provider": "Provided to YouTube by Kakao Entertainment",
+      "provider": "Provided to YouTube by SM Entertainment",
       "auto_generated": true,
-      "channel_id": "UC959d12wXE5b5K7quFdRnVQ"
+      "channel_id": "UC959d12wXE5b5K7quFdRnVQ",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대 없이 웃을 수 없다는 마음과 이제는 자신이 지키겠다는 약속의 두 문장. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대 없이 웃을 수 없다는 마음과 이제는 자신이 지키겠다는 약속의 두 문장.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 47,
@@ -1610,11 +2014,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Kakao Entertainment",
       "auto_generated": true,
-      "channel_id": "UCqpHQ9_Tr7itmkR8n8Uqkfg"
+      "channel_id": "UCqpHQ9_Tr7itmkR8n8Uqkfg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 3
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대는 다른 사랑을 시작했지만 자신은 이별을 끝내지 못했다는 첫 단락 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 3,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대는 다른 사랑을 시작했지만 자신은 이별을 끝내지 못했다는 첫 단락 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 48,
@@ -1624,31 +2037,40 @@
     "genre": "발라드·솔로",
     "section_hint": "1절 벌스",
     "difficulty": 2,
-    "youtube_id": "rQkAq2rl5J0",
-    "start_sec": 27.39,
-    "end_sec": 56.95,
-    "answer_lyrics": "I could never let you go\nCouldn't run away if I tried\n'Cause even when I'm all alone\nYou still got a hold on my mind\nAnd I'll always let you know\nThat I'm always gonna hold on\nAnd I told you right from the start\nYou just say the word and I'll go\nNo, it doesn't matter how far\n'Cause your love is all that I know\nBaby, you just stay where you are",
+    "youtube_id": "1rP7ziPDDt0",
+    "start_sec": 39.28,
+    "end_sec": 77.16,
+    "answer_lyrics": "아무리 힘껏 닫아도 다시 열린 서랍 같아\n하늘로 높이 날린 넌 자꾸 내게 되돌아와\n힘들게 삼킨 이별도 다 그대로인 걸 oh, oh, oh\n수없이 떠난 길 위에서 난 너를 발견하고\n비우려 했던 맘은 또 이렇게 너로 차올라\n발걸음의 끝에 늘 니가 부딪혀\n그만 그만",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
     "audit_version": 4,
-    "video_title": "Way Back Home (feat. Conor Maynard) (Sam Feldt Edit)",
+    "video_title": "Way Back Home",
     "video_channel": "SHAUN - Topic",
-    "video_duration": 192,
-    "audio_duration": 192.0,
+    "video_duration": 214,
+    "audio_duration": 214.0,
     "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/16734901",
-    "lyric_id": 16734901,
-    "lyric_track": "Way Back Home (feat. Conor Maynard) (Sam Feldt Edit)",
-    "lyric_artist": "숀 (SHAUN)",
+    "lyric_source": "https://lrclib.net/api/get/9031694",
+    "lyric_id": 9031694,
+    "lyric_track": "Way Back Home",
+    "lyric_artist": "SHAUN",
     "evidence": {
-      "provider": "Provided to YouTube by Spinnin' Records",
+      "provider": "Provided to YouTube by DCTOM",
       "auto_generated": true,
-      "channel_id": "UCZtbCSzIjKOH7lxX8Czo2iw"
+      "channel_id": "UCZtbCSzIjKOH7lxX8Czo2iw",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 10
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "서랍과 되돌아오는 새의 비유에서 기억으로 돌아가는 발걸음까지 한국어 원곡의 첫 벌스. 편집 버전 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 10,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "서랍과 되돌아오는 새의 비유에서 기억으로 돌아가는 발걸음까지 한국어 원곡의 첫 벌스. 편집 버전 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 49,
@@ -1659,9 +2081,9 @@
     "section_hint": "1절 랩 (로꼬)",
     "difficulty": 3,
     "youtube_id": "cO2oYWesWoI",
-    "start_sec": 84.81,
-    "end_sec": 114.39,
-    "answer_lyrics": "내게 진심을 바라면 그 술은 절대 주지마\n헛소릴 하고 악마의 춤을 출거니까\n마치 밖엔 시원한 바람이 불지만\n세상이 너무 험해서 널 내 옆에만 둘 거니까\n남자는 전부 똑같대\n아니 술 마신 남잔 다 똑같애\n너 말곤 아무것도 안 보인다는 건\n니가 아닌 다른 것들은 다 잊고 있는 거야\n그러니까 내게 술을 주지마\n맨 정신에도 충분히 외로우니까\n가위질을 하게 날 내버려 두지마\n사랑 찍고 본능 알기 전에",
+    "start_sec": 22.21,
+    "end_sec": 43.78,
+    "answer_lyrics": "위험해\n아슬아슬해\n간신히 끈을 잡았는데\n넌 가위질을 하려고 해\n너의 호의는 필요 없어\n인내심이 많지 않아 내겐\n유혹으로밖에 안 보여",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1678,11 +2100,20 @@
     "evidence": {
       "provider": "Provided to YouTube by mnetmusic",
       "auto_generated": true,
-      "channel_id": "UCJVA-stKCH0IS_C1qIOUjTA"
+      "channel_id": "UCJVA-stKCH0IS_C1qIOUjTA",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 10
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "관계가 위험한 이유를 끈과 가위의 비유로 설명하고 호의를 거절하는 첫 벌스. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 10,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "관계가 위험한 이유를 끈과 가위의 비유로 설명하고 호의를 거절하는 첫 벌스.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 50,
@@ -1693,9 +2124,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "od9UKd-yvks",
-    "start_sec": 11.76,
-    "end_sec": 42.03,
-    "answer_lyrics": "Like it, 너의 작은 말투도\n나쁘지 않은걸\nBoy, you know, know, know, know\n(Like the way) 말없이 손을 잡고\n(Like the way) 조금은 놀래도\n싫지가 않은걸\nYou know, boy (boy, boy, boy)\n물감처럼 파랗던, 하늘은 벌써 까맣고\n감정은 더 깊어져, yeah, I gotta tell you this\n우리 둘만 느껴지는 이상한 느낌",
+    "start_sec": 8.65,
+    "end_sec": 28.2,
+    "answer_lyrics": "Yeah, I like it, 네가 말을 놓는 것도\nLike it, 너의 작은 말투도\n나쁘지 않은걸\nBoy, you know, know, know, know\n(Like the way) 말없이 손을 잡고\n(Like the way) 조금은 놀래도\n싫지가 않은걸\nYou know, boy (boy, boy, boy)",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1712,11 +2143,20 @@
     "evidence": {
       "provider": "Provided to YouTube by CJ Digital Music",
       "auto_generated": true,
-      "channel_id": "UCpUChkP-KE20GRsyfjU83_g"
+      "channel_id": "UCpUChkP-KE20GRsyfjU83_g",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 8
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대의 말투와 손을 잡는 행동이 싫지 않다는 두 묶음의 첫 벌스. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 8,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대의 말투와 손을 잡는 행동이 싫지 않다는 두 묶음의 첫 벌스.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 51,
@@ -1727,9 +2167,9 @@
     "section_hint": "1절 랩 파트",
     "difficulty": 3,
     "youtube_id": "Q-erYa8cwnc",
-    "start_sec": 81.31,
-    "end_sec": 110.15,
-    "answer_lyrics": "Oh-whoa, oh-whoa, oh-whoa, oh-whoa, oh\nI want something stronger (I want it)\nOh-whoa, oh-whoa, oh-whoa, oh-whoa, oh\nThan a moment, than a moment, love\nOh-whoa, oh-whoa, oh-whoa, oh-whoa, oh\nI have waited longer\nOh-whoa, oh-whoa, oh-whoa, oh-whoa, oh\nFor a boy with, for a boy with love\n널 알게 된 이후, yah (oh)\n내 삶은 온통 너, yah (yah)\n사소한 게 사소하지 않게 만들어버린 너라는 별 (oh, yeah)\n하나부터 열까지 (ayy, ayy)\n모든 게 특별하지 (ayy)\n너의 관심사 걸음걸이 말투와",
+    "start_sec": 95.95,
+    "end_sec": 128.21,
+    "answer_lyrics": "널 알게 된 이후, yah (oh)\n내 삶은 온통 너, yah (yah)\n사소한 게 사소하지 않게 만들어버린 너라는 별 (oh, yeah)\n하나부터 열까지 (ayy, ayy)\n모든 게 특별하지 (ayy)\n너의 관심사 걸음걸이 말투와\n사소한 작은 습관들까지, ayy (Hope World)\n다 말하지\n너무 작던 내가 영웅이 된 거라고 (oh, no)\n난 말하지\n운명 따윈 처음부터 내 게 아니었다고 (oh, no)\n세계의 평화 (no way)\n거대한 질서 (no way)\n그저 널 지킬 거야 난 (boy with love)",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1750,9 +2190,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "사소한 관심이 삶을 바꾸고 거창한 운명보다 상대를 지키겠다는 결론으로 이어지는 랩 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "사소한 관심이 삶을 바꾸고 거창한 운명보다 상대를 지키겠다는 결론으로 이어지는 랩 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 52,
@@ -1764,8 +2211,8 @@
     "difficulty": 2,
     "youtube_id": "-9fC6oDFl5k",
     "start_sec": 23.46,
-    "end_sec": 51.36,
-    "answer_lyrics": "솔직히, 말할게 많이 기다려 왔어\n너도 그랬을 거라 믿어\n오늘이 오길 매일같이 달력을 보면서\n솔직히, 나에게도, 지금 이 순간은\n꿈만 같아, 너와 함께라\n오늘을 위해 꽤 많은 걸 준비해 봤어\nAll about you and I, 다른 건 다 제쳐 두고",
+    "end_sec": 45.14,
+    "answer_lyrics": "솔직히, 말할게 많이 기다려 왔어\n너도 그랬을 거라 믿어\n오늘이 오길 매일같이 달력을 보면서\n솔직히, 나에게도, 지금 이 순간은\n꿈만 같아, 너와 함께라\n오늘을 위해 꽤 많은 걸 준비해 봤어",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1786,9 +2233,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "함께할 날을 기다리고 준비해 왔다는 두 단락의 고백. 응원 구호와 반복 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "함께할 날을 기다리고 준비해 왔다는 두 단락의 고백. 응원 구호와 반복 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 53,
@@ -1798,15 +2252,15 @@
     "genre": "발라드·솔로",
     "section_hint": "1절 벌스",
     "difficulty": 2,
-    "youtube_id": "qLKFq7Rv97o",
-    "start_sec": 14.18,
-    "end_sec": 43.04,
-    "answer_lyrics": "네 샴푸향이 느껴진거야\n스쳐지나간건가? 뒤돌아보지만\n그냥 사람들만 보이는거야\n다와가는 집근처에서\n괜히 핸드폰만 만지는거야\n한번 연락해 볼까? 용기내 보지만",
+    "youtube_id": "_pcl_JPqMfw",
+    "start_sec": 9.95,
+    "end_sec": 47.18,
+    "answer_lyrics": "흔들리는 꽃들 속에서\n네 샴푸향이 느껴진거야\n스쳐지나간건가? 뒤돌아보지만\n그냥 사람들만 보이는거야\n다와가는 집근처에서\n괜히 핸드폰만 만지는거야\n한번 연락해 볼까? 용기내 보지만\n그냥 내 마음만 아쉬운 거야",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
     "audit_version": 4,
-    "video_title": "흔들리는 꽃들 속에서 네 샴푸향이 느껴진거야 Your Shampoo Scent In The Flowers...",
+    "video_title": "흔들리는 꽃들 속에서 네 샴푸향이 느껴진거야 Your Shampoo Scent In The Flowers",
     "video_channel": "Jang Beom June - Topic",
     "video_duration": 169,
     "audio_duration": 169.0,
@@ -1818,11 +2272,20 @@
     "evidence": {
       "provider": "Provided to YouTube by Genie Music",
       "auto_generated": true,
-      "channel_id": "UCvolP1xNN2maB52Tb1PkXzg"
+      "channel_id": "UCvolP1xNN2maB52Tb1PkXzg",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 3
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "꽃길에서 향기를 느낀 뒤 연락을 망설이며 집으로 돌아오는 이야기 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 3,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "꽃길에서 향기를 느낀 뒤 연락을 망설이며 집으로 돌아오는 이야기 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 54,
@@ -1834,8 +2297,8 @@
     "difficulty": 2,
     "youtube_id": "t8P-zdkoeJA",
     "start_sec": 7.38,
-    "end_sec": 38.64,
-    "answer_lyrics": "나는 읽기 쉬운 마음이야\n당신도 스윽 훑고 가셔요\n달랠 길 없는 외로운 마음 있지\n머물다 가셔요, 음\n내게 긴 여운을 남겨줘요",
+    "end_sec": 33.45,
+    "answer_lyrics": "나는 읽기 쉬운 마음이야\n당신도 스윽 훑고 가셔요\n달랠 길 없는 외로운 마음 있지\n머물다 가셔요, 음",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1856,9 +2319,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "자신의 마음을 읽고 외로운 마음에 잠시 머물러 달라는 첫 단락 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "자신의 마음을 읽고 외로운 마음에 잠시 머물러 달라는 첫 단락 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 55,
@@ -1869,9 +2339,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 1,
     "youtube_id": "4EQ_vqyojWU",
-    "start_sec": 15.27,
-    "end_sec": 43.06,
-    "answer_lyrics": "오래되었어 그때 너의 웃음\n너의 목소리 잊혀진거 같아\n시간의 위로 그 말의 의미를 이젠 알아\n아픈 니 얘기도 적당히 할 수 있어",
+    "start_sec": 43.06,
+    "end_sec": 73.69,
+    "answer_lyrics": "그런데 이게 뭐랄까 난 난 술 한잔하면서\n괜찮은 듯 얘기하며 널 털어냈는데\n집으로 돌아오면서 한 번 더 떠오른 기억에\n걸음을 멈춰 서서 이렇게 울고 있어",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1892,9 +2362,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 3
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "술자리에서는 잊었다고 말했지만 집으로 돌아오다 멈춰 우는 반전의 단락 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 3,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "술자리에서는 잊었다고 말했지만 집으로 돌아오다 멈춰 우는 반전의 단락 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 56,
@@ -1905,9 +2382,9 @@
     "section_hint": "1절 랩",
     "difficulty": 3,
     "youtube_id": "_50jtkDnObw",
-    "start_sec": 94.14,
-    "end_sec": 124.18,
-    "answer_lyrics": "Motown의 1번 노랠 기억해 니들?\n뭐였지? 뭐였나? 음 음?\nI'm the man in the mirror\n그러니 light me up\n1절의 그 별이 2절의 그 별이\n그래 모두 나였지 실화가 된 동화이지\n힘들 때면 홀로 쓴 노래를 불러\n환상들을 보던 성냥팔이 소년이였던 나날들이\n365, 24, 730, 24에 7\n1095 아 그만 세자 1400이 되니 oh\n그 애랑도 하고 돔페리뇽이 만든\n숙취 땜에 넋을 놓은 나를 향해",
+    "start_sec": 54.98,
+    "end_sec": 72.86,
+    "answer_lyrics": "발견했지 우연히 5년 전의 노트\n정말 스타 되고 싶어\n그럴려면 가서 만나면 돼 악마?\n노트를 덮고\n거울에 비춰진 남자를 보니 와\n저 손목이 너무 부러워\n저 금 day date rollie 넘을걸 천백은 더",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1928,9 +2405,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 2
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "옛 노트를 발견한 기억에서 거울 속 현재의 자신을 바라보는 랩 단락. 반복 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 2,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "옛 노트를 발견한 기억에서 거울 속 현재의 자신을 바라보는 랩 단락. 반복 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 57,
@@ -1942,8 +2426,8 @@
     "difficulty": 2,
     "youtube_id": "Z8E0apklL2w",
     "start_sec": 19.84,
-    "end_sec": 49.73,
-    "answer_lyrics": "사실은 나도 잘 모르겠어\n불안한 마음은 어디에서 태어나\n우리에게까지 온 건지\n나도 모르는 새에 피어나\n우리 사이에 큰 상처로 자라도",
+    "end_sec": 58.82,
+    "answer_lyrics": "사실은 나도 잘 모르겠어\n불안한 마음은 어디에서 태어나\n우리에게까지 온 건지\n나도 모르는 새에 피어나\n우리 사이에 큰 상처로 자라도\n그건 아마 우리의 잘못은 아닐 거야",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -1964,9 +2448,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "불안의 시작을 모르겠다는 고백에서 서로의 잘못만은 아니라는 결론까지 첫 단락. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "불안의 시작을 모르겠다는 고백에서 서로의 잘못만은 아니라는 결론까지 첫 단락.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 58,
@@ -1978,8 +2469,8 @@
     "difficulty": 3,
     "youtube_id": "GOtF5_Ow0_Y",
     "start_sec": 49.34,
-    "end_sec": 79.12,
-    "answer_lyrics": "아무래도 refresh가 시급한 듯해\n쌓여가 스트레스가\n배꼽 빠질 만큼만\n폭소하고 싶은 날이야\nWhat up my dawgs 어디야 너희\n올 때 병맥주랑\n까까 몇 개 사 와 huh\n클럽은 구미가 잘 안 당겨\n우리 집 거실로 빨랑 모여\n외부인은 요령껏 차단 시켜\n밤새 수다 떨 시간도 모자라\n누군 힘들어 죽겠고 누군 축제\n괜히 싱숭생숭 I want my youth back\n좀 전까지 왁자지껄\n하다 한 명 두 명씩 자릴 떠",
+    "end_sec": 71.59,
+    "answer_lyrics": "아무래도 refresh가 시급한 듯해\n쌓여가 스트레스가\n배꼽 빠질 만큼만\n폭소하고 싶은 날이야\nWhat up my dawgs 어디야 너희\n올 때 병맥주랑\n까까 몇 개 사 와 huh\n클럽은 구미가 잘 안 당겨\n우리 집 거실로 빨랑 모여\n외부인은 요령껏 차단 시켜\n밤새 수다 떨 시간도 모자라",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2000,9 +2491,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "쌓인 스트레스에서 친구를 집으로 부르고 밤새 이야기하자는 제안까지 랩 단락. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "쌓인 스트레스에서 친구를 집으로 부르고 밤새 이야기하자는 제안까지 랩 단락.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 59,
@@ -2013,9 +2511,9 @@
     "section_hint": "랩 파트 (비룡)",
     "difficulty": 3,
     "youtube_id": "vIfIzA9xHxI",
-    "start_sec": 109.12,
-    "end_sec": 139.02,
-    "answer_lyrics": "다들 덥다고 막 짜증내 괜찮아 우리 둘은 따뜻해\n내게 퐁당 빠져버린 널 이젠 구하러 가지 않을 거야\n모래 위 펴펴펴편지를 써 밀물이 밀려와도 못 지워\n추억이 될 뻔한 첫 느낌 너랑 다시 한번 받아 보고 싶어\n흐르는 시간 속에서 너와 내 기억은\n점점 희미해져만 가 끝난 줄 알았어",
+    "start_sec": 44.44,
+    "end_sec": 75.35,
+    "answer_lyrics": "다시는 널 볼 순 없을 거라고\n추억일 뿐이라\n서랍 속에 꼭 넣어뒀는데\n흐르는 시간 속에서 너와 내 기억은\n점점 희미해져만 가 끝난 줄 알았어",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2036,9 +2534,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "다시 볼 수 없다고 여겨 기억을 넣어두고 잊어가던 과정을 회상하는 벌스. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "다시 볼 수 없다고 여겨 기억을 넣어두고 잊어가던 과정을 회상하는 벌스.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 60,
@@ -2049,9 +2554,9 @@
     "section_hint": "1절 벌스 (영어)",
     "difficulty": 3,
     "youtube_id": "HaEYUJ2aRHs",
-    "start_sec": 5.13,
-    "end_sec": 34.95,
-    "answer_lyrics": "So, watch me bring the fire, and set the night alight\nYour shoes on, get up in the morn'\nCup of milk, let's rock 'n' roll\nKing Kong, kick the drum\nRolling on like a Rolling Stone\nSing-song when I'm walking home\nJump up to the top, LeBron\nDing-dong, call me on my phone\nIce tea and a game of ping pong\nThis is getting heavy, can you hear the bass boom? I'm ready (woo-hoo)\nLife is sweet as honey, yeah, this beat cha-ching like money, huh",
+    "start_sec": 10.17,
+    "end_sec": 26.69,
+    "answer_lyrics": "Your shoes on, get up in the morn'\nCup of milk, let's rock 'n' roll\nKing Kong, kick the drum\nRolling on like a Rolling Stone\nSing-song when I'm walking home\nJump up to the top, LeBron\nDing-dong, call me on my phone\nIce tea and a game of ping pong",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2072,9 +2577,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 2
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "아침에 일어나 음악과 함께 움직이는 장면을 순서대로 그리는 첫 영어 벌스. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 2,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "아침에 일어나 음악과 함께 움직이는 장면을 순서대로 그리는 첫 영어 벌스.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 61,
@@ -2085,9 +2597,9 @@
     "section_hint": "1절 랩 (제니)",
     "difficulty": 3,
     "youtube_id": "8mA6jIeojnk",
-    "start_sec": 56.25,
-    "end_sec": 85.95,
-    "answer_lyrics": "(Lisa, Rosé, Jennie)\nNow, look at you, now look at me (Uh)\nLook at you, now look at me (Uh)\nLook at you, now look at me\nHow you like that?\nNow, look at you, now look at me (Uh)\nLook at you, now look at me (Uh)\nLook at you, now look at me\nHow you like that?\n(Lisa)\nYour girl need it all and that's a hundred\nbaek gae junge baek nae mokeul wonhae\nKarma come and get some\nttakhajiman eojjeol su eopjana\nWhat's up? I'm right back\nbangasoereul cock back\nPlain Jane get hijacked, don't like me?\nThen tell me how you like that, like that\n(Jennie, Jisoo)",
+    "start_sec": 71.52,
+    "end_sec": 86.05,
+    "answer_lyrics": "Your girl need it all and that's a hunnid\n백 개 중에 백, 내 몫을 원해\nKarma come and get some\n딱하지만 어쩔 수 없잖아\nWhat's up? I'm right back (right back)\n방아쇠를 cock back (cock back)\nPlain Jane get hijacked, don't like me?\nThen tell me how you like that, like that?",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2095,12 +2607,12 @@
     "video_title": "How You Like That",
     "video_channel": "BLACKPINK - Topic",
     "video_duration": 182,
-    "audio_duration": 181.0,
-    "duration_delta_sec": 1.0,
-    "lyric_source": "https://lrclib.net/api/get/22280849",
-    "lyric_id": 22280849,
+    "audio_duration": 180.0,
+    "duration_delta_sec": 2.0,
+    "lyric_source": "https://lrclib.net/api/get/35963426",
+    "lyric_id": 35963426,
     "lyric_track": "How You Like That",
-    "lyric_artist": "블랙핑크 (BLΛƆKPIИK)",
+    "lyric_artist": "BLACKPINK (블랙핑크)",
     "evidence": {
       "provider": "Provided to YouTube by YG Entertainment How You Like That · BLACKPINK How You Like That ℗ YG ENTERTAINMENT ...",
       "auto_generated": true,
@@ -2108,9 +2620,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "자신의 몫을 되찾겠다는 선언에서 상대에게 되묻는 결말까지 랩 단락. 반복 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "자신의 몫을 되찾겠다는 선언에서 상대에게 되묻는 결말까지 랩 단락. 반복 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 62,
@@ -2121,9 +2640,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "04tYkKUPPv4",
-    "start_sec": 12.32,
-    "end_sec": 41.58,
-    "answer_lyrics": "눈물이 고여도 꾹 참을래\n내 마음 한켠 비밀스런 오르골에 넣어두고서\n영원히 되감을 순간이니까\n우리 둘의 마지막 페이지를 잘 부탁해\n어느 작별이 이보다 완벽할까?\nLove me only 'til this spring",
+    "start_sec": 7.64,
+    "end_sec": 39.51,
+    "answer_lyrics": "나리는 꽃가루에 눈이 따끔해 (아야)\n눈물이 고여도 꾹 참을래\n내 마음 한켠 비밀스런 오르골에 넣어두고서\n영원히 되감을 순간이니까\n우리 둘의 마지막 페이지를 잘 부탁해\n어느 작별이 이보다 완벽할까?",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2144,9 +2663,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "눈물을 참으며 마지막 봄의 한 페이지를 부탁하는 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "눈물을 참으며 마지막 봄의 한 페이지를 부탁하는 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 63,
@@ -2157,9 +2683,9 @@
     "section_hint": "1절 벌스 (빠른 구간)",
     "difficulty": 3,
     "youtube_id": "tkzYyEp4zB4",
-    "start_sec": 70.8,
-    "end_sec": 100.43,
-    "answer_lyrics": "I see the NU EVO\njeokdaejeokin gonangwa seulpeumeun\nneol deo Popping jinhwasikyeo\nThat's my naevis It's my naevis\nYou lead, we follow\ngamjeongdeuleul baeun daeum\nWatch me while I make it out\nWatch me while I work it out\nWatch me while I make it out\nWatch me while I work it out\nWork it work it work it out\ngamdanghal su eopneun jeolmangdo",
+    "start_sec": 8.52,
+    "end_sec": 27.05,
+    "answer_lyrics": "I'm on the next level, yeah\n절대적 룰을 지켜\n내 손을 놓지 말아\n결속은 나의 무기\n광야로 걸어가\n알아 네 home ground (yeah, yeah, yeah)\n위협에 맞서서\n제껴라, 제껴라, 제껴라",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2167,12 +2693,12 @@
     "video_title": "Next Level",
     "video_channel": "aespa - Topic",
     "video_duration": 222,
-    "audio_duration": 222.0,
-    "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/22383244",
-    "lyric_id": 22383244,
+    "audio_duration": 221.573333,
+    "duration_delta_sec": 0.43,
+    "lyric_source": "https://lrclib.net/api/get/21653317",
+    "lyric_id": 21653317,
     "lyric_track": "Next Level",
-    "lyric_artist": "에스파 (aespa)",
+    "lyric_artist": "aespa (에스파)",
     "evidence": {
       "provider": "Provided to YouTube by SM Entertainment Next Level · aespa Next Level ℗ 2021 SM Entertainment Released on: 2021-05-17 ...",
       "auto_generated": true,
@@ -2180,9 +2706,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "규칙과 결속, 광야와 위협이라는 세계관을 소개하는 첫 랩 단락. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "규칙과 결속, 광야와 위협이라는 세계관을 소개하는 첫 랩 단락.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 64,
@@ -2194,8 +2727,8 @@
     "difficulty": 2,
     "youtube_id": "0EK_M2taRIM",
     "start_sec": 9.79,
-    "end_sec": 36.82,
-    "answer_lyrics": "ttabunhan naui nunbiti, mupyojeonghaetdeon eolguli\nneol bomyeo bitnago iteo, neol dameun nundongjaneun odd\nnae ane ppaegokhage pieonaneun blue\nnaega jigeum neukkineun i gamjeongdeuleun true\nnae ipsuleul ganjireophin natseon geu ireum",
+    "end_sec": 41.79,
+    "answer_lyrics": "따분한 나의 눈빛이, 무표정했던 얼굴이\n널 보며 빛나고 있어, 널 담은 눈동자는 odd\n내 안에 빼곡하게 피어나는 blue\n내가 지금 느끼는 이 감정들은 true\n내 입술을 간지럽힌 낯선 그 이름\n난 몰랐어 내 맘이 이리 다채로운지",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2205,10 +2738,10 @@
     "video_duration": 179,
     "audio_duration": 178.0,
     "duration_delta_sec": 1.0,
-    "lyric_source": "https://lrclib.net/api/get/22278567",
-    "lyric_id": 22278567,
+    "lyric_source": "https://lrclib.net/api/get/10099151",
+    "lyric_id": 10099151,
     "lyric_track": "ELEVEN",
-    "lyric_artist": "아이브 (IVE)",
+    "lyric_artist": "Ive (아이브)",
     "evidence": {
       "provider": "Provided to YouTube by Kakao Entertainment ELEVEN (ELEVEN) · IVE ELEVEN ℗ 2021 STARSHIP Entertainment,under license ...",
       "auto_generated": true,
@@ -2216,9 +2749,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 2
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "무표정했던 자신이 다채로운 감정을 알아가는 첫 벌스 전체. 숫자 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 2,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "무표정했던 자신이 다채로운 감정을 알아가는 첫 벌스 전체. 숫자 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 65,
@@ -2229,9 +2769,9 @@
     "section_hint": "1절 벌스 (빠른 구간)",
     "difficulty": 2,
     "youtube_id": "9Ibf10h9U0c",
-    "start_sec": 26.59,
-    "end_sec": 56.37,
-    "answer_lyrics": "가려한 날 막아서네\n난 갈 길이 먼데\n새빨간 얼굴로 화를 냈던\n친구가 생각나네\n이미 난 발걸음을 떼었지만\n가려한 날 재촉하네\n걷기도 힘든데\n새파랗게 겁에 질려 도망간",
+    "start_sec": 21.86,
+    "end_sec": 61.54,
+    "answer_lyrics": "이제야 목적지를 정했지만\n가려한 날 막아서네\n난 갈 길이 먼데\n새빨간 얼굴로 화를 냈던\n친구가 생각나네\n이미 난 발걸음을 떼었지만\n가려한 날 재촉하네\n걷기도 힘든데\n새파랗게 겁에 질려 도망간\n친구가 뇌에 맴도네",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2252,9 +2792,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "막아서거나 재촉하는 길과 두 친구를 대비하는 첫 벌스 두 단락 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "막아서거나 재촉하는 길과 두 친구를 대비하는 첫 벌스 두 단락 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 66,
@@ -2266,8 +2813,8 @@
     "difficulty": 2,
     "youtube_id": "uaejCvCMu5I",
     "start_sec": 12.49,
-    "end_sec": 44.38,
-    "answer_lyrics": "말했잖아 언젠가 이런 날이 온다면\n난 널 혼자 내버려두지 않을 거라고\n죄다 낭떠러지야, 봐\n예상했던 것보다 더 아플지도 모르지만\n내 손을 잡으면 하늘을 나는 정도",
+    "end_sec": 48.4,
+    "answer_lyrics": "말했잖아 언젠가 이런 날이 온다면\n난 널 혼자 내버려두지 않을 거라고\n죄다 낭떠러지야, 봐\n예상했던 것보다 더 아플지도 모르지만\n내 손을 잡으면 하늘을 나는 정도\n그 이상도 느낄 수 있을 거야",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2288,9 +2835,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "혼자 두지 않겠다는 약속과 손을 잡으면 날 수 있다는 제안까지 첫 벌스. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "혼자 두지 않겠다는 약속과 손을 잡으면 날 수 있다는 제안까지 첫 벌스.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 67,
@@ -2301,9 +2855,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "hh5GKVa8VtM",
-    "start_sec": 3.68,
-    "end_sec": 33.34,
-    "answer_lyrics": "Mmm-mmm\nYeah\n네가 참 궁금해, 그건 너도 마찬가지 (mmm-mmm)\n이거면 충분해 쫓고 쫓는 이런 놀이\n참을 수 없는 이끌림과 호기심\n묘한 너와 나 두고 보면 알겠지\n(Ooh-ooh-ooh-ooh) 눈동자 아래로\n(Ooh-ooh-ooh-ooh) 감추고 있는 거",
+    "start_sec": 8.55,
+    "end_sec": 25.04,
+    "answer_lyrics": "네가 참 궁금해, 그건 너도 마찬가지 (mmm-mmm)\n이거면 충분해 쫓고 쫓는 이런 놀이\n참을 수 없는 이끌림과 호기심\n묘한 너와 나 두고 보면 알겠지",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2324,9 +2878,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 2
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "서로의 궁금함과 이끌림을 탐색하는 첫 벌스 네 줄. 반복 후렴과 추임새 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 2,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "서로의 궁금함과 이끌림을 탐색하는 첫 벌스 네 줄. 반복 후렴과 추임새 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 68,
@@ -2337,9 +2898,9 @@
     "section_hint": "1절 벌스 (영어 섞임)",
     "difficulty": 3,
     "youtube_id": "ghrlZIMDzbM",
-    "start_sec": 18.12,
-    "end_sec": 48.17,
-    "answer_lyrics": "One, two, three, four\nBaby (baby), got me looking so crazy (crazy)\n빠져버리는 daydream (daydream), got me feeling you, 너도 말해줄래?\n누가 내게 뭐래던, 남들과는 달라 넌\nMaybe you could be the one (one)\n날 믿어봐 한번, I'm not looking for just fun\nMaybe I could be the one\nOh, baby (baby), 예민하대 나 lately (lately)\n너 없이는 매일매일이, yeah, 재미없어, 어쩌지?",
+    "start_sec": 19.27,
+    "end_sec": 52.8,
+    "answer_lyrics": "Baby (baby), got me looking so crazy (crazy)\n빠져버리는 daydream (daydream), got me feeling you, 너도 말해줄래?\n누가 내게 뭐래던, 남들과는 달라 넌\nMaybe you could be the one (one)\n날 믿어봐 한번, I'm not looking for just fun\nMaybe I could be the one\nOh, baby (baby), 예민하대 나 lately (lately)\n너 없이는 매일매일이, yeah, 재미없어, 어쩌지?\nI just want you call my phone right now\nI just wanna hear, \"You're mine\"",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2360,9 +2921,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대와 특별한 관계가 되고 싶은 마음에서 전화와 대답을 바라는 결론까지 첫 벌스. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대와 특별한 관계가 되고 싶은 마음에서 전화와 대답을 바라는 결론까지 첫 벌스.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 69,
@@ -2373,9 +2941,9 @@
     "section_hint": "1절 랩",
     "difficulty": 3,
     "youtube_id": "C_cpDd0WYTk",
-    "start_sec": 28.1,
-    "end_sec": 57.69,
-    "answer_lyrics": "I'm too sexy (yah), 헌 집 주고 새집\n프리미엄이 붙어\n두 배, 세 배, 네 배, yeah\n나는 새삥, 11년째 freshman\n유명세를 걷어\n현찰 대신 스펙을 stackin' (stack)\nOoh! You're not savage\n남의 멋만 쌔비지\n난 취향을 감춰 그래\n내 세컨 카는 수수께끼\nShow and prove의 symbol\n넘볼 수 없는 임금\nThe king is back, pow!\n다시 \"코\" 시국\n암만 영끌해도 근본은 절대 못 사 (ayy)\n눈팅으로 배운 너의 street fashion\n뚜까 패고파\n기분이 째져, ayy, who's the best dresser?",
+    "start_sec": 33.26,
+    "end_sec": 54.44,
+    "answer_lyrics": "나는 새삥, 11년째 freshman\n유명세를 걷어\n현찰 대신 스펙을 stackin' (stack)\nOoh! You're not savage\n남의 멋만 쌔비지\n난 취향을 감춰 그래\n내 세컨 카는 수수께끼\nShow and prove의 symbol\n넘볼 수 없는 임금\nThe king is back, pow!\n다시 \"코\" 시국\n암만 영끌해도 근본은 절대 못 사 (ayy)\n눈팅으로 배운 너의 street fashion\n뚜까 패고파",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2396,9 +2964,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "오랜 경력과 고유한 취향, 흉내 낼 수 없는 근본을 이야기하는 랩 단락 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "오랜 경력과 고유한 취향, 흉내 낼 수 없는 근본을 이야기하는 랩 단락 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 70,
@@ -2409,9 +2984,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "XJL-lduf174",
-    "start_sec": 17.39,
-    "end_sec": 46.87,
-    "answer_lyrics": "정들었던 내 젊은 날 이제는 안녕\n아름답던 우리의 봄 여름 가을 겨울\n(Four seasons with no reason)\n비 갠 뒤에 비애 대신 a happy end\n비스듬히 씩 비웃듯 칠색 무늬의 무지개\n철없이 철 지나 철들지 못해 (still)\n철부지에 철 그른지 오래\nMarchin' 비발디, 차이코프스키",
+    "start_sec": 32.84,
+    "end_sec": 53.92,
+    "answer_lyrics": "비 갠 뒤에 비애 대신 a happy end\n비스듬히 씩 비웃듯 칠색 무늬의 무지개\n철없이 철 지나 철들지 못해 (still)\n철부지에 철 그른지 오래\nMarchin' 비발디, 차이코프스키\n오늘의 사계를 맞이해 (boy)\n마침내, 마치 넷이 못내\n저 하늘만 바라보고서\n사계절 잘 지내고 있어, goodbye",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2432,9 +3007,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "비가 갠 뒤의 무지개에서 사계절과 이별 인사로 연결되는 랩 단락. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "비가 갠 뒤의 무지개에서 사계절과 이별 인사로 연결되는 랩 단락.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 71,
@@ -2446,8 +3028,8 @@
     "difficulty": 2,
     "youtube_id": "V6TEcoNUmc8",
     "start_sec": 29.05,
-    "end_sec": 59.12,
-    "answer_lyrics": "훌쩍 커버렸어, 함께한 기억처럼\n널 보는 내 마음은, 어느새 여름 지나 가을\n기다렸지 all this time\nDo you want somebody like I want somebody?\n날 보고 웃었지만 do you think about me now, yeah?\nAll the time, yeah? All the time?\nI got no time to lose",
+    "end_sec": 55.56,
+    "answer_lyrics": "훌쩍 커버렸어, 함께한 기억처럼\n널 보는 내 마음은, 어느새 여름 지나 가을\n기다렸지 all this time\nDo you want somebody like I want somebody?\n날 보고 웃었지만 do you think about me now, yeah?\nAll the time, yeah? All the time?",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2468,9 +3050,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "함께한 기억 속 자란 마음에서 상대도 같은 생각인지 묻는 첫 벌스. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "함께한 기억 속 자란 마음에서 상대도 같은 생각인지 묻는 첫 벌스.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 72,
@@ -2481,9 +3070,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "j1uXcHwLhHM",
-    "start_sec": 26.97,
-    "end_sec": 56.39,
-    "answer_lyrics": "당연히 해야 할 일이야\n나에겐 우리가 지금 1순위야\n안전한 유리병을 핑계로\n바람을 가둬 둔 것 같지만\n기억나? 그날의 우리가\n잡았던 그 손엔 말이야\n설레임보다 커다란 믿음이 담겨서\n난 함박웃음을 지었지만",
+    "start_sec": 43.98,
+    "end_sec": 63.48,
+    "answer_lyrics": "기억나? 그날의 우리가\n잡았던 그 손엔 말이야\n설레임보다 커다란 믿음이 담겨서\n난 함박웃음을 지었지만\n울음이 날 것도 같았어\n소중한 건 언제나 두려움이니까",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2504,9 +3093,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "손을 잡았던 날의 믿음과 기쁨, 소중한 것을 두려워하는 마음까지 하나의 회상. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "손을 잡았던 날의 믿음과 기쁨, 소중한 것을 두려워하는 마음까지 하나의 회상.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 73,
@@ -2518,8 +3114,8 @@
     "difficulty": 1,
     "youtube_id": "0e7uplpFJdE",
     "start_sec": 11.71,
-    "end_sec": 44.35,
-    "answer_lyrics": "너와 함께 하고 싶은 일들을 상상하는 게\n요즘 내 일상이 되고\n너의 즐거워하는 모습을 보고 있으면\n자연스레 따라 웃고 있는 걸\n너의 행동에 설레어하고, 뒤척이다가\n지새운 밤이 많아지는데",
+    "end_sec": 33.18,
+    "answer_lyrics": "너와 함께 하고 싶은 일들을 상상하는 게\n요즘 내 일상이 되고\n너의 즐거워하는 모습을 보고 있으면\n자연스레 따라 웃고 있는 걸",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2540,9 +3136,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "함께할 일을 상상하고 상대를 보며 따라 웃는다는 하나의 완결된 일상 묘사. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "함께할 일을 상상하고 상대를 보며 따라 웃는다는 하나의 완결된 일상 묘사.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 74,
@@ -2553,9 +3156,9 @@
     "section_hint": "1절 랩",
     "difficulty": 3,
     "youtube_id": "OlXr5YD-MWA",
-    "start_sec": 25.89,
-    "end_sec": 55.08,
-    "answer_lyrics": "you say\n흐린 추억 속에 네게 안겨 잠드네\nYeah\n친구들과의 술자리, 나는 또 네 얘기를 꺼내\n보고 싶다는 넋두리에 친구들 답은 뻔해\n10년도 더 된 애를 사랑할 수 있냬?\n이제 그만 잊으래\n근데 그게 잘 안돼\n그래, 걔 말마따나, 넌 아담의 사과일 수도\nBut 난 신을 안 믿으니까\n네 전화 바로 픽업\n지금 주소 찍어\n어디든 상관없어 다 갈 테니까",
+    "start_sec": 32.89,
+    "end_sec": 60.38,
+    "answer_lyrics": "친구들과의 술자리, 나는 또 네 얘기를 꺼내\n보고 싶다는 넋두리에 친구들 답은 뻔해\n10년도 더 된 애를 사랑할 수 있냬?\n이제 그만 잊으래\n근데 그게 잘 안돼\n그래, 걔 말마따나, 넌 아담의 사과일 수도\nBut 난 신을 안 믿으니까\n네 전화 바로 픽업\n지금 주소 찍어\n어디든 상관없어 다 갈 테니까\nRun",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2576,9 +3179,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "술자리의 친구들과 기억을 두고 다투다가 상대의 연락에 달려가겠다는 랩 단락. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "술자리의 친구들과 기억을 두고 다투다가 상대의 연락에 달려가겠다는 랩 단락.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 75,
@@ -2612,9 +3222,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "거리에서 떠오른 기억부터 집에 가며 돌아보던 상대의 미소까지 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "거리에서 떠오른 기억부터 집에 가며 돌아보던 상대의 미소까지 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 76,
@@ -2625,9 +3242,9 @@
     "section_hint": "1절 벌스 (빠른 구간)",
     "difficulty": 2,
     "youtube_id": "e7_1cqOtVsc",
-    "start_sec": 13.66,
+    "start_sec": 9.59,
     "end_sec": 44.99,
-    "answer_lyrics": "나는 점점 너로 잠 못 들게 돼\n글로 적어내긴 어려운 이 기분을\n너도 느꼈으면 좋겠는데\n너는 아무 생각 없이 몇 번\n나를 지나가며 웃은 거라지만\n나의 하얀 옷에 너의 잉크가 묻어\n닦아낼 수 없을 만큼 번졌네",
+    "answer_lyrics": "밤은 다시 길고 깊어졌네\n나는 점점 너로 잠 못 들게 돼\n글로 적어내긴 어려운 이 기분을\n너도 느꼈으면 좋겠는데\n너는 아무 생각 없이 몇 번\n나를 지나가며 웃은 거라지만\n나의 하얀 옷에 너의 잉크가 묻어\n닦아낼 수 없을 만큼 번졌네",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2648,9 +3265,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 2
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "잠 못 드는 마음이 옷에 번진 잉크라는 비유로 완성되는 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 2,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "잠 못 드는 마음이 옷에 번진 잉크라는 비유로 완성되는 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 77,
@@ -2662,8 +3286,8 @@
     "difficulty": 2,
     "youtube_id": "MqcFHCNXiok",
     "start_sec": 6.07,
-    "end_sec": 36.8,
-    "answer_lyrics": "다른 문을 열어 따라갈 필요는 없어\n넌 너의 길로, 난 나의 길로, 음음\n하루하루마다 색이 달라진 느낌\n밝게 빛이 나는 길을 찾아\nI'm on my way, 넌 그냥 믿으면 돼\nI'm on my way, 보이는 그대로야",
+    "end_sec": 20.19,
+    "answer_lyrics": "다른 문을 열어 따라갈 필요는 없어\n넌 너의 길로, 난 나의 길로, 음음\n하루하루마다 색이 달라진 느낌\n밝게 빛이 나는 길을 찾아",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2684,9 +3308,16 @@
       "method": "youtube_player_metadata",
       "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 2
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "남을 따라가지 않고 서로의 길을 찾겠다는 첫 벌스 네 줄. 연결 후렴을 길이 맞추기로 붙이지 않음. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 2,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "남을 따라가지 않고 서로의 길을 찾겠다는 첫 벌스 네 줄. 연결 후렴을 길이 맞추기로 붙이지 않음.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 78,
@@ -2697,9 +3328,9 @@
     "section_hint": "1절 벌스 (빠른 구간)",
     "difficulty": 3,
     "youtube_id": "n7ePZLn9_lQ",
-    "start_sec": 14.82,
-    "end_sec": 45.23,
-    "answer_lyrics": "But wait a minute while I make you mine, make you mine\n떨리는 지금도 you're on my mind all the time\nI wanna tell you, but I'm super shy, super shy\nI'm super shy, super shy\nBut wait a minute while I make you mine, make you mine\n떨리는 지금도 you're on my mind all the time\nI wanna tell you, but I'm super shy, super shy\nAnd I wanna go out with you, where you wanna go? (Huh?)\nFind a lil' spot, just sit and talk\nLooking pretty, follow me, 우리 둘이 나란히",
+    "start_sec": 38.28,
+    "end_sec": 51.34,
+    "answer_lyrics": "And I wanna go out with you, where you wanna go? (Huh?)\nFind a lil' spot, just sit and talk\nLooking pretty, follow me, 우리 둘이 나란히\n보이지? 내 눈이 갑자기 빛나지 when you say I'm your dream",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2720,9 +3351,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "함께 나가 앉아 이야기하고 싶다는 제안과 상대의 반응에 밝아지는 눈빛까지 벌스. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "함께 나가 앉아 이야기하고 싶다는 제안과 상대의 반응에 밝아지는 눈빛까지 벌스.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 79,
@@ -2733,9 +3371,9 @@
     "section_hint": "1절 벌스 (영어)",
     "difficulty": 3,
     "youtube_id": "iv7TrKrwteI",
-    "start_sec": 5.27,
-    "end_sec": 35.24,
-    "answer_lyrics": "La, la-la-la, la, la-la-la\nA hopeless romantic all my life\nSurrounded by couples all the time\nI guess I should take it as a sign\nOh, why, oh, why, oh, why, oh, why?\nI'm feeling lonely (lonely)\nOh, I wish I'd find a lover that could hold me (hold me)\nNow, I'm crying in my room\nSo skeptical of love (say what you say, but I want it more)",
+    "start_sec": 9.36,
+    "end_sec": 39.2,
+    "answer_lyrics": "A hopeless romantic all my life\nSurrounded by couples all the time\nI guess I should take it as a sign\nOh, why, oh, why, oh, why, oh, why?\nI'm feeling lonely (lonely)\nOh, I wish I'd find a lover that could hold me (hold me)\nNow, I'm crying in my room\nSo skeptical of love (say what you say, but I want it more)\nBut still I want it more, more, more",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2756,9 +3394,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 2
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "커플들 사이의 외로움에서 사랑을 의심하면서도 원하는 마음까지 첫 영어 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 2,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "커플들 사이의 외로움에서 사랑을 의심하면서도 원하는 마음까지 첫 영어 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 80,
@@ -2792,9 +3437,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대를 향한 질문에서 자신의 일주일과 일상을 묘사하는 첫 벌스 전체. 제목 구호 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대를 향한 질문에서 자신의 일주일과 일상을 묘사하는 첫 벌스 전체. 제목 구호 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 81,
@@ -2806,8 +3458,8 @@
     "difficulty": 2,
     "youtube_id": "NbKH4iZqq1Y",
     "start_sec": 18.13,
-    "end_sec": 45.8,
-    "answer_lyrics": "미치도록 사랑했던\n지겹도록 다투었던\n네가 먼저 떠나고\n여긴 온종일 비가 왔어\n금세 턱 끝까지 차올랐고",
+    "end_sec": 40.52,
+    "answer_lyrics": "미치도록 사랑했던\n지겹도록 다투었던\n네가 먼저 떠나고\n여긴 온종일 비가 왔어",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2828,9 +3480,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "사랑과 다툼, 이별 뒤의 비로 연결되는 첫 벌스 네 줄. 반복 영어 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "사랑과 다툼, 이별 뒤의 비로 연결되는 첫 벌스 네 줄. 반복 영어 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 82,
@@ -2841,9 +3500,9 @@
     "section_hint": "1절 벌스 (영어)",
     "difficulty": 3,
     "youtube_id": "gQEfr1_Bmdo",
-    "start_sec": 3.33,
+    "start_sec": 19.49,
     "end_sec": 32.34,
-    "answer_lyrics": "(랜덤게임, game start!)\n아파트, 아파트\n아파트, 아파트\n아파트, 아파트\nUh, uh-huh, uh-huh\n아파트, 아파트\n아파트, 아파트\n아파트, 아파트\nUh, uh-huh, uh-huh\nKissy face, kissy face, sent to your phone, but\nI'm trying to kiss your lips for real (uh-huh, uh-huh)\nRed hearts, red hearts, that's what I'm on, yeah\nCome give me somethin' I can feel (oh-oh-oh)",
+    "answer_lyrics": "Kissy face, kissy face, sent to your phone, but\nI'm trying to kiss your lips for real (uh-huh, uh-huh)\nRed hearts, red hearts, that's what I'm on, yeah\nCome give me somethin' I can feel (oh-oh-oh)",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2864,9 +3523,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "화면 속 표현 대신 실제 만남과 감정을 바라는 첫 영어 벌스 네 줄. 게임 소개와 반복 제목 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "화면 속 표현 대신 실제 만남과 감정을 바라는 첫 영어 벌스 네 줄. 게임 소개와 반복 제목 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 83,
@@ -2877,9 +3543,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 1,
     "youtube_id": "cvQQEs4TDGM",
-    "start_sec": 8.3,
+    "start_sec": 4.09,
     "end_sec": 37.93,
-    "answer_lyrics": "너는 바라는 게 너무나 많아\n잠깐이라도 널 안 바라보면\n머리에 불이 나버린다니까\n나는 흐르려는 눈물을 참고\n하려던 얘길 어렵게 누르고\n그래, 미안해라는 한 마디로\n너랑 나눈 날들 마무리했었지",
+    "answer_lyrics": "떠나는 길에 네가 내게 말했지\n너는 바라는 게 너무나 많아\n잠깐이라도 널 안 바라보면\n머리에 불이 나버린다니까\n나는 흐르려는 눈물을 참고\n하려던 얘길 어렵게 누르고\n그래, 미안해라는 한 마디로\n너랑 나눈 날들 마무리했었지",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2900,9 +3566,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "떠나는 상대의 말부터 눈물을 참고 관계를 마무리하는 과정까지 이야기 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "떠나는 상대의 말부터 눈물을 참고 관계를 마무리하는 과정까지 이야기 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 84,
@@ -2913,9 +3586,9 @@
     "section_hint": "1절 벌스 (빠른 구간)",
     "difficulty": 3,
     "youtube_id": "G8YNFjruzPk",
-    "start_sec": 8.28,
-    "end_sec": 38.36,
-    "answer_lyrics": "Look at me go\njaemi jom bol\nbitui Core\nSo hot hot\nmuni yeolryeo\nseoroui jonjaereul neukkyeo\nmachi Discord\nnal dameun neo neo nuguya\nDrop\nsageoneun dagawa Ah Oh Ay\ngeosege keojyeoga Ah Oh Ay\nThat tick that tick tick bomb\nThat tick that tick tick bomb\ngamhi geondeuriji mothal geol\nnugudo maliya\njigeum nae aneseon",
+    "start_sec": 65.03,
+    "end_sec": 84.72,
+    "answer_lyrics": "휩쓸린 energy, it's so special\n잔인한 queen 이며 scene 이자 종결\n이토록 거대한 내 안의 explosion\n내 모든 세포 별로부터 만들어져 (under my control, oh)\n질문은 계속돼, ah-oh, ayy\n우린 어디서 왔나, oh, ayy",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -2925,10 +3598,10 @@
     "video_duration": 179,
     "audio_duration": 179.0,
     "duration_delta_sec": 0.0,
-    "lyric_source": "https://lrclib.net/api/get/22577419",
-    "lyric_id": 22577419,
+    "lyric_source": "https://lrclib.net/api/get/16142257",
+    "lyric_id": 16142257,
     "lyric_track": "Supernova",
-    "lyric_artist": "에스파 (aespa)",
+    "lyric_artist": "aespa (에스파)",
     "evidence": {
       "provider": "Provided to YouTube by SM Entertainment Supernova · aespa Armageddon - The 1st Album ℗ 2024 SM Entertainment Released ...",
       "auto_generated": true,
@@ -2936,9 +3609,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "자신 안의 에너지와 별로부터 온 존재를 설명하고 기원을 묻는 두 번째 벌스. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "자신 안의 에너지와 별로부터 온 존재를 설명하고 기원을 묻는 두 번째 벌스.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 85,
@@ -2948,33 +3628,40 @@
     "genre": "아이돌",
     "section_hint": "1절 벌스 (영어 섞임)",
     "difficulty": 3,
-    "youtube_id": "xgJ13Dt9F14",
-    "start_sec": 12.34,
-    "end_sec": 42.05,
-    "answer_lyrics": "Think fast\niyu neon ihae mot hae\nwae ijeya\nKnow I did that\nDay 1 know I been bad\nDon't stop\nheundeulrin chae\nmurihaedo\nCan't touch that\nCan't touch that\nUnder pressure body sweating\nCan you focus\neodiseona geochimeopeo\nI'm the coldest\nojik namani\ni paneul bakkul Changer\nJust close your eyes\nBreathe in and visualize\nOne look give 'em Whiplash\nBeat drop with a big flash",
+    "youtube_id": "7Jan-2W-IdY",
+    "start_sec": 69.27,
+    "end_sec": 100.22999999999999,
+    "answer_lyrics": "Fancy\n이건 참 화려해 It's glowing and it's flashy (yeah)\n알아 적당함이 뭔지 keep it classy\n따라 하지 넌 또 하나부터 열까지 (yah)\n아닌척하지 (yeah)\nUnder pressure, body sweating, can you focus? (Whoo)\nI deliver, I can promise, I'm the coldest (cold)\n외면해도 소용없지, don't you blow it (blow it)\nJust close your eyes, breathe in and visualize",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
     "audit_version": 4,
-    "video_title": "Whiplash (English Version)",
+    "video_title": "Whiplash",
     "video_channel": "aespa - Topic",
-    "video_duration": 184,
+    "video_duration": 183,
     "audio_duration": 183.0,
-    "duration_delta_sec": 1.0,
-    "lyric_source": "https://lrclib.net/api/get/22679554",
-    "lyric_id": 22679554,
-    "lyric_track": "Whiplash",
-    "lyric_artist": "에스파 (aespa)",
+    "duration_delta_sec": 0.0,
+    "lyric_source": "https://lrclib.net/api/get/13600675",
+    "lyric_id": 13600675,
+    "lyric_track": "whiplash",
+    "lyric_artist": "aespa",
     "evidence": {
-      "provider": "Provided to YouTube by SM Entertainment Whiplash (English Version) · aespa Whiplash ℗ 2025 SM Entertainment Released on: ...",
+      "provider": "Provided to YouTube by SM Entertainment",
       "auto_generated": true,
-      "channel_id": "UC9GtSLeksfK4yuJ_g1lgQbg",
-      "method": "youtube_catalog_search",
-      "embed_check": "oembed"
+      "channel_id": "UCEdZAdnnKqbaHOlv8nM6OtA",
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "화려함과 자기 기준을 설명하는 벌스에서 집중과 시각화를 권하는 연결부까지. 한국어 원곡으로 교체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "화려함과 자기 기준을 설명하는 벌스에서 집중과 시각화를 권하는 연결부까지. 한국어 원곡으로 교체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 86,
@@ -2985,9 +3672,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "HBqH4uJS0PU",
-    "start_sec": 4.35,
-    "end_sec": 34.82,
-    "answer_lyrics": "But I just can't hide that I want you\nWait a minute, 이게 뭐지? (뭐지?)\n내 심장이 lub-dub, 자꾸만 뛰어 (뛰어)\n저 멀리서도, oh (oh), my (my) gosh (gosh)\n끌어당겨, you're my crush, 초능력처럼\n거대한 자석이 된 것만 같아 my heart\n네 모든 게 내 맘에 달라붙어버려, boy\nWe're magnetized, 인정할게",
+    "start_sec": 66.76,
+    "end_sec": 93.59,
+    "answer_lyrics": "정반대 같아 our type, 넌 J, 난 완전 P\nS와 N 극이지만 그래서 끌리지\n내가 만들래 green light, 여잔 배짱이지\nSo let's go, let's go, let's go, let's go\n숨기고 싶지 않아 자석 같은 my heart\n내 맘의 끌림대로 너를 향해 갈게, boy\nWe're magnetized, 인정할게",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -3008,9 +3695,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "서로 다른 성격의 끌림을 자석으로 설명하고 마음을 인정하는 두 번째 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "서로 다른 성격의 끌림을 자석으로 설명하고 마음을 인정하는 두 번째 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 87,
@@ -3021,9 +3715,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "pbELDkeLdho",
-    "start_sec": 4.24,
-    "end_sec": 34.06,
-    "answer_lyrics": "♪\n어떤 인사가 괜찮을까\n천 번쯤 상상해 봤어\n근데 오늘도 천 번 하고\n한 번 더 고민 중\n막상 네 앞에 서니 꽁꽁 얼어버렸다\n숨겨왔던 나의 맘 절반의 반도",
+    "start_sec": 14.4,
+    "end_sec": 41.06,
+    "answer_lyrics": "어떤 인사가 괜찮을까\n천 번쯤 상상해 봤어\n근데 오늘도 천 번 하고\n한 번 더 고민 중\n막상 네 앞에 서니 꽁꽁 얼어버렸다\n숨겨왔던 나의 맘 절반의 반도\n주지를 못했어\n아, 아, 아직은\n준비가 안 됐다구요",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -3044,9 +3738,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "인사를 연습하고도 실제로는 마음을 전하지 못하는 과정을 그린 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "인사를 연습하고도 실제로는 마음을 전하지 못하는 과정을 그린 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 88,
@@ -3058,8 +3759,8 @@
     "difficulty": 2,
     "youtube_id": "bKeU99EygzY",
     "start_sec": 11.13,
-    "end_sec": 41.13,
-    "answer_lyrics": "거울 속에 내 표정 봐 봐\n느낌 so good, 기다려온 d-day\n연습했던 손든 인사도 그대로 하면 돼\nHairstyle check하고 한 번 turn around\n발걸음은 매일 걷던 그 길로\n계획은 완벽, 빨리 말 걸어보고 싶어, hey\nOoh, 문 앞에서 셋을 세어본다, yeah",
+    "end_sec": 37.02,
+    "answer_lyrics": "거울 속에 내 표정 봐 봐\n느낌 so good, 기다려온 d-day\n연습했던 손든 인사도 그대로 하면 돼\nHairstyle check하고 한 번 turn around\n발걸음은 매일 걷던 그 길로\n계획은 완벽, 빨리 말 걸어보고 싶어, hey",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -3080,9 +3781,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "거울 앞 준비와 익숙한 등굣길, 말을 걸려는 계획까지 첫 벌스 전체. 카운트 구호 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "거울 앞 준비와 익숙한 등굣길, 말을 걸려는 계획까지 첫 벌스 전체. 카운트 구호 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 89,
@@ -3093,9 +3801,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 1,
     "youtube_id": "l-H4QHLC-Uc",
-    "start_sec": 10.5,
-    "end_sec": 40.3,
-    "answer_lyrics": "마냥 좋은 그런 날이요\n내일 걱정 하나 없이\n웃게 되는 그런 날이요\n뭔가 하나씩은 걸리는 게 생기죠\n과연 행복할 수 있을까요?\n그런 날이 있을까요?\n꿈을 찾게 되는 날이요\n너무 기뻐 하늘 보고",
+    "start_sec": 8.29,
+    "end_sec": 32.18,
+    "answer_lyrics": "그런 날이 있을까요?\n마냥 좋은 그런 날이요\n내일 걱정 하나 없이\n웃게 되는 그런 날이요\n뭔가 하나씩은 걸리는 게 생기죠\n과연 행복할 수 있을까요?",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -3116,9 +3824,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "걱정 없이 웃는 날을 상상하다 행복할 수 있는지 묻는 첫 단락 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "걱정 없이 웃는 날을 상상하다 행복할 수 있는지 묻는 첫 단락 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 90,
@@ -3129,9 +3844,9 @@
     "section_hint": "1절 랩",
     "difficulty": 3,
     "youtube_id": "G7Vixoao0bM",
-    "start_sec": 24.24,
+    "start_sec": 32.41,
     "end_sec": 53.58,
-    "answer_lyrics": "Prove 'em all wrong, I've got all the receipts\nI got the power, the power, power-up power\n나는 나다워서 아름다워 (yep-yep, ayy)\n애들이 나보고 개꿀이라더군 (heh)\n댓글 리플 관종 걔들 입틀막고\n2세대 한정품이 세기의 완성품\nLike a dragonfly, 누울 자리, 글로 발명품 (shoo)\nHi, hey, how you doin'? My-my name is (called)\nG to the D or GOAT, the livin' legend (wow)\nKing is still poppin', star K- 다시\nI heard you've got the straight flush, hah (whatever), he's forever royal",
+    "answer_lyrics": "애들이 나보고 개꿀이라더군 (heh)\n댓글 리플 관종 걔들 입틀막고\n2세대 한정품이 세기의 완성품\nLike a dragonfly, 누울 자리, 글로 발명품 (shoo)\nHi, hey, how you doin'? My-my name is (called)\nG to the D or GOAT, the livin' legend (wow)\nKing is still poppin', star K- 다시\nI heard you've got the straight flush, hah (whatever), he's forever royal",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -3152,9 +3867,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "댓글과 세대, 자신의 이름과 위치를 연결하는 첫 랩 단락. 반복 파워 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "댓글과 세대, 자신의 이름과 위치를 연결하는 첫 랩 단락. 반복 파워 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 91,
@@ -3165,9 +3887,9 @@
     "section_hint": "1절 랩",
     "difficulty": 3,
     "youtube_id": "TMXNs9p2zeQ",
-    "start_sec": 73.56,
-    "end_sec": 103.49,
-    "answer_lyrics": "All Those thing that you care\nThen I'm not yours\nYes, you're wasting all your time\nFor some stupid things\nBaby I'm already yours\nYou keep asking me\nDo I really suit you?\nDo I really look good?\nGirl, I don't understand you\nAll you have to do is\nSmiling at me\nLike there's no one to interrupt us\n'Cause that's all I need from you\nMake that fingers v\n수줍어 하지 말고\n가까이 더 붙어\n난 여기있어\n니가 뭘 원하던지간에\n난 항상 똑같아\n다른 조건은 애초에",
+    "start_sec": 71.49,
+    "end_sec": 93.89,
+    "answer_lyrics": "If I cared about\nAll Those thing that you care\nThen I'm not yours\nYes, you're wasting all your time\nFor some stupid things\nBaby I'm already yours\nYou keep asking me\nDo I really suit you?\nDo I really look good?\nGirl, I don't understand you\nAll you have to do is\nSmiling at me\nLike there's no one to interrupt us\n'Cause that's all I need from you",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -3188,9 +3910,16 @@
       "method": "youtube_player_metadata",
       "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대의 외모 걱정에 이미 마음을 정했다며 웃어주기만 하면 된다고 답하는 영어 벌스. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대의 외모 걱정에 이미 마음을 정했다며 웃어주기만 하면 된다고 답하는 영어 벌스.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 92,
@@ -3201,9 +3930,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 1,
     "youtube_id": "9XFGRri2ivs",
-    "start_sec": 26.89,
-    "end_sec": 58.33,
-    "answer_lyrics": "나는 내가 빛나는 별인 줄 알았어요\n한 번도 의심한 적 없었죠\n몰랐어요, 난 내가 벌레라는 것을\n그래도 괜찮아 난 눈부시니까\n하늘에서 떨어진 별인 줄 알았어요",
+    "start_sec": 103.4,
+    "end_sec": 129.32,
+    "answer_lyrics": "한참 동안 찾았던 내 손톱\n하늘로 올라가 초승달 돼 버렸지\n주워 담을 수도 없게 너무 멀리 갔죠\n누가 저기 걸어놨어 누가 저기 걸어놨어",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -3224,9 +3953,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "잃어버린 손톱을 초승달로 비유하고 누가 걸어두었는지 묻는 이야기 네 줄. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "잃어버린 손톱을 초승달로 비유하고 누가 걸어두었는지 묻는 이야기 네 줄.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 93,
@@ -3237,9 +3973,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "5YbJ6ftft4k",
-    "start_sec": 10.75,
-    "end_sec": 39.75,
-    "answer_lyrics": "있어, 그건 매일 잠에 들 시간마다\n잘 모아둔 기억 조각들 중\n잡히는 걸 집은 후 혼자 조용히 꼬꼬무\n이걸 난 궁상이란\n이름으로 지었어, 고민, 고민하다가\n아무튼, 뭐, 오늘은 하필이면\n너가 스쳐버려서 우리였을 때로",
+    "start_sec": 6.87,
+    "end_sec": 46.82,
+    "answer_lyrics": "나는 말야, 버릇이 하나\n있어, 그건 매일 잠에 들 시간마다\n잘 모아둔 기억 조각들 중\n잡히는 걸 집은 후 혼자 조용히 꼬꼬무\n이걸 난 궁상이란\n이름으로 지었어, 고민, 고민하다가\n아무튼, 뭐, 오늘은 하필이면\n너가 스쳐버려서 우리였을 때로\n우리 정말 좋았던 그때로",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -3260,9 +3996,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "잠들기 전 기억을 꺼내는 습관에서 두 사람의 좋았던 시간으로 이동하는 도입 이야기 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "잠들기 전 기억을 꺼내는 습관에서 두 사람의 좋았던 시간으로 이동하는 도입 이야기 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 94,
@@ -3273,9 +4016,9 @@
     "section_hint": "1절 랩 (지드래곤)",
     "difficulty": 3,
     "youtube_id": "H6qC2tMkL00",
-    "start_sec": 21.47,
-    "end_sec": 50.72,
-    "answer_lyrics": "I'm feeling like I never left\nThat's right, I never left\nBut you ain't know (uh). It's okay\nThen lights, camera, act like you know (whoo)\nDon't play... on me, no, we're Airbnb\nYou're homeless\n혼비백산 해진 (mise en scène)\n도레미파시도, now you know it\n두껍아, 두껍아 came with the troops (troops)\n뜯고 맛보고 즐기고 big bang when I shoot\nKing in the zoo (huh)\nHe gotta do what I do. one of one, not of them (mirror)\nMan in the views\nAimin' at you? (Yo)\nI'm aiming at a man and amen achoo (achoo)\nBless you all \"cleaned house\" foo-",
+    "start_sec": 12.85,
+    "end_sec": 34.09,
+    "answer_lyrics": "You say it's changed\nShow must go on, behave\n오랜만에 옛 노래해\nI'm feeling like I never left\nThat's right, I never left\nBut you ain't know (uh). It's okay\nThen lights, camera, act like you know (whoo)\nDon't play... on me, no, we're Airbnb\nYou're homeless",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -3296,9 +4039,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 2
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "변했다는 말에 돌아온 적 없이 자리를 지켰다고 답하는 첫 랩 단락. 반복 영어 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 2,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "변했다는 말에 돌아온 적 없이 자리를 지켰다고 답하는 첫 랩 단락. 반복 영어 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 95,
@@ -3308,33 +4058,40 @@
     "genre": "아이돌",
     "section_hint": "1절 랩 (빠른 구간)",
     "difficulty": 3,
-    "youtube_id": "FfkraWNaKvM",
-    "start_sec": 13.77,
-    "end_sec": 42.95,
-    "answer_lyrics": "I'm leavin' clues in the fittin' room\nAnd it's hot tea\nNo, I'm not thinking 'bout no exes\nKnow they miss me\nI got the whole room spinnin' like it's tipsy\n(Don't bore us, take you to the chorus)\nWho wanna rock with JENNIE?\nKeep your hair done, nails done like JENNIE\nWho else got 'em obsessed like JENNIE?\nLike, like, like\nJENNIE, JENNIE, JENNIE, JENNIE (I think I really like)\nJENNIE, JENNIE, JENNIE (haters, they don't really like)\nJENNIE, JENNIE, JENNIE, JENNIE ('cause they could never, ever be)\nJENNIE, JENNIE, JENNIE (but have you ever met)\nJENNIE, JENNIE, JENNIE, JENNIE?",
+    "youtube_id": "8oFElTI09RI",
+    "start_sec": 55.9,
+    "end_sec": 78.17,
+    "answer_lyrics": "얼말 줘도 못해, 서커스짓\n포징 한 번에 만들어, mosh pit\nThey can't deal with me, 'cause I'm priceless\n여러 셀럽들 속에, 내 DNA\nGet, get outta my way\n바비가 처키가 되기 전에\nName, shame, blame, tryna burst my bubble\n터트려봐, 그럼 더 큰 홀에서 만나는 거야\n제니를 keep shadin'\n예술작품엔 필요해, frame이\nI've slayed it, and I graved it\nYes, I'm guilty, 잘난 게 죄니 (mm)",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
     "audit_version": 4,
-    "video_title": "Like Jennie (8D Audio)",
-    "video_channel": "surround. - Topic",
-    "video_duration": 123,
+    "video_title": "like JENNIE (like JENNIE)",
+    "video_channel": "JENNIE - Topic",
+    "video_duration": 124,
     "audio_duration": 123.0,
-    "duration_delta_sec": 0.0,
+    "duration_delta_sec": 1.0,
     "lyric_source": "https://lrclib.net/api/get/36229780",
     "lyric_id": 36229780,
     "lyric_track": "like JENNIE (Explicit)",
     "lyric_artist": "JENNIE (제니)",
     "evidence": {
-      "provider": "Provided to YouTube by Routenote",
+      "provider": "Provided to YouTube by Kakao Entertainment",
       "auto_generated": true,
-      "channel_id": "UCvDtSRXv3EzzP9zc7UqOMWg",
+      "channel_id": "UCAl7xQ6q0PEgZMQD7zr4AKQ",
       "method": "youtube_player_metadata",
       "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 12
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "값을 매길 수 없는 자신과 비난을 작품의 액자로 비유하는 한국어 랩 전체. 이름 반복 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 12,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "값을 매길 수 없는 자신과 비난을 작품의 액자로 비유하는 한국어 랩 전체. 이름 반복 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 96,
@@ -3346,7 +4103,7 @@
     "difficulty": 3,
     "youtube_id": "r6Eei81SuqE",
     "start_sec": 6.44,
-    "end_sec": 36.53,
+    "end_sec": 34.09,
     "answer_lyrics": "I'm not that easy to tame\nYou should see me under these lights, all my tears turn to ice\nThat's the sweetest escape\nEvery time the feelin' kicks in, I might stay through the night\nBet you get it now, rocked that, didn't I?\n착각 하지 마 누가 누군지\nWhoa, think you're runnin' that? Guess we gunnin' back\nYou know I walk it, yeah, I talk it, 눈 감고 하나, 둘, 셋 (뛰어)",
     "status": "candidate",
     "embed_verified": true,
@@ -3368,9 +4125,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "무대 위 자유와 주도권을 이야기하는 첫 벌스. 빈 가사로 표시된 쉬는 지점에서 종료. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lrc_rest_marker",
+    "section_rationale": "무대 위 자유와 주도권을 이야기하는 첫 벌스. 빈 가사로 표시된 쉬는 지점에서 종료.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 97,
@@ -3404,9 +4168,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "혼자였던 과거와 두 삶 사이의 방황이 현재의 무대로 이어지는 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "혼자였던 과거와 두 삶 사이의 방황이 현재의 무대로 이어지는 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 98,
@@ -3416,33 +4187,40 @@
     "genre": "아이돌",
     "section_hint": "1절 벌스 (영어)",
     "difficulty": 3,
-    "youtube_id": "i-h70es9wdw",
-    "start_sec": 14.59,
-    "end_sec": 44.17,
-    "answer_lyrics": "Hey\nDon't want you, need you\nYeah, I need you to fill me up\n마시고 마셔 봐도\n성에 차지 않아\nGot a feeling that, oh, yeah (Yeah)\nYou could be everything that\nThat I need, taste so sweet (Yeah, yeah)\nEvery sip makes me want more, yeah\nLookin like snacks 'cause you got it like that (Woo)\nTake a big bite, want another bite, yeah\n너의 모든 걸 난 원해, 원해, 원해\n너 말곤 모두 편해, 편해, 편해\nWhen you're in my arms, I hold you so tight (So tight)",
+    "youtube_id": "y7CrvsCIjyo",
+    "start_sec": 83.77,
+    "end_sec": 101.12,
+    "answer_lyrics": "My little soda pop\nMake me wanna flip the top\n한 모금에 you hit the spot\nEvery little drip and drop, fizz and pop, ah\n소름 돋아 it's gettin' hot\nYes, I'm sippin' when it's drippin' now\nIt's done? I need a second round\nAnd pour a lot and don't you stop\nTil my soda pop fizzles out",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
     "audit_version": 4,
-    "video_title": "Soda Pop (Spanish)",
+    "video_title": "Soda Pop",
     "video_channel": "Saja Boys - Topic",
-    "video_duration": 150,
+    "video_duration": 151,
     "audio_duration": 150.0,
-    "duration_delta_sec": 0.0,
+    "duration_delta_sec": 1.0,
     "lyric_source": "https://lrclib.net/api/get/37467923",
     "lyric_id": 37467923,
     "lyric_track": "Soda Pop",
     "lyric_artist": "Saja Boys",
     "evidence": {
-      "provider": "Provided to YouTube by Universal Music Group Soda Pop (Spanish) · Saja Boys · Juan Balvin · Nicolás Ginesin · Mathias ...",
+      "provider": "Provided to YouTube by Universal Music Group",
       "auto_generated": true,
       "channel_id": "UCIz8Vvt9ux6x7Ryi2sqG1ww",
-      "method": "youtube_catalog_search",
-      "embed_check": "oembed"
+      "method": "youtube_player_metadata",
+      "embed_check": "player_metadata"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "갈증을 탄산의 거품과 한 모금에 빗대어 끝까지 원하는 랩 단락. 제목 반복 후렴 제외. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "갈증을 탄산의 거품과 한 모금에 빗대어 끝까지 원하는 랩 단락. 제목 반복 후렴 제외.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 99,
@@ -3454,8 +4232,8 @@
     "difficulty": 2,
     "youtube_id": "QxGt54-oh1A",
     "start_sec": 5.31,
-    "end_sec": 33.93,
-    "answer_lyrics": "나를 그냥 짓밟고 가\n괜찮아 돌아보지 마\n내가 아파봤자 너만 하겠니\n이젠 너를 헤아려봐\n날 위해 쉬던 그 숨은 잊고\n저 위에 널 위해 just kill my ego",
+    "end_sec": 43.6,
+    "answer_lyrics": "나를 그냥 짓밟고 가\n괜찮아 돌아보지 마\n내가 아파봤자 너만 하겠니\n이젠 너를 헤아려봐\n날 위해 쉬던 그 숨은 잊고\n저 위에 널 위해 just kill my ego\n등 돌려 걸어가\nYou got it you got it yeah",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -3476,9 +4254,16 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "상대에게 돌아보지 말고 자신을 위해 떠나라고 말하는 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "상대에게 돌아보지 말고 자신을 위해 떠나라고 말하는 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   },
   {
     "id": 100,
@@ -3512,43 +4297,53 @@
       "method": "youtube_catalog_search",
       "embed_check": "oembed"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "헤어지던 날의 기억을 떠올리며 이제 지워야 하는지 묻는 첫 벌스 전체. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 2,
+    "section_content_reviewed": true,
+    "boundary_verified": false,
+    "boundary_basis": "lyric_section_transition",
+    "section_rationale": "헤어지던 날의 기억을 떠올리며 이제 지워야 하는지 묻는 첫 벌스 전체.",
+    "recording_catalog_reviewed": true,
+    "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다."
   }
 ]</script>
 <script>
 'use strict';
 const $=id=>document.getElementById(id), base=JSON.parse($('songData').textContent), STORAGE='nolto-workshop-v1';
-const revision=JSON.stringify(base.map(s=>[s.id,s.youtube_id,s.start_sec,s.end_sec,s.answer_lyrics,s.audit_version]));
+const revision=JSON.stringify(base.map(s=>[s.id,s.youtube_id,s.start_sec,s.end_sec,s.answer_lyrics,s.audit_version,s.section_revision]));
 let songs=base,current=null,player=null,ready=false,active=false,revealed=false,used=new Set(),teams=[{name:'1팀 · 한라',score:0},{name:'2팀 · 바다',score:0}],storageWarning=false,loadTimer;
-let pendingPlay=false,requestedVideo='',segmentStarted=false;
+let pendingPlay=false,requestedVideo='',segmentStarted=false,canResume=false;
 function valid(s){return /^[\w-]{11}$/.test(s.youtube_id||'')&&typeof s.start_sec==='number'&&typeof s.end_sec==='number'&&Number.isFinite(s.start_sec)&&Number.isFinite(s.end_sec)&&s.start_sec>=0&&s.end_sec>s.start_sec;}
 function say(text){$('status').textContent=text;}
-try{const raw=localStorage.getItem(STORAGE),saved=JSON.parse(raw||'null');if(saved){if(Array.isArray(saved.songs)){const stored=validate(saved.songs);if(saved.revision===revision)songs=stored;else{localStorage.setItem(STORAGE+'-previous',raw);const confirmed=new Map(stored.filter(s=>s.status==='verified'&&base.some(b=>b.id===s.id&&b.audit_version===s.audit_version&&b.youtube_id===s.youtube_id)).map(s=>[s.id,s]));songs=base.map(s=>confirmed.get(s.id)||s);}}used=new Set(saved.used||[]);if(Array.isArray(saved.teams)&&saved.teams.length===2)teams=saved.teams;}}catch(e){storageWarning=true;}
+try{const raw=localStorage.getItem(STORAGE),saved=JSON.parse(raw||'null');if(saved){if(Array.isArray(saved.songs)){const stored=validate(saved.songs);if(saved.revision===revision)songs=stored;else{localStorage.setItem(STORAGE+'-previous',raw);const confirmed=new Map(stored.filter(s=>s.status==='verified'&&base.some(b=>b.id===s.id&&b.audit_version===s.audit_version&&b.section_revision===s.section_revision&&b.youtube_id===s.youtube_id)).map(s=>[s.id,s]));songs=base.map(s=>confirmed.get(s.id)||s);}}used=new Set(saved.used||[]);if(Array.isArray(saved.teams)&&saved.teams.length===2)teams=saved.teams;}}catch(e){storageWarning=true;}
 function save(){try{localStorage.setItem(STORAGE,JSON.stringify({revision,songs,used:[...used],teams}));}catch(e){storageWarning=true;say('브라우저 저장 불가: JSON 내보내기로 저장해 주세요.');}}
 function validate(data){if(!Array.isArray(data)||!data.length)throw Error('곡 배열이 필요합니다.');const ids=new Set();return data.map(s=>{if(!s||!Number.isInteger(s.id)||ids.has(s.id)||typeof s.title!=='string'||typeof s.artist!=='string')throw Error('곡 ID·제목·가수를 확인하세요.');ids.add(s.id);const r={...s};for(const key of ['start_sec','end_sec'])r[key]=s[key]===null||s[key]===''||s[key]===undefined?null:Number(s[key]);if((r.start_sec!==null||r.end_sec!==null)&&(!Number.isFinite(r.start_sec)||!Number.isFinite(r.end_sec)||r.start_sec<0||r.end_sec<=r.start_sec))throw Error('시작/끝 시간이 올바르지 않습니다.');return r;});}
 function filterOptions(){for(const id of ['year','genre']){const node=$(id),old=node.value;while(node.options.length>1)node.remove(1);[...new Set(songs.map(s=>String(s[id])))].sort().forEach(v=>node.add(new Option(v,v)));node.value=old;}}
 function filtered(){const q=$('search').value.toLocaleLowerCase();return songs.filter(s=>(!q||(s.artist+' '+s.title).toLocaleLowerCase().includes(q))&&['year','difficulty','genre'].every(k=>!$(k).value||String(s[k])===$(k).value)&&(!$('readyOnly').checked||valid(s)));}
-function render(){const list=$('list');list.replaceChildren();const shown=filtered();$('count').textContent=`${shown.length}곡`;$('stats').textContent=`전체 ${songs.length}곡 · 공식 음원 ${songs.filter(s=>valid(s)&&s.source_type==='official_art_track').length}곡 · 청취 확인 ${songs.filter(s=>s.status==='verified').length}곡 · 사용 ${used.size}곡`;for(const s of shown){const b=document.createElement('button');b.className='song'+(used.has(s.id)?' used':'')+(current?.id===s.id?' selected':'');const no=document.createElement('span');no.className='muted';no.textContent=String(s.id).padStart(2,'0');const text=document.createElement('span'),title=document.createElement('strong'),sub=document.createElement('small');title.textContent=s.title;sub.textContent=`${s.artist} · ${s.year} · ${'★'.repeat(Math.min(3,Math.max(1,Number(s.difficulty)||1)))}${valid(s)?' · '+(s.end_sec-s.start_sec).toFixed(0)+'초':''}`;text.append(title,sub);const badge=document.createElement('span');badge.className='badge'+(!valid(s)?' warn':'');badge.textContent=used.has(s.id)?'사용함':!valid(s)?'미준비':s.status==='verified'?'청취 확인':s.source_type==='official_art_track'?'앨범 음원':'수동 설정';b.append(no,text,badge);b.onclick=()=>selectSong(s,true);list.append(b);}if(!shown.length)list.textContent='조건에 맞는 곡이 없습니다.';}
-function stop(){active=false;pendingPlay=false;clearTimeout(loadTimer);if(ready)player.pauseVideo();}
-function selectSong(s,autoplay){stop();current=s;revealed=false;$('editDetails').open=false;$('title').textContent=s.title;$('artist').textContent=`${s.artist} · ${s.year}${valid(s)?' · 받쓰 '+(s.end_sec-s.start_sec).toFixed(1)+'초':''}`;$('songBadge').textContent=`#${s.id} · ${s.status==='verified'?'청취 확인 완료':valid(s)?s.source_type==='official_art_track'?'공식 앨범 음원':'수동 설정':'데이터 준비 필요'}`;$('notes').textContent=(s.review_notes||'직접 청취하고 구간을 확인해 주세요.')+(s.section_hint?' 원본 요청: '+s.section_hint:'');sync();render();if(valid(s)){say(ready?'재생 준비 완료':'YouTube 연결 중 · 연결되면 선택한 곡을 재생합니다.');if(autoplay)play();}else{say('공식 앨범 음원과 구간이 확보되지 않아 재생을 보류했습니다. 뮤비로 대체하지 않습니다.');$('editDetails').open=true;}}
+function render(){const list=$('list');list.replaceChildren();const shown=filtered();$('count').textContent=`${shown.length}곡`;$('stats').textContent=`전체 ${songs.length}곡 · 공식 음원 ${songs.filter(s=>valid(s)&&s.source_type==='official_art_track').length}곡 · 내용 검토 ${songs.filter(s=>s.section_content_reviewed).length}곡 · 청취 확인 ${songs.filter(s=>s.status==='verified').length}곡 · 사용 ${used.size}곡`;for(const s of shown){const b=document.createElement('button');b.className='song'+(used.has(s.id)?' used':'')+(current?.id===s.id?' selected':'');const no=document.createElement('span');no.className='muted';no.textContent=String(s.id).padStart(2,'0');const text=document.createElement('span'),title=document.createElement('strong'),sub=document.createElement('small');title.textContent=s.title;sub.textContent=`${s.artist} · ${s.year} · ${'★'.repeat(Math.min(3,Math.max(1,Number(s.difficulty)||1)))}${valid(s)?' · '+(s.end_sec-s.start_sec).toFixed(0)+'초':''}`;text.append(title,sub);const badge=document.createElement('span');badge.className='badge'+(!valid(s)?' warn':'');badge.textContent=used.has(s.id)?'사용함':!valid(s)?'미준비':s.status==='verified'?'청취 확인':s.source_type==='official_art_track'?'앨범 음원':'수동 설정';b.append(no,text,badge);b.onclick=()=>selectSong(s,true);list.append(b);}if(!shown.length)list.textContent='조건에 맞는 곡이 없습니다.';}
+function setResume(value){canResume=value;$('resumeBtn').disabled=!value;}
+function stop(){setResume(false);active=false;pendingPlay=false;clearTimeout(loadTimer);if(ready)player.pauseVideo();}
+function selectSong(s,autoplay){stop();current=s;revealed=false;$('editDetails').open=false;$('title').textContent=s.title;$('artist').textContent=`${s.artist} · ${s.year}${valid(s)?' · 받쓰 '+(s.end_sec-s.start_sec).toFixed(1)+'초':''}`;$('songBadge').textContent=`#${s.id} · ${s.status==='verified'?'청취 확인 완료':valid(s)?s.source_type==='official_art_track'?'공식 앨범 음원':'수동 설정':'데이터 준비 필요'}`;$('sectionReason').textContent=s.section_rationale?'선정 이유: '+s.section_rationale:'';$('notes').textContent=(s.review_notes||'직접 청취하고 구간을 확인해 주세요.')+(s.section_hint?' 원본 요청: '+s.section_hint:'');sync();render();if(valid(s)){say(ready?'재생 준비 완료':'YouTube 연결 중 · 연결되면 선택한 곡을 재생합니다.');if(autoplay)play();}else{say('공식 앨범 음원과 구간이 확보되지 않아 재생을 보류했습니다. 뮤비로 대체하지 않습니다.');$('editDetails').open=true;}}
 function sync(){const s=current;$('start').textContent=s?.start_sec??'—';$('end').textContent=s?.end_sec??'—';for(const id of ['playBtn','preloadBtn'])$(id).disabled=!s||!valid(s);$('answerBtn').disabled=!s;$('answerBtn').textContent='정답 공개 ↵';$('answer').replaceChildren();const t=document.createElement(revealed?'pre':'span');t.textContent=revealed?(s.answer_lyrics||'등록된 정답 가사가 없습니다.'):'정답은 아직 비밀입니다.';$('answer').append(t);if(revealed)$('answerBtn').textContent='정답 숨기기 ↵';if(s){$('videoInput').value=s.youtube_id||'';$('startInput').value=s.start_sec??'';$('endInput').value=s.end_sec??'';$('lyricsInput').value=s.answer_lyrics||'';$('verifiedInput').checked=s.status==='verified';} }
 function matchesVideo(){return !!(current&&ready&&player.getVideoData?.().video_id===current.youtube_id);}
 function showVideo(){ $('mask').checked=false;$('cover').classList.add('hide'); }
 function checkSegment(){if(!active||!matchesVideo()||player.getPlayerState()!==1)return;const t=player.getCurrentTime()||0;if(!segmentStarted&&t>=Math.max(0,current.start_sec-.3)&&t<current.end_sec){segmentStarted=true;clearTimeout(loadTimer);used.add(current.id);save();render();}if(segmentStarted&&t>=current.end_sec){stop();say('구간 재생 완료 · 다시 듣기로 반복할 수 있습니다.');}else if(segmentStarted&&$('status').textContent!=='듣는 중 · 지정 구간 끝에서 자동 정지합니다.')say('듣는 중 · 지정 구간 끝에서 자동 정지합니다.');}
-function play(){if(!current||!valid(current))return;if(!ready){pendingPlay=true;say('YouTube 첫 연결 중 · 연결되면 선택한 곡을 재생합니다.');return;}pendingPlay=false;active=true;segmentStarted=false;revealed=false;sync();clearTimeout(loadTimer);const reuse=requestedVideo===current.youtube_id&&matchesVideo();player.unMute();if(reuse){say('같은 영상에서 구간 처음으로 이동 중…');player.seekTo(current.start_sec,true);player.playVideo();}else{say('새 곡 연결 중…');requestedVideo=current.youtube_id;player.loadVideoById({videoId:current.youtube_id,startSeconds:current.start_sec,endSeconds:current.end_sec});}loadTimer=setTimeout(()=>{if(active&&!segmentStarted){showVideo();say('구간 재생 대기 · 영상을 표시했습니다. 광고·버퍼링·재생 버튼을 확인하세요.');}},4500);}
-window.onYouTubeIframeAPIReady=()=>{player=new YT.Player('player',{width:'100%',height:'100%',playerVars:{playsinline:1,rel:0,...(location.protocol.startsWith('http')?{origin:location.origin}:{})},events:{onReady:()=>{ready=true;if(pendingPlay)play();else say('YouTube 연결 완료 · 곡을 선택하면 재생합니다.');},onStateChange:e=>{if(!active||!matchesVideo())return;if(e.data===1){checkSegment();if(!segmentStarted)say('지정 구간으로 이동 중 · 지연되면 광고·재생 상태를 표시합니다.');}else if(e.data===3)say('영상 버퍼링 중 · 연결을 기다리고 있습니다.');else if(e.data===0&&segmentStarted){stop();say('구간 재생 완료 · 다시 듣기로 반복할 수 있습니다.');}},onAutoplayBlocked:()=>{showVideo();say('브라우저가 자동재생을 차단했습니다. 표시된 영상의 ▶ 버튼을 눌러 주세요.');},onError:e=>{active=false;pendingPlay=false;requestedVideo='';clearTimeout(loadTimer);showVideo();say(e.data===153?'YouTube 오류 153: 출처 정보 제한입니다. 공개 게임 주소 또는 실행.cmd로 열어 주세요.':`재생 실패 (${e.data}) · 다시 듣기로 재시도하거나 영상 ID를 바꾸세요.`);if(current){current.review_notes=`YouTube 재생 오류 ${e.data}`;current.embed_verified=false;if(current.status==='verified')current.status='candidate';save();render();}}}});};
+function play(){if(!current||!valid(current))return;setResume(false);if(!ready){pendingPlay=true;say('YouTube 첫 연결 중 · 연결되면 선택한 곡을 재생합니다.');return;}pendingPlay=false;active=true;segmentStarted=false;revealed=false;sync();clearTimeout(loadTimer);const reuse=requestedVideo===current.youtube_id&&matchesVideo();player.unMute();if(reuse){say('같은 영상에서 구간 처음으로 이동 중…');player.seekTo(current.start_sec,true);player.playVideo();}else{say('새 곡 연결 중…');requestedVideo=current.youtube_id;player.loadVideoById({videoId:current.youtube_id,startSeconds:current.start_sec,endSeconds:current.end_sec});}loadTimer=setTimeout(()=>{if(active&&!segmentStarted){showVideo();say('구간 재생 대기 · 영상을 표시했습니다. 광고·버퍼링·재생 버튼을 확인하세요.');}},4500);}
+function pause(){const t=ready&&matchesVideo()?player.getCurrentTime():null;const resumable=t!==null&&valid(current)&&t>=Math.max(0,current.start_sec-.3)&&t<current.end_sec;stop();setResume(resumable);say(resumable?'일시정지 · 이어서 재생은 멈춘 위치에서, 다시 듣기는 구간 처음부터 재생합니다.':'일시정지 · 곡을 선택하거나 다시 듣기를 눌러 주세요.');}
+function resume(){if(!canResume||!current||!valid(current)||!ready||!matchesVideo())return;const t=player.getCurrentTime();if(t<Math.max(0,current.start_sec-.3)||t>=current.end_sec){setResume(false);say('구간이 끝났습니다. 다시 듣기로 처음부터 재생하세요.');return;}setResume(false);pendingPlay=false;active=true;segmentStarted=false;player.unMute();say('멈춘 위치에서 이어서 재생합니다.');player.playVideo();}
+window.onYouTubeIframeAPIReady=()=>{player=new YT.Player('player',{width:'100%',height:'100%',playerVars:{playsinline:1,rel:0,...(location.protocol.startsWith('http')?{origin:location.origin}:{})},events:{onReady:()=>{ready=true;if(pendingPlay)play();else say('YouTube 연결 완료 · 곡을 선택하면 재생합니다.');},onStateChange:e=>{if(!active||!matchesVideo())return;if(e.data===1){checkSegment();if(!segmentStarted)say('지정 구간으로 이동 중 · 지연되면 광고·재생 상태를 표시합니다.');}else if(e.data===3)say('영상 버퍼링 중 · 연결을 기다리고 있습니다.');else if(e.data===0&&segmentStarted){stop();say('구간 재생 완료 · 다시 듣기로 반복할 수 있습니다.');}},onAutoplayBlocked:()=>{showVideo();say('브라우저가 자동재생을 차단했습니다. 표시된 영상의 ▶ 버튼을 눌러 주세요.');},onError:e=>{setResume(false);active=false;pendingPlay=false;requestedVideo='';clearTimeout(loadTimer);showVideo();say(e.data===153?'YouTube 오류 153: 출처 정보 제한입니다. 공개 게임 주소 또는 실행.cmd로 열어 주세요.':`재생 실패 (${e.data}) · 다시 듣기로 재시도하거나 영상 ID를 바꾸세요.`);if(current){current.review_notes=`YouTube 재생 오류 ${e.data}`;current.embed_verified=false;if(current.status==='verified')current.status='candidate';save();render();}}}});};
 const api=document.createElement('script');api.src='https://www.youtube.com/iframe_api';api.onerror=()=>say('YouTube 연결 실패 · 인터넷 연결 후 페이지를 새로고침하세요.');document.head.append(api);
 setInterval(()=>{if(!ready||!current||!valid(current)||!matchesVideo())return;const t=player.getCurrentTime()||0,duration=current.end_sec-current.start_sec,elapsed=Math.max(0,Math.min(duration,t-current.start_sec));$('clock').textContent=`구간 ${elapsed.toFixed(1)} / ${duration.toFixed(1)}초`;$('progress').value=elapsed/duration;checkSegment();},60);
-$('playBtn').onclick=play;$('pauseBtn').onclick=()=>{stop();say('일시정지 · 다시 듣기를 누르면 구간 처음부터 재생합니다.');};$('preloadBtn').onclick=()=>{if(!current||!valid(current)||!ready){say('YouTube 연결 완료 후 다시 시도하세요.');return;}stop();if(matchesVideo()){player.seekTo(current.start_sec,true);player.pauseVideo();say('기존 영상의 구간 시작 위치로 이동했습니다.');}else{requestedVideo=current.youtube_id;player.cueVideoById({videoId:current.youtube_id,startSeconds:current.start_sec,endSeconds:current.end_sec});say('영상 대기 완료 · 실제 음원 로딩은 재생할 때 시작됩니다.');}};$('answerBtn').onclick=()=>{if(current){revealed=!revealed;sync();}};$('mask').onchange=()=>$('cover').classList.toggle('hide',!$('mask').checked);
+$('playBtn').onclick=play;$('pauseBtn').onclick=pause;$('resumeBtn').onclick=resume;$('preloadBtn').onclick=()=>{if(!current||!valid(current)||!ready){say('YouTube 연결 완료 후 다시 시도하세요.');return;}stop();if(matchesVideo()){player.seekTo(current.start_sec,true);player.pauseVideo();say('기존 영상의 구간 시작 위치로 이동했습니다.');}else{requestedVideo=current.youtube_id;player.cueVideoById({videoId:current.youtube_id,startSeconds:current.start_sec,endSeconds:current.end_sec});say('영상 대기 완료 · 실제 음원 로딩은 재생할 때 시작됩니다.');}};$('answerBtn').onclick=()=>{if(current){revealed=!revealed;sync();}};$('mask').onchange=()=>$('cover').classList.toggle('hide',!$('mask').checked);
 document.querySelectorAll('[data-adjust]').forEach(b=>b.onclick=()=>{if(!current||!valid(current))return;const [k,d]=b.dataset.adjust.split(','),v=Math.round((current[k]+Number(d))*100)/100;const duration=Number(current.video_duration)||Infinity;if(v<0||(k==='start_sec'?v>=current.end_sec:v<=current.start_sec||v>duration))return;stop();current[k]=v;current.status='candidate';current.review_notes='구간 수동 변경: 가사와 타이밍 재확인 필요';save();sync();render();say('구간 조정 저장 완료 · 가사와 함께 다시 확인해 주세요.');});
 $('saveEdit').onclick=()=>{if(!current)return;const candidate={...current,youtube_id:$('videoInput').value.trim(),start_sec:$('startInput').value===''?null:Number($('startInput').value),end_sec:$('endInput').value===''?null:Number($('endInput').value)};if(!valid(candidate)){say('11자리 영상 ID와 0 ≤ 시작 < 끝을 입력해 주세요.');return;}stop();Object.assign(current,candidate,{answer_lyrics:$('lyricsInput').value,status:$('verifiedInput').checked?'verified':'candidate',embed_verified:$('verifiedInput').checked,review_notes:$('verifiedInput').checked?'진행자 청취 확인 완료':'수동 입력: 청취 확인 필요'});save();selectSong(current,false);say('곡 설정 저장 완료');};
 $('unuseBtn').onclick=()=>{if(current){used.delete(current.id);save();render();}};$('randomBtn').onclick=()=>{const pool=filtered().filter(s=>valid(s)&&!used.has(s.id));if(!pool.length){say('현재 필터에 준비된 미사용 곡이 없습니다. 필터·곡 설정을 확인하세요.');return;}selectSong(pool[Math.floor(Math.random()*pool.length)],true);};$('resetUsed').onclick=()=>{if(confirm('모든 곡의 사용 기록을 초기화할까요?')){used.clear();save();render();}};
 for(const id of ['search','year','difficulty','genre','readyOnly'])$(id).addEventListener(id==='search'?'input':'change',render);
 function scores(){const el=$('scoreboard');el.replaceChildren();teams.forEach((team,i)=>{const box=document.createElement('div');box.className='team';const name=document.createElement('input');name.value=team.name;name.setAttribute('aria-label',`${i+1}팀 이름`);name.onchange=()=>{team.name=name.value;save();};const score=document.createElement('strong');score.textContent=team.score;box.append(name,score);for(const d of [-1,1]){const b=document.createElement('button');b.textContent=d===1?'+1':'−1';b.setAttribute('aria-label',`${team.name} ${d}점`);b.onclick=()=>{team.score=Math.max(0,team.score+d);save();scores();};box.append(b);}el.append(box);});}
 $('resetScore').onclick=()=>{if(confirm('팀 점수를 초기화할까요?')){teams.forEach(t=>t.score=0);save();scores();}};
-$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(songs,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='songs_filled.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};$('importBtn').onclick=()=>$('file').click();$('file').onchange=async()=>{try{const f=$('file').files[0];if(!f)return;const data=validate(JSON.parse(await f.text()));stop();songs=data;current=null;used=new Set([...used].filter(id=>songs.some(s=>s.id===id)));$('title').textContent='새 플레이리스트를 불러왔습니다';$('artist').textContent='곡을 선택해 주세요.';sync();filterOptions();save();render();say(`${songs.length}곡 불러오기 완료`);}catch(e){say('불러오기 실패: '+e.message);}finally{$('file').value='';}};
+$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(songs,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='songs_filled.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};$('importBtn').onclick=()=>$('file').click();$('file').onchange=async()=>{try{const f=$('file').files[0];if(!f)return;const data=validate(JSON.parse(await f.text()));stop();songs=data;current=null;used=new Set([...used].filter(id=>songs.some(s=>s.id===id)));$('title').textContent='새 플레이리스트를 불러왔습니다';$('artist').textContent='곡을 선택해 주세요.';$('sectionReason').textContent='';sync();filterOptions();save();render();say(`${songs.length}곡 불러오기 완료`);}catch(e){say('불러오기 실패: '+e.message);}finally{$('file').value='';}};
 $('presentBtn').onclick=async()=>{document.body.classList.toggle('present');try{if(document.body.classList.contains('present'))await document.documentElement.requestFullscreen();else if(document.fullscreenElement)await document.exitFullscreen();}catch(e){say('발표 레이아웃 적용 완료 · F11로 전체 화면을 켤 수 있습니다.');}};
 document.addEventListener('keydown',e=>{if(e.target.matches('input,textarea,select,button')||e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;if(e.code==='Space'){e.preventDefault();play();}else if(e.key==='Enter'){$('answerBtn').click();}else if(e.key.toLowerCase()==='r'){$('randomBtn').click();}});
 window.addEventListener('offline',()=>{stop();say('인터넷 연결이 끊겼습니다. 연결을 복구한 뒤 다시 듣기를 눌러 주세요.');});window.addEventListener('online',()=>say('인터넷 연결 복구 · 다시 듣기를 눌러 주세요.'));

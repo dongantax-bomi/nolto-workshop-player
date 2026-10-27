@@ -3,12 +3,900 @@
     "lyric_id": 14271507,
     "first_line": 7,
     "stop_before_line": 14,
-    "reason": "영어 소개와 반복 구호를 제외하고, 상대의 이중적인 태도를 지적하는 첫 벌스 전체를 한 문제로 선정. 후렴 직전까지 포함."
+    "reason": "영어 소개와 반복 구호를 제외하고, 상대의 이중적인 태도를 지적하는 첫 벌스 전체를 한 문제로 선정. 후렴 직전까지 포함.",
+    "youtube_id": "sdtspSYyQXs",
+    "start_sec": 28.25,
+    "end_sec": 56.41
+  },
+  "2": {
+    "lyric_id": 26683885,
+    "first_line": 3,
+    "stop_before_line": 13,
+    "reason": "상대의 달라진 눈빛과 연락, 멀어진 관계를 차례로 관찰하는 첫 벌스 전체. 반복 후렴 직전까지.",
+    "youtube_id": "BRIGlW12qpk",
+    "start_sec": 20.61,
+    "end_sec": 56.13
+  },
+  "3": {
+    "lyric_id": 36659073,
+    "first_line": 0,
+    "stop_before_line": 5,
+    "reason": "좋은 날씨와 달리 고백 앞에서 망설이는 첫 벌스의 질문들을 한 덩어리로 선정.",
+    "youtube_id": "OIHlzvEKncQ",
+    "start_sec": 16.25,
+    "end_sec": 44.65
   },
   "4": {
-    "lyric_id": 20271843,
+    "lyric_id": 7062146,
     "first_line": 12,
     "stop_before_line": 20,
-    "reason": "자기소개성 반복 구호와 alright 반복을 제외하고, 질주하는 태도에서 외출 준비로 이어지는 여덟 줄의 벌스를 한 문제로 선정. 후렴 직전까지 포함."
+    "reason": "자기소개성 반복 구호와 alright 반복을 제외하고, 질주하는 태도에서 외출 준비로 이어지는 여덟 줄의 벌스를 한 문제로 선정. 후렴 직전까지 포함.",
+    "youtube_id": "rnxZyt3f708",
+    "start_sec": 51.47,
+    "end_sec": 82.19
+  },
+  "5": {
+    "lyric_id": 2855766,
+    "first_line": 5,
+    "stop_before_line": 16,
+    "reason": "상대를 발견한 순간부터 망설임을 넘어 다가가겠다는 결심까지 첫 벌스와 연결부 전체.",
+    "youtube_id": "Pws7laZhyP0",
+    "start_sec": 30.87,
+    "end_sec": 59.54
+  },
+  "6": {
+    "lyric_id": 2493617,
+    "first_line": 2,
+    "stop_before_line": 11,
+    "reason": "낮과 밤이 다른 여자와 자신을 나란히 설명하는 두 단락을 함께 선정. 구호와 후렴 제외.",
+    "youtube_id": "4AgDYTuZWOw",
+    "start_sec": 14.7,
+    "end_sec": 43.58
+  },
+  "7": {
+    "lyric_id": 20756142,
+    "first_line": 23,
+    "stop_before_line": 31,
+    "reason": "자신감과 무대의 열기를 묘사하는 랩을 문맥이 끝나는 지점까지 선정. 일본어 자료를 한국어 자료로 교체.",
+    "youtube_id": "oM4KBLQRCM8",
+    "start_sec": 64.5,
+    "end_sec": 86.96000000000001
+  },
+  "8": {
+    "lyric_id": 13460758,
+    "first_line": 2,
+    "stop_before_line": 6,
+    "reason": "밤거리를 함께 걷자는 제안과 손을 잡은 설렘이 연결되는 첫 벌스 네 줄.",
+    "youtube_id": "KvthiAoGTfo",
+    "start_sec": 25.35,
+    "end_sec": 55.07
+  },
+  "9": {
+    "lyric_id": 4781589,
+    "first_line": 4,
+    "stop_before_line": 9,
+    "reason": "상대를 위해 하루를 보내는 행동에서 곁을 지키는 상대에 대한 결론까지 한 단락.",
+    "youtube_id": "r-el8_35fU8",
+    "start_sec": 23.91,
+    "end_sec": 43.67
+  },
+  "10": {
+    "lyric_id": 33960118,
+    "first_line": 3,
+    "stop_before_line": 11,
+    "reason": "예전과 달라진 자신을 설명하고 상대의 위선을 거절하는 첫 벌스. 소개 멘트와 반복 후렴 제외.",
+    "youtube_id": "VclPp-1r6e0",
+    "start_sec": 7.75,
+    "end_sec": 32.19
+  },
+  "11": {
+    "lyric_id": 34531216,
+    "first_line": 4,
+    "stop_before_line": 8,
+    "reason": "자신을 소개하는 말장난이 이어지는 랩 단락 전체. 반복 구호 앞에서 종료.",
+    "youtube_id": "Y7n5JX0zxSw",
+    "start_sec": 29.57,
+    "end_sec": 52.38
+  },
+  "12": {
+    "lyric_id": 18077168,
+    "first_line": 4,
+    "stop_before_line": 12,
+    "reason": "상대가 다가오는 장면부터 숨소리와 감정의 변화까지 첫 벌스. 로마자 가사를 한국어로 교체.",
+    "youtube_id": "rjMcJHfzoIs",
+    "start_sec": 17.2,
+    "end_sec": 38.4
+  },
+  "13": {
+    "lyric_id": 12866324,
+    "first_line": 38,
+    "stop_before_line": 44,
+    "reason": "반복 후렴 대신 두 손을 들고 일상에서 벗어나자는 브리지 전체. 짧은 쉬운 문제로 선정.",
+    "youtube_id": "K3nuw2EVki4",
+    "start_sec": 124.26,
+    "end_sec": 139.16
+  },
+  "14": {
+    "lyric_id": 17735471,
+    "first_line": 11,
+    "stop_before_line": 23,
+    "reason": "분노를 풀 곳 없는 화자의 행동과 외로운 거리를 묘사하는 랩 전체.",
+    "youtube_id": "ywoyAdPEyTg",
+    "start_sec": 44.45,
+    "end_sec": 74.38
+  },
+  "15": {
+    "lyric_id": 6200709,
+    "first_line": 0,
+    "stop_before_line": 10,
+    "reason": "처음 만났던 봄의 향기와 벤치, 잊지 못한 마음을 연결하는 첫 벌스 전체.",
+    "youtube_id": "jYH5zMINQ9E",
+    "start_sec": 10.33,
+    "end_sec": 42.05
+  },
+  "16": {
+    "lyric_id": 25219011,
+    "first_line": 0,
+    "stop_before_line": 4,
+    "reason": "이별 앞에서 마지막 얼굴을 기억하려는 부탁까지 이어지는 첫 벌스 네 줄.",
+    "youtube_id": "QvvfN3ZSh38",
+    "start_sec": 6.67,
+    "end_sec": 34.85
+  },
+  "17": {
+    "lyric_id": 3096551,
+    "first_line": 22,
+    "stop_before_line": 26,
+    "reason": "상대의 말투와 표정이 사람을 흔드는 상황을 설명하는 두 번째 벌스 네 줄. 반복 구호 제외.",
+    "youtube_id": "gdQvnOm1Cr0",
+    "start_sec": 85.98,
+    "end_sec": 102.78999999999999
+  },
+  "18": {
+    "lyric_id": 12865796,
+    "first_line": 5,
+    "stop_before_line": 12,
+    "reason": "곁으로 오라는 초대와 여름 장면을 이어가는 첫 벌스. 반복 제목 후렴 직전까지.",
+    "youtube_id": "3XaREItLqGU",
+    "start_sec": 22.78,
+    "end_sec": 52.34
+  },
+  "19": {
+    "lyric_id": 3842758,
+    "first_line": 0,
+    "stop_before_line": 6,
+    "reason": "겨울 코트에 숨던 화자가 봄과 자신의 외로움을 알아차리는 이야기 단락 전체.",
+    "youtube_id": "HeRk_RdzI-w",
+    "start_sec": 1.57,
+    "end_sec": 36.14
+  },
+  "20": {
+    "lyric_id": 10357790,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "의미 없는 일상에서 하루살이와 세상을 바라보는 두 단락의 비유 전체.",
+    "youtube_id": "bVrW1eDMtL8",
+    "start_sec": 15.66,
+    "end_sec": 46.19
+  },
+  "21": {
+    "lyric_id": 37074482,
+    "first_line": 0,
+    "stop_before_line": 4,
+    "reason": "얼음꽃과 바람, 지나간 날의 눈물로 연결되는 첫 단락 네 줄. 느린 곡의 호흡을 길이보다 우선.",
+    "youtube_id": "ZtcM3KhgF-s",
+    "start_sec": 13.25,
+    "end_sec": 58.1
+  },
+  "22": {
+    "lyric_id": 4847914,
+    "first_line": 0,
+    "stop_before_line": 10,
+    "reason": "혼자 있던 어린 시절과 택시 운전을 하던 아버지의 귀가를 회상하는 첫 이야기 전체.",
+    "youtube_id": "yP459cBS4f0",
+    "start_sec": 21.96,
+    "end_sec": 48.47
+  },
+  "23": {
+    "lyric_id": 36819221,
+    "first_line": 10,
+    "stop_before_line": 18,
+    "reason": "분위기를 바꾸는 태도와 무법지대의 이미지를 설명하는 랩 단락. 후렴 구호 제외.",
+    "youtube_id": "1bD_2ITkGwU",
+    "start_sec": 28.05,
+    "end_sec": 43.63
+  },
+  "24": {
+    "lyric_id": 12175999,
+    "first_line": 0,
+    "stop_before_line": 13,
+    "reason": "주변의 시선과 달리 자신도 사랑하고 싶다는 결론으로 이어지는 첫 벌스 전체.",
+    "youtube_id": "6KMN61Zsd58",
+    "start_sec": 13.25,
+    "end_sec": 38.85
+  },
+  "25": {
+    "lyric_id": 29136181,
+    "first_line": 4,
+    "stop_before_line": 10,
+    "reason": "자신의 취향을 두 가지 대비로 설명하는 첫 벌스. 대화형 도입과 반복 구호 제외.",
+    "youtube_id": "vetSM4axbyQ",
+    "start_sec": 16.9,
+    "end_sec": 33.35
+  },
+  "26": {
+    "lyric_id": 36801577,
+    "first_line": 0,
+    "stop_before_line": 5,
+    "reason": "의미 없는 만남 속에서 상대의 눈물을 알아보고 지키게 된 이유까지 첫 단락.",
+    "youtube_id": "0Q3tgaliAw4",
+    "start_sec": 9.88,
+    "end_sec": 45.13
+  },
+  "27": {
+    "lyric_id": 13876448,
+    "first_line": 2,
+    "stop_before_line": 8,
+    "reason": "바쁜 하루와 피로, 집에 있어도 돌아가고 싶은 마음을 순서대로 묻는 첫 벌스 전체.",
+    "youtube_id": "Sp_Z2tBVniI",
+    "start_sec": 9.63,
+    "end_sec": 30.72
+  },
+  "28": {
+    "lyric_id": 5303078,
+    "first_line": 26,
+    "stop_before_line": 34,
+    "reason": "답장을 늦추는 행동과 마음이 더 커질까 걱정하는 속내가 이어지는 랩 단락.",
+    "youtube_id": "prWVZFgZ3Zc",
+    "start_sec": 78.91,
+    "end_sec": 101.53999999999999
+  },
+  "29": {
+    "lyric_id": 22304013,
+    "first_line": 5,
+    "stop_before_line": 13,
+    "reason": "등장부터 자신을 소개하기까지 이어지는 첫 랩 단락. 팀 소개와 반복 후렴 제외.",
+    "youtube_id": "husJE0_Y_FQ",
+    "start_sec": 23.54,
+    "end_sec": 38.45
+  },
+  "30": {
+    "lyric_id": 2456836,
+    "first_line": 9,
+    "stop_before_line": 17,
+    "reason": "겉모습보다 마음을 원한다는 태도에서 나지막한 고백의 부탁까지 랩 단락 전체.",
+    "youtube_id": "4lQvwoiIXPQ",
+    "start_sec": 38.66,
+    "end_sec": 57.71
+  },
+  "31": {
+    "lyric_id": 2270518,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "가까워지려 할수록 멀어지는 마음에서 기다리겠다는 다짐까지 첫 벌스 전체.",
+    "youtube_id": "YXCkpXY1cuc",
+    "start_sec": 17.67,
+    "end_sec": 51.01
+  },
+  "32": {
+    "lyric_id": 25249192,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "커피와 잠 못 드는 밤에서 상대의 품에 잠드는 상상까지 연결되는 첫 벌스.",
+    "youtube_id": "0i2wOl5PDOw",
+    "start_sec": 4.57,
+    "end_sec": 38.7
+  },
+  "33": {
+    "lyric_id": 34073983,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "시간과 기억을 되돌리고 싶은 이유가 미안함으로 귀결되는 첫 단락. 빈 가사 시각에서 종료.",
+    "youtube_id": "-tCUWBHihu4",
+    "start_sec": 14.71,
+    "end_sec": 45.77
+  },
+  "34": {
+    "lyric_id": 33537878,
+    "first_line": 0,
+    "stop_before_line": 4,
+    "reason": "처음부터 정해져 있던 한 사람과 눈빛의 고백을 묶은 첫 벌스 네 줄.",
+    "youtube_id": "XvE8T99zpUw",
+    "start_sec": 15.18,
+    "end_sec": 43.66
+  },
+  "35": {
+    "lyric_id": 17326599,
+    "first_line": 4,
+    "stop_before_line": 8,
+    "reason": "만남을 공식과 율법, 운명의 증거로 설명하는 랩 한 단락. 로마자 자료를 한국어로 교체.",
+    "youtube_id": "SxAvr92fRg4",
+    "start_sec": 30.48,
+    "end_sec": 45.46
+  },
+  "36": {
+    "lyric_id": 3231425,
+    "first_line": 4,
+    "stop_before_line": 11,
+    "reason": "여름의 풍경에서 첫눈에 반한 마음과 선택으로 연결되는 벌스와 연결부.",
+    "youtube_id": "BLavT7w4R9I",
+    "start_sec": 17.15,
+    "end_sec": 47.5
+  },
+  "37": {
+    "lyric_id": 5108172,
+    "first_line": 0,
+    "stop_before_line": 4,
+    "reason": "좋아하는 음악과 색, 옷을 차례로 나열하며 취향을 드러내는 첫 벌스 전체.",
+    "youtube_id": "2C1Jg04INb4",
+    "start_sec": 19.97,
+    "end_sec": 56.91
+  },
+  "38": {
+    "lyric_id": 21598002,
+    "first_line": 18,
+    "stop_before_line": 26,
+    "reason": "고백 뒤의 호칭을 상상하고 긴장하는 화자의 랩 단락. 반복 제목 후렴 제외.",
+    "youtube_id": "aYlXNpaQydk",
+    "start_sec": 75.23,
+    "end_sec": 94.21000000000001
+  },
+  "39": {
+    "lyric_id": 4254941,
+    "first_line": 2,
+    "stop_before_line": 11,
+    "reason": "첫 만남의 미소에서 닫힌 마음이 무너지는 순간까지 첫 벌스 전체.",
+    "youtube_id": "0ZCCBPeRVLo",
+    "start_sec": 7.39,
+    "end_sec": 38.05
+  },
+  "40": {
+    "lyric_id": 36003630,
+    "first_line": 0,
+    "stop_before_line": 5,
+    "reason": "이별의 끝과 서로에게 어려웠던 관계를 돌아보는 첫 단락 전체.",
+    "youtube_id": "97iF07jxJRg",
+    "start_sec": 6.62,
+    "end_sec": 31.71
+  },
+  "41": {
+    "lyric_id": 12866311,
+    "first_line": 3,
+    "stop_before_line": 9,
+    "reason": "비 오는 밤에 옛 노래를 찾고 잠시 기억을 꺼내는 이유를 설명하는 벌스 전체.",
+    "youtube_id": "hGWMhVbaJNg",
+    "start_sec": 29.82,
+    "end_sec": 65.84
+  },
+  "42": {
+    "lyric_id": 27584737,
+    "first_line": 4,
+    "stop_before_line": 16,
+    "reason": "겉모습과 다른 태도 및 자신감을 설명하는 첫 랩 단락. 팀 구호와 후렴 제외.",
+    "youtube_id": "IPzouyj7FLA",
+    "start_sec": 21.83,
+    "end_sec": 50.62
+  },
+  "43": {
+    "lyric_id": 6935412,
+    "first_line": 8,
+    "stop_before_line": 14,
+    "reason": "이별을 받아들이기 어려운 이유에서 추억이면 충분하다는 결론까지 벌스와 연결부.",
+    "youtube_id": "OmEPFmyKO74",
+    "start_sec": 33.76,
+    "end_sec": 65.49
+  },
+  "44": {
+    "lyric_id": 37965501,
+    "first_line": 3,
+    "stop_before_line": 9,
+    "reason": "상대를 본 설렘과 매력에 놀라는 상황이 이어지는 첫 벌스. 반복 제목 후렴 제외.",
+    "youtube_id": "NLkfJbvMDAA",
+    "start_sec": 22.57,
+    "end_sec": 45.55
+  },
+  "45": {
+    "lyric_id": 3000099,
+    "first_line": 3,
+    "stop_before_line": 13,
+    "reason": "작품 속 사랑을 배우는 화자가 실제 사랑의 시기와 상대를 궁금해하는 첫 단락 전체.",
+    "youtube_id": "w4nihuYVTW0",
+    "start_sec": 15.48,
+    "end_sec": 48.3
+  },
+  "46": {
+    "lyric_id": 27025081,
+    "first_line": 0,
+    "stop_before_line": 6,
+    "reason": "상대 없이 웃을 수 없다는 마음과 이제는 자신이 지키겠다는 약속의 두 문장.",
+    "youtube_id": "64uidOIH2vY",
+    "start_sec": 15.33,
+    "end_sec": 43.78
+  },
+  "47": {
+    "lyric_id": 12866536,
+    "first_line": 0,
+    "stop_before_line": 5,
+    "reason": "상대는 다른 사랑을 시작했지만 자신은 이별을 끝내지 못했다는 첫 단락 전체.",
+    "youtube_id": "GTfpMxV1DAs",
+    "start_sec": 14.7,
+    "end_sec": 43.52
+  },
+  "48": {
+    "lyric_id": 9031694,
+    "first_line": 5,
+    "stop_before_line": 12,
+    "reason": "서랍과 되돌아오는 새의 비유에서 기억으로 돌아가는 발걸음까지 한국어 원곡의 첫 벌스. 편집 버전 제외.",
+    "youtube_id": "1rP7ziPDDt0",
+    "start_sec": 39.28,
+    "end_sec": 77.16
+  },
+  "49": {
+    "lyric_id": 35104275,
+    "first_line": 0,
+    "stop_before_line": 7,
+    "reason": "관계가 위험한 이유를 끈과 가위의 비유로 설명하고 호의를 거절하는 첫 벌스.",
+    "youtube_id": "cO2oYWesWoI",
+    "start_sec": 22.21,
+    "end_sec": 43.78
+  },
+  "50": {
+    "lyric_id": 10106043,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "상대의 말투와 손을 잡는 행동이 싫지 않다는 두 묶음의 첫 벌스.",
+    "youtube_id": "od9UKd-yvks",
+    "start_sec": 8.65,
+    "end_sec": 28.2
+  },
+  "51": {
+    "lyric_id": 35794411,
+    "first_line": 32,
+    "stop_before_line": 46,
+    "reason": "사소한 관심이 삶을 바꾸고 거창한 운명보다 상대를 지키겠다는 결론으로 이어지는 랩 전체.",
+    "youtube_id": "Q-erYa8cwnc",
+    "start_sec": 95.95,
+    "end_sec": 128.21
+  },
+  "52": {
+    "lyric_id": 27614999,
+    "first_line": 0,
+    "stop_before_line": 6,
+    "reason": "함께할 날을 기다리고 준비해 왔다는 두 단락의 고백. 응원 구호와 반복 후렴 제외.",
+    "youtube_id": "-9fC6oDFl5k",
+    "start_sec": 23.46,
+    "end_sec": 45.14
+  },
+  "53": {
+    "lyric_id": 12866833,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "꽃길에서 향기를 느낀 뒤 연락을 망설이며 집으로 돌아오는 이야기 전체.",
+    "youtube_id": "_pcl_JPqMfw",
+    "start_sec": 9.95,
+    "end_sec": 47.18
+  },
+  "54": {
+    "lyric_id": 12295495,
+    "first_line": 2,
+    "stop_before_line": 6,
+    "reason": "자신의 마음을 읽고 외로운 마음에 잠시 머물러 달라는 첫 단락 전체.",
+    "youtube_id": "t8P-zdkoeJA",
+    "start_sec": 7.38,
+    "end_sec": 33.45
+  },
+  "55": {
+    "lyric_id": 26262165,
+    "first_line": 4,
+    "stop_before_line": 8,
+    "reason": "술자리에서는 잊었다고 말했지만 집으로 돌아오다 멈춰 우는 반전의 단락 전체.",
+    "youtube_id": "4EQ_vqyojWU",
+    "start_sec": 43.06,
+    "end_sec": 73.69
+  },
+  "56": {
+    "lyric_id": 31466781,
+    "first_line": 12,
+    "stop_before_line": 19,
+    "reason": "옛 노트를 발견한 기억에서 거울 속 현재의 자신을 바라보는 랩 단락. 반복 후렴 제외.",
+    "youtube_id": "_50jtkDnObw",
+    "start_sec": 54.98,
+    "end_sec": 72.86
+  },
+  "57": {
+    "lyric_id": 37831297,
+    "first_line": 0,
+    "stop_before_line": 6,
+    "reason": "불안의 시작을 모르겠다는 고백에서 서로의 잘못만은 아니라는 결론까지 첫 단락.",
+    "youtube_id": "Z8E0apklL2w",
+    "start_sec": 19.84,
+    "end_sec": 58.82
+  },
+  "58": {
+    "lyric_id": 39237116,
+    "first_line": 18,
+    "stop_before_line": 29,
+    "reason": "쌓인 스트레스에서 친구를 집으로 부르고 밤새 이야기하자는 제안까지 랩 단락.",
+    "youtube_id": "GOtF5_Ow0_Y",
+    "start_sec": 49.34,
+    "end_sec": 71.59
+  },
+  "59": {
+    "lyric_id": 13939640,
+    "first_line": 7,
+    "stop_before_line": 12,
+    "reason": "다시 볼 수 없다고 여겨 기억을 넣어두고 잊어가던 과정을 회상하는 벌스.",
+    "youtube_id": "vIfIzA9xHxI",
+    "start_sec": 44.44,
+    "end_sec": 75.35
+  },
+  "60": {
+    "lyric_id": 25987044,
+    "first_line": 2,
+    "stop_before_line": 10,
+    "reason": "아침에 일어나 음악과 함께 움직이는 장면을 순서대로 그리는 첫 영어 벌스.",
+    "youtube_id": "HaEYUJ2aRHs",
+    "start_sec": 10.17,
+    "end_sec": 26.69
+  },
+  "61": {
+    "lyric_id": 35963426,
+    "first_line": 19,
+    "stop_before_line": 27,
+    "reason": "자신의 몫을 되찾겠다는 선언에서 상대에게 되묻는 결말까지 랩 단락. 반복 후렴 제외.",
+    "youtube_id": "8mA6jIeojnk",
+    "start_sec": 71.52,
+    "end_sec": 86.05
+  },
+  "62": {
+    "lyric_id": 25739727,
+    "first_line": 0,
+    "stop_before_line": 6,
+    "reason": "눈물을 참으며 마지막 봄의 한 페이지를 부탁하는 첫 벌스 전체.",
+    "youtube_id": "04tYkKUPPv4",
+    "start_sec": 7.64,
+    "end_sec": 39.51
+  },
+  "63": {
+    "lyric_id": 21653317,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "규칙과 결속, 광야와 위협이라는 세계관을 소개하는 첫 랩 단락.",
+    "youtube_id": "tkzYyEp4zB4",
+    "start_sec": 8.52,
+    "end_sec": 27.05
+  },
+  "64": {
+    "lyric_id": 10099151,
+    "first_line": 0,
+    "stop_before_line": 6,
+    "reason": "무표정했던 자신이 다채로운 감정을 알아가는 첫 벌스 전체. 숫자 후렴 제외.",
+    "youtube_id": "0EK_M2taRIM",
+    "start_sec": 9.79,
+    "end_sec": 41.79
+  },
+  "65": {
+    "lyric_id": 33697779,
+    "first_line": 0,
+    "stop_before_line": 10,
+    "reason": "막아서거나 재촉하는 길과 두 친구를 대비하는 첫 벌스 두 단락 전체.",
+    "youtube_id": "9Ibf10h9U0c",
+    "start_sec": 21.86,
+    "end_sec": 61.54
+  },
+  "66": {
+    "lyric_id": 38659178,
+    "first_line": 2,
+    "stop_before_line": 8,
+    "reason": "혼자 두지 않겠다는 약속과 손을 잡으면 날 수 있다는 제안까지 첫 벌스.",
+    "youtube_id": "uaejCvCMu5I",
+    "start_sec": 12.49,
+    "end_sec": 48.4
+  },
+  "67": {
+    "lyric_id": 12295463,
+    "first_line": 2,
+    "stop_before_line": 6,
+    "reason": "서로의 궁금함과 이끌림을 탐색하는 첫 벌스 네 줄. 반복 후렴과 추임새 제외.",
+    "youtube_id": "hh5GKVa8VtM",
+    "start_sec": 8.55,
+    "end_sec": 25.04
+  },
+  "68": {
+    "lyric_id": 29254792,
+    "first_line": 1,
+    "stop_before_line": 11,
+    "reason": "상대와 특별한 관계가 되고 싶은 마음에서 전화와 대답을 바라는 결론까지 첫 벌스.",
+    "youtube_id": "ghrlZIMDzbM",
+    "start_sec": 19.27,
+    "end_sec": 52.8
+  },
+  "69": {
+    "lyric_id": 35886694,
+    "first_line": 11,
+    "stop_before_line": 25,
+    "reason": "오랜 경력과 고유한 취향, 흉내 낼 수 없는 근본을 이야기하는 랩 단락 전체.",
+    "youtube_id": "C_cpDd0WYTk",
+    "start_sec": 33.26,
+    "end_sec": 54.44
+  },
+  "70": {
+    "lyric_id": 26837532,
+    "first_line": 5,
+    "stop_before_line": 14,
+    "reason": "비가 갠 뒤의 무지개에서 사계절과 이별 인사로 연결되는 랩 단락.",
+    "youtube_id": "XJL-lduf174",
+    "start_sec": 32.84,
+    "end_sec": 53.92
+  },
+  "71": {
+    "lyric_id": 22423791,
+    "first_line": 7,
+    "stop_before_line": 13,
+    "reason": "함께한 기억 속 자란 마음에서 상대도 같은 생각인지 묻는 첫 벌스.",
+    "youtube_id": "V6TEcoNUmc8",
+    "start_sec": 29.05,
+    "end_sec": 55.56
+  },
+  "72": {
+    "lyric_id": 32426749,
+    "first_line": 5,
+    "stop_before_line": 11,
+    "reason": "손을 잡았던 날의 믿음과 기쁨, 소중한 것을 두려워하는 마음까지 하나의 회상.",
+    "youtube_id": "j1uXcHwLhHM",
+    "start_sec": 43.98,
+    "end_sec": 63.48
+  },
+  "73": {
+    "lyric_id": 38349368,
+    "first_line": 0,
+    "stop_before_line": 4,
+    "reason": "함께할 일을 상상하고 상대를 보며 따라 웃는다는 하나의 완결된 일상 묘사.",
+    "youtube_id": "0e7uplpFJdE",
+    "start_sec": 11.71,
+    "end_sec": 33.18
+  },
+  "74": {
+    "lyric_id": 36234706,
+    "first_line": 10,
+    "stop_before_line": 21,
+    "reason": "술자리의 친구들과 기억을 두고 다투다가 상대의 연락에 달려가겠다는 랩 단락.",
+    "youtube_id": "OlXr5YD-MWA",
+    "start_sec": 32.89,
+    "end_sec": 60.38
+  },
+  "75": {
+    "lyric_id": 32877835,
+    "first_line": 7,
+    "stop_before_line": 17,
+    "reason": "거리에서 떠오른 기억부터 집에 가며 돌아보던 상대의 미소까지 첫 벌스 전체.",
+    "youtube_id": "VY_BU1Ja_TM",
+    "start_sec": 42.19,
+    "end_sec": 71.92
+  },
+  "76": {
+    "lyric_id": 7724112,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "잠 못 드는 마음이 옷에 번진 잉크라는 비유로 완성되는 첫 벌스 전체.",
+    "youtube_id": "e7_1cqOtVsc",
+    "start_sec": 9.59,
+    "end_sec": 44.99
+  },
+  "77": {
+    "lyric_id": 5147577,
+    "first_line": 0,
+    "stop_before_line": 4,
+    "reason": "남을 따라가지 않고 서로의 길을 찾겠다는 첫 벌스 네 줄. 연결 후렴을 길이 맞추기로 붙이지 않음.",
+    "youtube_id": "MqcFHCNXiok",
+    "start_sec": 6.07,
+    "end_sec": 20.19
+  },
+  "78": {
+    "lyric_id": 23124243,
+    "first_line": 8,
+    "stop_before_line": 12,
+    "reason": "함께 나가 앉아 이야기하고 싶다는 제안과 상대의 반응에 밝아지는 눈빛까지 벌스.",
+    "youtube_id": "n7ePZLn9_lQ",
+    "start_sec": 38.28,
+    "end_sec": 51.34
+  },
+  "79": {
+    "lyric_id": 2431625,
+    "first_line": 2,
+    "stop_before_line": 11,
+    "reason": "커플들 사이의 외로움에서 사랑을 의심하면서도 원하는 마음까지 첫 영어 벌스 전체.",
+    "youtube_id": "iv7TrKrwteI",
+    "start_sec": 9.36,
+    "end_sec": 39.2
+  },
+  "80": {
+    "lyric_id": 14793327,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "상대를 향한 질문에서 자신의 일주일과 일상을 묘사하는 첫 벌스 전체. 제목 구호 제외.",
+    "youtube_id": "v_gO_P8gug8",
+    "start_sec": 8.16,
+    "end_sec": 38.63
+  },
+  "81": {
+    "lyric_id": 24090575,
+    "first_line": 0,
+    "stop_before_line": 4,
+    "reason": "사랑과 다툼, 이별 뒤의 비로 연결되는 첫 벌스 네 줄. 반복 영어 후렴 제외.",
+    "youtube_id": "NbKH4iZqq1Y",
+    "start_sec": 18.13,
+    "end_sec": 40.52
+  },
+  "82": {
+    "lyric_id": 36844342,
+    "first_line": 10,
+    "stop_before_line": 14,
+    "reason": "화면 속 표현 대신 실제 만남과 감정을 바라는 첫 영어 벌스 네 줄. 게임 소개와 반복 제목 제외.",
+    "youtube_id": "gQEfr1_Bmdo",
+    "start_sec": 19.49,
+    "end_sec": 32.34
+  },
+  "83": {
+    "lyric_id": 16376925,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "떠나는 상대의 말부터 눈물을 참고 관계를 마무리하는 과정까지 이야기 전체.",
+    "youtube_id": "cvQQEs4TDGM",
+    "start_sec": 4.09,
+    "end_sec": 37.93
+  },
+  "84": {
+    "lyric_id": 16142257,
+    "first_line": 18,
+    "stop_before_line": 24,
+    "reason": "자신 안의 에너지와 별로부터 온 존재를 설명하고 기원을 묻는 두 번째 벌스.",
+    "youtube_id": "G8YNFjruzPk",
+    "start_sec": 65.03,
+    "end_sec": 84.72
+  },
+  "85": {
+    "lyric_id": 13600675,
+    "first_line": 24,
+    "stop_before_line": 33,
+    "reason": "화려함과 자기 기준을 설명하는 벌스에서 집중과 시각화를 권하는 연결부까지. 한국어 원곡으로 교체.",
+    "youtube_id": "7Jan-2W-IdY",
+    "start_sec": 69.27,
+    "end_sec": 100.22999999999999
+  },
+  "86": {
+    "lyric_id": 34092924,
+    "first_line": 18,
+    "stop_before_line": 25,
+    "reason": "서로 다른 성격의 끌림을 자석으로 설명하고 마음을 인정하는 두 번째 벌스 전체.",
+    "youtube_id": "HBqH4uJS0PU",
+    "start_sec": 66.76,
+    "end_sec": 93.59
+  },
+  "87": {
+    "lyric_id": 17563748,
+    "first_line": 2,
+    "stop_before_line": 11,
+    "reason": "인사를 연습하고도 실제로는 마음을 전하지 못하는 과정을 그린 첫 벌스 전체.",
+    "youtube_id": "pbELDkeLdho",
+    "start_sec": 14.4,
+    "end_sec": 41.06
+  },
+  "88": {
+    "lyric_id": 25405093,
+    "first_line": 2,
+    "stop_before_line": 8,
+    "reason": "거울 앞 준비와 익숙한 등굣길, 말을 걸려는 계획까지 첫 벌스 전체. 카운트 구호 제외.",
+    "youtube_id": "bKeU99EygzY",
+    "start_sec": 11.13,
+    "end_sec": 37.02
+  },
+  "89": {
+    "lyric_id": 12295453,
+    "first_line": 0,
+    "stop_before_line": 6,
+    "reason": "걱정 없이 웃는 날을 상상하다 행복할 수 있는지 묻는 첫 단락 전체.",
+    "youtube_id": "l-H4QHLC-Uc",
+    "start_sec": 8.29,
+    "end_sec": 32.18
+  },
+  "90": {
+    "lyric_id": 21335780,
+    "first_line": 11,
+    "stop_before_line": 19,
+    "reason": "댓글과 세대, 자신의 이름과 위치를 연결하는 첫 랩 단락. 반복 파워 후렴 제외.",
+    "youtube_id": "G7Vixoao0bM",
+    "start_sec": 32.41,
+    "end_sec": 53.58
+  },
+  "91": {
+    "lyric_id": 10093168,
+    "first_line": 32,
+    "stop_before_line": 46,
+    "reason": "상대의 외모 걱정에 이미 마음을 정했다며 웃어주기만 하면 된다고 답하는 영어 벌스.",
+    "youtube_id": "TMXNs9p2zeQ",
+    "start_sec": 71.49,
+    "end_sec": 93.89
+  },
+  "92": {
+    "lyric_id": 17212861,
+    "first_line": 12,
+    "stop_before_line": 16,
+    "reason": "잃어버린 손톱을 초승달로 비유하고 누가 걸어두었는지 묻는 이야기 네 줄.",
+    "youtube_id": "9XFGRri2ivs",
+    "start_sec": 103.4,
+    "end_sec": 129.32
+  },
+  "93": {
+    "lyric_id": 32232235,
+    "first_line": 0,
+    "stop_before_line": 9,
+    "reason": "잠들기 전 기억을 꺼내는 습관에서 두 사람의 좋았던 시간으로 이동하는 도입 이야기 전체.",
+    "youtube_id": "5YbJ6ftft4k",
+    "start_sec": 6.87,
+    "end_sec": 46.82
+  },
+  "94": {
+    "lyric_id": 17925401,
+    "first_line": 0,
+    "stop_before_line": 9,
+    "reason": "변했다는 말에 돌아온 적 없이 자리를 지켰다고 답하는 첫 랩 단락. 반복 영어 후렴 제외.",
+    "youtube_id": "H6qC2tMkL00",
+    "start_sec": 12.85,
+    "end_sec": 34.09
+  },
+  "95": {
+    "lyric_id": 36229780,
+    "first_line": 24,
+    "stop_before_line": 36,
+    "reason": "값을 매길 수 없는 자신과 비난을 작품의 액자로 비유하는 한국어 랩 전체. 이름 반복 후렴 제외.",
+    "youtube_id": "8oFElTI09RI",
+    "start_sec": 55.9,
+    "end_sec": 78.17
+  },
+  "96": {
+    "lyric_id": 37049380,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "무대 위 자유와 주도권을 이야기하는 첫 벌스. 빈 가사로 표시된 쉬는 지점에서 종료.",
+    "youtube_id": "r6Eei81SuqE",
+    "start_sec": 6.44,
+    "end_sec": 34.09
+  },
+  "97": {
+    "lyric_id": 37169667,
+    "first_line": 0,
+    "stop_before_line": 9,
+    "reason": "혼자였던 과거와 두 삶 사이의 방황이 현재의 무대로 이어지는 첫 벌스 전체.",
+    "youtube_id": "TuzfXgUpboA",
+    "start_sec": 15.62,
+    "end_sec": 46.22
+  },
+  "98": {
+    "lyric_id": 37467923,
+    "first_line": 31,
+    "stop_before_line": 40,
+    "reason": "갈증을 탄산의 거품과 한 모금에 빗대어 끝까지 원하는 랩 단락. 제목 반복 후렴 제외.",
+    "youtube_id": "y7CrvsCIjyo",
+    "start_sec": 83.77,
+    "end_sec": 101.12
+  },
+  "99": {
+    "lyric_id": 25216895,
+    "first_line": 0,
+    "stop_before_line": 8,
+    "reason": "상대에게 돌아보지 말고 자신을 위해 떠나라고 말하는 첫 벌스 전체.",
+    "youtube_id": "QxGt54-oh1A",
+    "start_sec": 5.31,
+    "end_sec": 43.6
+  },
+  "100": {
+    "lyric_id": 34781238,
+    "first_line": 0,
+    "stop_before_line": 6,
+    "reason": "헤어지던 날의 기억을 떠올리며 이제 지워야 하는지 묻는 첫 벌스 전체.",
+    "youtube_id": "R5By6ms2a3Y",
+    "start_sec": 8.74,
+    "end_sec": 39.54
   }
 }
