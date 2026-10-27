@@ -8,9 +8,9 @@
     "section_hint": "1절 랩 (페이)",
     "difficulty": 3,
     "youtube_id": "sdtspSYyQXs",
-    "start_sec": 5.79,
-    "end_sec": 37.11,
-    "answer_lyrics": "Ha ha JYP introducing\nMade in Asia\nMiss A!\nYou don't know me, you don't know me\nYou don't know me, you don't know me\nSo shut off boy, so shut off boy\nSo shut off boy, so shut up shut up\n앞에선 한 마디도 못하더니\n뒤에선 내 얘길 안 좋게 해",
+    "start_sec": 28.25,
+    "end_sec": 56.41,
+    "answer_lyrics": "앞에선 한 마디도 못하더니\n뒤에선 내 얘길 안 좋게 해\n참 어이가 없어\nHello hello hello 나 같은 여잔처음\n(으로 으로 으로) 본 것 같은데\n왜 나를 판단하니\n내가 혹시 두려운 거니",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -29,9 +29,11 @@
       "auto_generated": true,
       "channel_id": "UCh3JvEbg-3dwJ0Ou2gXj0vQ"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 12
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "영어 소개와 반복 구호를 제외하고, 상대의 이중적인 태도를 지적하는 첫 벌스 전체를 한 문제로 선정. 후렴 직전까지 포함. 가사 내용으로 선정한 구간이며 실제 가창 종료·마디·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 12,
+    "section_revision": 1,
+    "section_rationale": "영어 소개와 반복 구호를 제외하고, 상대의 이중적인 태도를 지적하는 첫 벌스 전체를 한 문제로 선정. 후렴 직전까지 포함."
   },
   {
     "id": 2,
@@ -110,9 +112,9 @@
     "section_hint": "1절 랩 (CL)",
     "difficulty": 2,
     "youtube_id": "J7wLK10MLR4",
-    "start_sec": 44.55,
-    "end_sec": 74.3,
-    "answer_lyrics": "둘째가라면 이 몸이 서럽잖아 alright\n넌 뒤를 따라오지만 난 앞만 보고 질주해\n네가 앉은 테이블 위를 뛰어다녀 I don't care\n건드리면 감당 못해 I'm hot hot hot hot fire\n뒤집어지기 전에 제발 누가 날 좀 말려\n옷장을 열어 가장 상큼한 옷을 걸치고\n거울에 비친 내 얼굴을 꼼꼼히 살피고",
+    "start_sec": 51.47,
+    "end_sec": 82.19,
+    "answer_lyrics": "넌 뒤를 따라오지만 난 앞만 보고 질주해\n네가 앉은 테이블 위를 뛰어다녀 I don't care\n건드리면 감당 못해 I'm hot hot hot hot fire\n뒤집어지기 전에 제발 누가 날 좀 말려\n옷장을 열어 가장 상큼한 옷을 걸치고\n거울에 비친 내 얼굴을 꼼꼼히 살피고\n지금은 여덟 시 약속 시간은 여덟 시 반\n도도한 걸음으로 나선 이 밤",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -131,9 +133,11 @@
       "auto_generated": true,
       "channel_id": "UC1dkZ--Bna3y4Cd-wwbteNw"
     },
-    "section_method": "same_recording_duration_matched_lrc",
-    "review_notes": "공식 앨범 음원 / 25~35초 / 동일 길이 싱크 가사. 특정 멤버의 랩·첫 후렴 위치 및 줄 단위 싱크는 청취 확인 전입니다.",
-    "checked_candidates": 1
+    "section_method": "editorial_passage_lrc_boundary",
+    "review_notes": "자기소개성 반복 구호와 alright 반복을 제외하고, 질주하는 태도에서 외출 준비로 이어지는 여덟 줄의 벌스를 한 문제로 선정. 후렴 직전까지 포함. 가사 내용으로 선정한 구간이며 실제 가창 종료·마디·줄 싱크는 청취 확인 전입니다.",
+    "checked_candidates": 1,
+    "section_revision": 1,
+    "section_rationale": "자기소개성 반복 구호와 alright 반복을 제외하고, 질주하는 태도에서 외출 준비로 이어지는 여덟 줄의 벌스를 한 문제로 선정. 후렴 직전까지 포함."
   },
   {
     "id": 5,

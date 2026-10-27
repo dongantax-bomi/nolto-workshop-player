@@ -1,5 +1,9 @@
 import unittest
-from curate import is_art_track,art_matches,excluded,find_pair
+import json
+import tempfile
+from pathlib import Path
+from unittest.mock import patch
+from curate import is_art_track,art_matches,excluded,find_pair,apply_section_overrides
 
 class CurationTests(unittest.TestCase):
     def setUp(self):
@@ -19,5 +23,18 @@ class CurationTests(unittest.TestCase):
     def test_alternate_versions_rejected(self):
         for title in ['Song M/V','Song (Inst.)','Song Japanese Version','Song Live','Song Piano Cover']:
             self.assertTrue(excluded(title))
+
+    def test_editorial_passage_keeps_all_lines_and_rejects_different_source(self):
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parent) as folder:
+            root=Path(folder)
+            (root/'section_overrides.json').write_text(json.dumps({'1':dict(lyric_id=7,first_line=1,stop_before_line=4,reason='Complete passage')}),encoding='utf-8')
+            lyrics={7:dict(syncedLyrics='[00:01]intro\n[00:10]first\n[00:24]middle\n[00:38]last\n[00:50]chorus')}
+            row=dict(id=1,youtube_id='abcdefghijk',lyric_id=7,video_duration=100)
+            with patch('curate.ROOT',root):
+                result=apply_section_overrides([row],lyrics)[0]
+                self.assertEqual((result['start_sec'],result['end_sec']),(10,50))
+                self.assertEqual(result['answer_lyrics'],'first\nmiddle\nlast')
+                with self.assertRaises(ValueError):
+                    apply_section_overrides([dict(row,lyric_id=8)],lyrics)
 
 if __name__=='__main__':unittest.main()

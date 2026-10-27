@@ -110,6 +110,24 @@ def cached_lyrics():
     return result
 
 LYRICS={}
+def apply_section_overrides(rows, lyrics):
+    """Editorial passage selection; LRC boundaries still need listening review."""
+    overrides=json.loads((ROOT/'section_overrides.json').read_text(encoding='utf-8'))
+    for row in rows:
+        spec=overrides.get(str(row['id']))
+        if not spec or not row.get('youtube_id'): continue
+        if row.get('lyric_id')!=spec['lyric_id']:
+            raise ValueError(f"Editorial section requires the reviewed lyric source: {row['id']}")
+        lines=parse_lrc(lyrics[spec['lyric_id']]['syncedLyrics'])
+        first,last=spec['first_line'],spec['stop_before_line']
+        start,end=lines[first][0],lines[last][0]
+        if not 0<=start<end<=row['video_duration']: raise ValueError('Invalid editorial section')
+        row.update(start_sec=start,end_sec=end,answer_lyrics='\n'.join(t for _,t in lines[first:last] if t),
+                   section_method='editorial_passage_lrc_boundary',section_revision=1,
+                   section_rationale=spec['reason'],
+                   review_notes=spec['reason']+' 가사 내용으로 선정한 구간이며 실제 가창 종료·마디·줄 싱크는 청취 확인 전입니다.')
+    return rows
+
 def lyric_matches(item,song):
     return title_matches(item.get('trackName',''),song) and artist_matches(item.get('artistName',''),song) and not excluded(item.get('trackName',''))
 
@@ -238,7 +256,7 @@ def main():
             results[row['id']-1]=row
             resume.write_text(json.dumps(results,ensure_ascii=False),encoding='utf-8')
             print(json.dumps({'id':row['id'],'audio':bool(row.get('youtube_id')),'duration':round(row['end_sec']-row['start_sec'],2) if row.get('youtube_id') else None,'checked':row.get('checked_candidates')},ensure_ascii=True),flush=True)
-    write_outputs(results)
+    write_outputs(apply_section_overrides(results,LYRICS))
 
 if __name__=='__main__' and '--probe' not in sys.argv: main()
 
