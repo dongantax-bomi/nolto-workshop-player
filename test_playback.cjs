@@ -90,4 +90,12 @@ time=50.1;tick();assert.equal(run('active'),false,'resumed question must still s
 run('selectSong(songs[0],true)');
 assert.equal(time,30,'choosing a song with a lead-in must not reveal the question first');
 assert.ok(!source.includes('받쓰 시작 전 자동 정지'));
+run('songs[0].round_points=2;selectSong(songs[0],false)');
+const firstTeam=get('scoreboard').children[0];
+const doublePoint=firstTeam.children.find(el=>el.textContent==='+2');
+assert.ok(doublePoint,'two-point round must expose a +2 score control');
+const oldScore=run('teams[0].score');doublePoint.onclick();
+assert.equal(run('teams[0].score'),oldScore+2);
+run('songs[0].round_points=1;selectSong(songs[0],false)');
+assert.ok(!get('scoreboard').children[0].children.some(el=>el.textContent==='+2'));
 console.log('PASS: continuous context without boundary pause/seek/reload, exact-position manual resume, replay end guard, queued playback');

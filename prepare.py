@@ -1,4 +1,4 @@
-"""100곡 데이터 준비. Python 3.10+, 선택: YOUTUBE_API_KEY 또는 yt-dlp."""
+"""선택 플레이리스트 데이터 준비. Python 3.10+."""
 import argparse, concurrent.futures, csv, difflib, hashlib, json, os, re, subprocess, sys, time,unicodedata
 from pathlib import Path
 from urllib.parse import urlencode
@@ -208,16 +208,17 @@ def write_outputs(songs):
         w=csv.DictWriter(f,fieldnames=fields);w.writeheader()
         for s in songs:
             duration=round(s['end_sec']-s['start_sec'],2) if s.get('end_sec') is not None and s.get('start_sec') is not None else ''
-            w.writerow(dict(id=s['id'],title=s['title'],artist=s['artist'],lead_in_start_sec=s.get('lead_in_start_sec',''),start_sec=s.get('start_sec'),end_sec=s.get('end_sec'),duration_sec=duration,lines=len(s.get('answer_lyrics','').splitlines()),selection_reason=s.get('section_rationale',''),context_reason=s.get('lead_in_rationale',''),boundary_basis=s.get('boundary_basis',''),recording_title=s.get('video_title',''),youtube_id=s.get('youtube_id',''),listening_status='가사 내용・발매 정보 검토 / 실제 마디 청취 확인 전' if s.get('section_content_reviewed') else '내용 검토 전'))
-    report={'total':len(songs),'filled_candidates':count,'embed_allowed':sum(s.get('embed_verified') is True for s in songs),'verified':sum(s.get('status')=='verified' for s in songs),'missing':len(songs)-count,'needs_review':sum(s.get('status')!='verified' for s in songs),'target':80,'target_met':count>=80}
+            w.writerow(dict(id=s['id'],title=s['title'],artist=s['artist'],lead_in_start_sec=s.get('lead_in_start_sec',''),start_sec=s.get('start_sec'),end_sec=s.get('end_sec'),duration_sec=duration,lines=len(s.get('answer_lyrics','').splitlines()),selection_reason=s.get('section_rationale',''),context_reason=s.get('lead_in_rationale',''),boundary_basis=s.get('boundary_basis',''),recording_title=s.get('video_title',''),youtube_id=s.get('youtube_id',''),listening_status='실제 보컬·박자·보조 음성 인식 분석 / 사람 청취 확인 전' if s.get('audio_analyzed') else '가사 내용・발매 정보 검토 / 실제 마디 청취 확인 전' if s.get('section_content_reviewed') else '내용 검토 전'))
+    report={'total':len(songs),'filled_candidates':count,'embed_allowed':sum(s.get('embed_verified') is True for s in songs),'verified':sum(s.get('status')=='verified' for s in songs),'missing':len(songs)-count,'needs_review':sum(s.get('status')!='verified' for s in songs),'target':len(songs),'target_met':count==len(songs)}
     report.update(content_reviewed=sum(s.get('section_content_reviewed') is True for s in songs),boundary_listened=sum(s.get('boundary_verified') is True for s in songs))
     report.update(context_reviewed=sum(s.get('section_context_reviewed') is True for s in songs),auto_pause_before_question=False)
+    report['audio_analyzed']=sum(s.get('audio_analyzed') is True for s in songs)
     (ROOT/'preparation_report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
     print(json.dumps(report),flush=True)
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument('--init',action='store_true',help='네트워크 없이 원본 100곡으로 플레이어 생성')
+    p.add_argument('--init',action='store_true',help='네트워크 없이 선택 목록으로 플레이어 생성')
     p.add_argument('--limit',type=int,default=100)
     p.add_argument('--workers',type=int,default=3)
     p.add_argument('--refresh',action='store_true',help='자동 후보도 다시 준비 (직접 verified 항목은 유지)')
@@ -233,6 +234,8 @@ def main():
     with (ROOT/'songs.csv').open(encoding='utf-8-sig',newline='') as f: songs=list(csv.DictReader(f))
     for s in songs:
         for k in ('id','year','difficulty'): s[k]=int(s[k])
+        for k in ('round_order','round_points'):
+            if s.get(k): s[k]=int(s[k])
         s.update(start_sec=None,end_sec=None,status='missing',review_notes='자동 준비 미실행')
     if not args.init:
         previous={}
@@ -243,7 +246,7 @@ def main():
             futures={pool.submit(fill,s):s['id'] for s in pending}
             for future in concurrent.futures.as_completed(futures):
                 result=future.result()
-                songs[result['id']-1]=result
+                songs[next(i for i,s in enumerate(songs) if s['id']==result['id'])]=result
                 print(f"{result['id']:3} {result['status']} {result['artist']} - {result['title']}",flush=True)
                 write_outputs(songs)
     write_outputs(songs)

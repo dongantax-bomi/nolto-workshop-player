@@ -10,10 +10,21 @@ root=Path(__file__).resolve().parent
 data=json.loads((root/'songs_filled.json').read_text(encoding='utf-8'))
 sections=json.loads((root/'section_overrides.json').read_text(encoding='utf-8'))
 catalog=json.loads((root/'recording_catalog.json').read_text(encoding='utf-8'))
+audio_audit=json.loads((root/'audio_boundary_audit.json').read_text(encoding='utf-8'))
 with (root/'songs.csv').open(encoding='utf-8-sig',newline='') as f:
     original=list(csv.DictReader(f))
-assert len(data)==len(original)==100
-assert len({s['id'] for s in data})==100
+expected=[83,3,28,42,58,39,6]
+assert len(data)==len(original)==7
+assert [s['id'] for s in data]==expected
+assert [s['round_label'] for s in data]==['1R','2R','3R','4R','5R','연장','예비']
+assert [s['round_points'] for s in data]==[1,1,1,1,2,1,1]
+assert set(sections)==set(catalog)=={str(i) for i in expected}
+assert [r['song_id'] for r in audio_audit]==expected
+for s,a in zip(data,audio_audit):
+    assert s['youtube_id']==a['youtube_id'] and s['audio_sha256']==a['audio_sha256']
+    assert a['review_state']=='signal_and_lyric_reviewed_not_listened'
+    for key in ['lead_in_start_sec','start_sec','end_sec']:
+        assert s[key]==a[key]
 for s, source in zip(data,original):
     assert s['id']==int(source['id']) and s['artist']==source['artist'] and s['title']==source['title']
     if s.get('youtube_id'):
@@ -22,7 +33,12 @@ for s, source in zip(data,original):
         assert s['section_method']=='editorial_passage_lrc_boundary'
         assert s['section_content_reviewed'] is True and s['section_revision']==spec.get('revision',2)
         assert s['lyric_id']==spec['lyric_id'] and s['youtube_id']==spec['youtube_id']
-        assert s['start_sec']==spec['start_sec'] and s['end_sec']==spec['end_sec']
+        bounds=spec.get('audio_boundaries',spec)
+        assert s['start_sec']==bounds['start_sec'] and s['end_sec']==bounds['end_sec']
+        if 'audio_boundaries' in spec:
+            assert s['audio_analyzed'] is True
+            assert s['audio_sha256']==bounds['audio_sha256']
+            assert s['lead_in_start_sec']==bounds['lead_in_start_sec']
         assert s['section_rationale']==spec['reason']
         assert s['section_context_reviewed'] is True and s['playback_mode']=='continuous_context'
         assert s['lead_in_rationale']==spec['lead_in_reason'] and s['lead_in_rationale']
@@ -48,6 +64,8 @@ embedded=html.split('<script id="songData" type="application/json">')[1].split('
 assert json.loads(embedded)==data
 report=json.loads((root/'preparation_report.json').read_text(encoding='utf-8'))
 assert report['filled_candidates']==sum(bool(s.get('youtube_id')) for s in data)
+assert report['target']==report['total']==7 and report['target_met'] is True
+assert report['audio_analyzed']==7
 with (root/'needs_review.csv').open(encoding='utf-8-sig',newline='') as f:
     review=list(csv.DictReader(f))
 assert {int(s['id']) for s in review}=={s['id'] for s in data if s['status']!='verified'}
@@ -57,4 +75,4 @@ try:
     subprocess.run(['node','--check',str(check)],check=True)
 finally:
     check.unlink(missing_ok=True)
-print(f"PASS: original 100 songs preserved; {report['filled_candidates']} valid candidates; HTML/JSON/report consistent; JS syntax valid")
+print(f"PASS: selected seven rounds only; {report['filled_candidates']} valid candidates; HTML/JSON/report consistent; JS syntax valid")

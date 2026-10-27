@@ -155,6 +155,22 @@ def apply_section_overrides(rows, lyrics):
             row['lead_in_rationale']=spec.get('lead_in_reason','')
             row['section_context_reviewed']=spec.get('context_reviewed',False)
             row['playback_mode']='continuous_context'
+        elif 'lead_in_start_sec' in spec:
+            lead=float(spec['lead_in_start_sec'])
+            if not 0<=lead<start: raise ValueError('Invalid instrumental lead-in range')
+            row.update(lead_in_start_sec=lead,lead_in_rationale=spec['lead_in_reason'],
+                       section_context_reviewed=spec.get('context_reviewed',False),
+                       playback_mode='continuous_context')
+        if 'audio_boundaries' in spec:
+            bounds=spec['audio_boundaries']
+            if not 0<=bounds['lead_in_start_sec']<bounds['start_sec']<bounds['end_sec']<=row['video_duration']:
+                raise ValueError('Invalid analyzed audio boundaries')
+            if bounds['youtube_id']!=row['youtube_id'] or bounds['lyric_id']!=row['lyric_id']:
+                raise ValueError('Audio boundary evidence does not match recording/lyrics')
+            row.update({k:bounds[k] for k in ['lead_in_start_sec','start_sec','end_sec']})
+            row.update(boundary_basis='vocal_energy_and_downbeats_with_lyric_passage',
+                       audio_analyzed=True,audio_sha256=bounds['audio_sha256'],
+                       review_notes=spec['reason']+' 실제 오디오의 분리 보컬과 박자 분석으로 경계를 보정했습니다. 사람의 청취 검증과는 구분합니다.')
     return rows
 
 def lyric_matches(item,song):
@@ -286,7 +302,10 @@ def main():
     with (ROOT/'songs.csv').open(encoding='utf-8-sig',newline='') as f: songs=list(csv.DictReader(f))
     for song in songs:
         for key in ['id','year','difficulty']: song[key]=int(song[key])
+        for key in ['round_order','round_points']:
+            if song.get(key): song[key]=int(song[key])
     results=[None]*len(songs)
+    positions={s['id']:i for i,s in enumerate(songs)}
     resume=ROOT/'.cache/curation-v4-progress.json'
     previous=json.loads(resume.read_text(encoding='utf-8')) if resume.exists() else []
     previous={s['id']:s for s in previous if s and s.get('youtube_id') and art_matches(details(s['youtube_id']),s)}
@@ -294,13 +313,14 @@ def main():
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
         jobs={pool.submit(fill_strict,s,old.get(s['id'],{})):s for s in songs if s['id'] not in previous}
         for s in songs:
-            if s['id'] in previous: results[s['id']-1]=previous[s['id']]
+            if s['id'] in previous:
+                results[positions[s['id']]]=dict(previous[s['id']],**{k:s[k] for k in ['round_label','round_order','round_points'] if k in s})
         for job in concurrent.futures.as_completed(jobs):
             song=jobs[job]
             try: row=job.result()
             except Exception as error:
                 row=dict(song,youtube_id='',start_sec=None,end_sec=None,answer_lyrics='',status='missing',audit_version=4,review_notes=str(error))
-            results[row['id']-1]=row
+            results[positions[row['id']]]=row
             resume.write_text(json.dumps(results,ensure_ascii=False),encoding='utf-8')
             print(json.dumps({'id':row['id'],'audio':bool(row.get('youtube_id')),'duration':round(row['end_sec']-row['start_sec'],2) if row.get('youtube_id') else None,'checked':row.get('checked_candidates')},ensure_ascii=True),flush=True)
     write_outputs(apply_section_overrides(results,LYRICS))

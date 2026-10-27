@@ -1,14 +1,15 @@
 {
-  "total": 100,
-  "filled_candidates": 100,
-  "embed_allowed": 100,
+  "total": 7,
+  "filled_candidates": 7,
+  "embed_allowed": 7,
   "verified": 0,
   "missing": 0,
-  "needs_review": 100,
-  "target": 80,
+  "needs_review": 7,
+  "target": 7,
   "target_met": true,
-  "content_reviewed": 100,
+  "content_reviewed": 7,
   "boundary_listened": 0,
-  "context_reviewed": 100,
-  "auto_pause_before_question": false
+  "context_reviewed": 7,
+  "auto_pause_before_question": false,
+  "audio_analyzed": 7
 }

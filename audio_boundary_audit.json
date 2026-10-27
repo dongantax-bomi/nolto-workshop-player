@@ -1,0 +1,191 @@
+[
+  {
+    "song_id": 83,
+    "round_label": "1R",
+    "title": "밤양갱",
+    "youtube_id": "cvQQEs4TDGM",
+    "lyric_id": 16376925,
+    "audio_sha256": "72b04a975ffe29d7652a0bec54f24f3668c1f4b9705df13b2e62a02a0ca9df06",
+    "lead_in_start_sec": 8.27,
+    "start_sec": 19.8,
+    "end_sec": 36.95,
+    "review_state": "signal_and_lyric_reviewed_not_listened",
+    "models": [
+      "Demucs htdemucs",
+      "Beat This small0",
+      "faster-whisper small int8"
+    ],
+    "analysis_crop": {
+      "start": 1.9000000000000004,
+      "end": 46.9
+    },
+    "edge_vocal_db": {
+      "lead": -35.98,
+      "start": -22.67,
+      "end": -49.67
+    },
+    "selection_note": "첫 벌스의 완결된 네 줄로 이동. 종료는 가창 뒤 약 1초의 보컬 쉼 내부."
+  },
+  {
+    "song_id": 3,
+    "round_label": "2R",
+    "title": "좋은 날",
+    "youtube_id": "OIHlzvEKncQ",
+    "lyric_id": 36659073,
+    "audio_sha256": "5904fc4b5d0d57f1954dbdff976b3bc34dd670d397ca022b1d47a37f4392de3c",
+    "lead_in_start_sec": 8.3,
+    "start_sec": 16.1,
+    "end_sec": 44.55,
+    "review_state": "signal_and_lyric_reviewed_not_listened",
+    "models": [
+      "Demucs htdemucs",
+      "Beat This small0",
+      "faster-whisper small int8"
+    ],
+    "analysis_crop": {
+      "start": 0,
+      "end": 54.643
+    },
+    "edge_vocal_db": {
+      "lead": -47.38,
+      "start": -26.76,
+      "end": -21.41
+    },
+    "selection_note": "후렴 대신 첫 벌스의 질문 단락 전체. 연주 도입에서 진입하며 후렴 첫 음절 이전의 보컬 저점에서 종료."
+  },
+  {
+    "song_id": 28,
+    "round_label": "3R",
+    "title": "Cheer Up",
+    "youtube_id": "prWVZFgZ3Zc",
+    "lyric_id": 5303078,
+    "audio_sha256": "6640ecf1f3b55d17de48a448ea88e2bdd54b6bd330f501ac38918fe371582462",
+    "lead_in_start_sec": 71.05,
+    "start_sec": 78.9,
+    "end_sec": 101.09,
+    "review_state": "signal_and_lyric_reviewed_not_listened",
+    "models": [
+      "Demucs htdemucs",
+      "Beat This small0",
+      "faster-whisper small int8"
+    ],
+    "analysis_crop": {
+      "start": 56.55,
+      "end": 111.54
+    },
+    "edge_vocal_db": {
+      "lead": -2.26,
+      "start": -9.54,
+      "end": -14.95
+    },
+    "selection_note": "빠른 랩 네 줄과 이어지는 속마음 네 줄. 다음 사과 구절에 들어가기 전 가창 전환부의 상대 보컬 저점에서 종료. 배경 보컬이 이어져 완전한 무음은 아님."
+  },
+  {
+    "song_id": 42,
+    "round_label": "4R",
+    "title": "뚜두뚜두",
+    "youtube_id": "IPzouyj7FLA",
+    "lyric_id": 27584737,
+    "audio_sha256": "d9ce53683128018657d7ed2f6bc687ecaec786d5f812f4adff58574a0518b46a",
+    "lead_in_start_sec": 10.6,
+    "start_sec": 21.65,
+    "end_sec": 50.03,
+    "review_state": "signal_and_lyric_reviewed_not_listened",
+    "models": [
+      "Demucs htdemucs",
+      "Beat This small0",
+      "faster-whisper small int8"
+    ],
+    "analysis_crop": {
+      "start": 0,
+      "end": 60.62
+    },
+    "edge_vocal_db": {
+      "lead": -42.31,
+      "start": -23.05,
+      "end": -20.56
+    },
+    "selection_note": "제니와 리사의 첫 랩 벌스 전체. 반복 도입의 보컬 쉼에서 시작하고 프리코러스 진입 전 저점에서 종료."
+  },
+  {
+    "song_id": 58,
+    "round_label": "5R",
+    "title": "아무노래",
+    "youtube_id": "GOtF5_Ow0_Y",
+    "lyric_id": 39237116,
+    "audio_sha256": "46a42c726003edea2ac58e0192e9fd7387e9a0a3d7c853a49a8d5af6fe70f5ed",
+    "lead_in_start_sec": 43.1,
+    "start_sec": 49.12,
+    "end_sec": 71.5,
+    "review_state": "signal_and_lyric_reviewed_not_listened",
+    "models": [
+      "Demucs htdemucs",
+      "Beat This small0",
+      "faster-whisper small int8"
+    ],
+    "analysis_crop": {
+      "start": 30.060000000000002,
+      "end": 81.59
+    },
+    "edge_vocal_db": {
+      "lead": -5.97,
+      "start": -21.25,
+      "end": -14.38
+    },
+    "selection_note": "스트레스에서 친구들을 집으로 부르는 제안까지 한 단락. 도입과 시작은 가사 첫 음절 전으로 보정하고 다음 주제로 넘어가기 전 저점에서 종료."
+  },
+  {
+    "song_id": 39,
+    "round_label": "연장",
+    "title": "롤린 (2021 역주행)",
+    "youtube_id": "0ZCCBPeRVLo",
+    "lyric_id": 4254941,
+    "audio_sha256": "60cc562f7a2f4a08754c042abdb42552db6e5358a6644974f0316e262aa81126",
+    "lead_in_start_sec": 6.35,
+    "start_sec": 22.25,
+    "end_sec": 53.45,
+    "review_state": "signal_and_lyric_reviewed_not_listened",
+    "models": [
+      "Demucs htdemucs",
+      "Beat This small0",
+      "faster-whisper small int8"
+    ],
+    "analysis_crop": {
+      "start": 0,
+      "end": 63.683
+    },
+    "edge_vocal_db": {
+      "lead": -8.71,
+      "start": -3.0,
+      "end": -5.69
+    },
+    "selection_note": "앞 벌스와 프리코러스를 함께 포함해 약 31초로 확장. 다음 반복 후렴 진입 전 저점에서 종료하며 잔향이 겹치는 전환부라 무음 경계는 아님."
+  },
+  {
+    "song_id": 6,
+    "round_label": "예비",
+    "title": "강남스타일",
+    "youtube_id": "4AgDYTuZWOw",
+    "lyric_id": 2493617,
+    "audio_sha256": "6376208e05bdb4295bd96027ab405b835a7dc13ca8466e233dd7e4a00006fc6f",
+    "lead_in_start_sec": 5.9,
+    "start_sec": 14.5,
+    "end_sec": 43.1,
+    "review_state": "signal_and_lyric_reviewed_not_listened",
+    "models": [
+      "Demucs htdemucs",
+      "Beat This small0",
+      "faster-whisper small int8"
+    ],
+    "analysis_crop": {
+      "start": 0,
+      "end": 53.573
+    },
+    "edge_vocal_db": {
+      "lead": -67.99,
+      "start": -60.88,
+      "end": -56.32
+    },
+    "selection_note": "첫 벌스의 여자·사나이 두 단락 전체. 다음 아름다워 구절이 나오기 전 뚜렷한 보컬 쉼 내부에서 종료."
+  }
+]
