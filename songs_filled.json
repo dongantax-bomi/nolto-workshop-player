@@ -354,9 +354,9 @@
     "section_hint": "1절 벌스",
     "difficulty": 2,
     "youtube_id": "r-el8_35fU8",
-    "start_sec": 133.02,
-    "end_sec": 155.65,
-    "answer_lyrics": "Heaven 나만의 사람\n그래 나를 지켜줄 사람\n어떤 슬픔도 어떤 아픔도\n너와 함께 한다면\n어느 누구도 난 부럽지 않아\n떨리는 두 손을 잡아줘\n내가 사는 이유 너니까",
+    "start_sec": 23.91,
+    "end_sec": 43.67,
+    "answer_lyrics": "널 위해서 매일 웃고\n널 위해서 기도하고\n네 생각에 잠들고 널 부르며 눈을 떠\n내 옆에서 지켜주고 내 옆에서 감싸주는\n넌 나의 천국인걸",
     "status": "candidate",
     "embed_verified": true,
     "source_type": "official_art_track",
@@ -378,16 +378,16 @@
       "embed_check": "player_metadata"
     },
     "section_method": "editorial_passage_lrc_boundary",
-    "review_notes": "익숙한 후렴의 마지막 세 줄을 도입으로 듣고, 새 한국어 브리지 앞에서 대기. 곁을 지켜주는 사람과 함께라면 두렵지 않다는 마음에서 손을 잡아 달라는 부탁까지 일곱 줄을 문제로 선정. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
+    "review_notes": "후렴에서 브리지로 바로 넘어가는 기존 조합을 폐기. 앞부분의 도입 한 구절과 빈 가사로 표시된 간주를 듣고 첫 벌스 앞에서 대기. 상대를 위해 보내는 하루와 곁을 지키는 사람에 대한 결론까지 첫 벌스 다섯 줄을 문제로 선정. 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.",
     "checked_candidates": 1,
-    "section_revision": 3,
+    "section_revision": 4,
     "section_content_reviewed": true,
     "boundary_verified": false,
     "boundary_basis": "lyric_section_transition",
-    "section_rationale": "익숙한 후렴의 마지막 세 줄을 도입으로 듣고, 새 한국어 브리지 앞에서 대기. 곁을 지켜주는 사람과 함께라면 두렵지 않다는 마음에서 손을 잡아 달라는 부탁까지 일곱 줄을 문제로 선정.",
+    "section_rationale": "후렴에서 브리지로 바로 넘어가는 기존 조합을 폐기. 앞부분의 도입 한 구절과 빈 가사로 표시된 간주를 듣고 첫 벌스 앞에서 대기. 상대를 위해 보내는 하루와 곁을 지키는 사람에 대한 결론까지 첫 벌스 다섯 줄을 문제로 선정.",
     "recording_catalog_reviewed": true,
     "recording_review_note": "발매 제공사·앨범·실제 수록곡명·아티스트를 대조했습니다. 실제 음원 청취 검증과는 구분합니다.",
-    "lead_in_start_sec": 120.71
+    "lead_in_start_sec": 11.5
   },
   {
     "id": 10,

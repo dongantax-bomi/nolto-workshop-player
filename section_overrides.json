@@ -77,14 +77,14 @@
   },
   "9": {
     "lyric_id": 4781589,
-    "first_line": 34,
-    "stop_before_line": 41,
-    "reason": "익숙한 후렴의 마지막 세 줄을 도입으로 듣고, 새 한국어 브리지 앞에서 대기. 곁을 지켜주는 사람과 함께라면 두렵지 않다는 마음에서 손을 잡아 달라는 부탁까지 일곱 줄을 문제로 선정.",
+    "first_line": 4,
+    "stop_before_line": 9,
+    "reason": "후렴에서 브리지로 바로 넘어가는 기존 조합을 폐기. 앞부분의 도입 한 구절과 빈 가사로 표시된 간주를 듣고 첫 벌스 앞에서 대기. 상대를 위해 보내는 하루와 곁을 지키는 사람에 대한 결론까지 첫 벌스 다섯 줄을 문제로 선정.",
     "youtube_id": "r-el8_35fU8",
-    "start_sec": 133.02,
-    "end_sec": 155.65,
-    "lead_in_first_line": 31,
-    "revision": 3
+    "start_sec": 23.91,
+    "end_sec": 43.67,
+    "lead_in_first_line": 2,
+    "revision": 4
   },
   "10": {
     "lyric_id": 33960118,
