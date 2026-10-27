@@ -1,9 +1,9 @@
 {
   "total": 100,
-  "filled_candidates": 97,
-  "embed_allowed": 97,
+  "filled_candidates": 100,
+  "embed_allowed": 100,
   "verified": 0,
-  "missing": 3,
+  "missing": 0,
   "needs_review": 100,
   "target": 80,
   "target_met": true

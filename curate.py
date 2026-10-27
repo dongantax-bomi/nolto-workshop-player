@@ -172,8 +172,8 @@ def fill_strict(song,old):
     for version in ['v3','v2']:
         path=CACHE/f"youtube-{version}-{song['id']}.json"
         if path.exists(): entries.extend(json.loads(path.read_text(encoding='utf-8')))
-    queries=[f'{artist} {title} "Provided to YouTube"',f'{song["artist"]} {re.sub(r"\([^)]*\)","",song["title"])} 음원',f'{artist} {title} Topic']
-    extras={77:'IVE I AM Ive IVE album audio',91:'이영지 Small girl 16 Fantasy 음원',95:'JENNIE ruby like JENNIE audio'}
+    queries=[f'"{title}" "Provided to YouTube by" "{artist}"',f'"{title}" "Provided to YouTube by"',f'{artist} {title} "Provided to YouTube"',f'{song["artist"]} {re.sub(r"\([^)]*\)","",song["title"])} 음원',f'{artist} {title} Topic']
+    extras={77:'"I AM" "Provided to YouTube by" "IVE"',91:'"Small girl" "Provided to YouTube by"',95:'"like JENNIE" "Provided to YouTube by Columbia"'}
     if song['id'] in extras: queries.insert(0,extras[song['id']])
     import hashlib
     for query in queries:
