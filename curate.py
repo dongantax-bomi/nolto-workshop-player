@@ -141,11 +141,16 @@ def apply_section_overrides(rows, lyrics):
         start,end,answer,rest=passage_from_lines(lyrics[spec['lyric_id']],spec)
         if not 0<=start<end<=row['video_duration']: raise ValueError('Invalid editorial section')
         row.update(start_sec=start,end_sec=end,answer_lyrics=answer,status='candidate',
-                   section_method='editorial_passage_lrc_boundary',section_revision=2,
+                   section_method='editorial_passage_lrc_boundary',section_revision=spec.get('revision',2),
                    section_content_reviewed=True,boundary_verified=False,
                    boundary_basis='lrc_rest_marker' if rest else 'lyric_section_transition',
                    section_rationale=spec['reason'],
                    review_notes=spec['reason']+' 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.')
+        if 'lead_in_first_line' in spec:
+            lines=parse_lrc(lyrics[spec['lyric_id']]['syncedLyrics'])
+            lead=lines[spec['lead_in_first_line']][0]
+            if not 0<=lead<start: raise ValueError('Invalid lead-in range')
+            row['lead_in_start_sec']=lead
     return rows
 
 def lyric_matches(item,song):

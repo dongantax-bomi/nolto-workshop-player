@@ -20,10 +20,11 @@ for s, source in zip(data,original):
         assert re.fullmatch(r'[A-Za-z0-9_-]{11}',s['youtube_id'])
         spec=sections[str(s['id'])]
         assert s['section_method']=='editorial_passage_lrc_boundary'
-        assert s['section_content_reviewed'] is True and s['section_revision']==2
+        assert s['section_content_reviewed'] is True and s['section_revision']==spec.get('revision',2)
         assert s['lyric_id']==spec['lyric_id'] and s['youtube_id']==spec['youtube_id']
         assert s['start_sec']==spec['start_sec'] and s['end_sec']==spec['end_sec']
         assert s['section_rationale']==spec['reason']
+        if 'lead_in_start_sec' in s: assert 0<=s['lead_in_start_sec']<s['start_sec']
         assert s['boundary_verified'] is False  # No listening claim inferred from text review.
         assert len(s['answer_lyrics'].splitlines())>=4
         if s['id'] not in [60,79,82,97,98,91,94]: assert len(re.findall('[가-힣]',s['answer_lyrics']))>=10
