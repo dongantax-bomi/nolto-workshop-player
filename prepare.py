@@ -204,13 +204,14 @@ def write_outputs(songs):
             if song.get('status')!='verified': w.writerow({k:song.get(k,'') for k in w.fieldnames})
     count=sum(bool(s.get('youtube_id') and isinstance(s.get('start_sec'),(int,float)) and s.get('end_sec',0)>s['start_sec']) for s in songs)
     with (ROOT/'구간선정_검토표.csv').open('w',encoding='utf-8-sig',newline='') as f:
-        fields=['id','title','artist','lead_in_start_sec','start_sec','end_sec','duration_sec','lines','selection_reason','boundary_basis','recording_title','youtube_id','listening_status']
+        fields=['id','title','artist','lead_in_start_sec','start_sec','end_sec','duration_sec','lines','selection_reason','context_reason','boundary_basis','recording_title','youtube_id','listening_status']
         w=csv.DictWriter(f,fieldnames=fields);w.writeheader()
         for s in songs:
             duration=round(s['end_sec']-s['start_sec'],2) if s.get('end_sec') is not None and s.get('start_sec') is not None else ''
-            w.writerow(dict(id=s['id'],title=s['title'],artist=s['artist'],lead_in_start_sec=s.get('lead_in_start_sec',''),start_sec=s.get('start_sec'),end_sec=s.get('end_sec'),duration_sec=duration,lines=len(s.get('answer_lyrics','').splitlines()),selection_reason=s.get('section_rationale',''),boundary_basis=s.get('boundary_basis',''),recording_title=s.get('video_title',''),youtube_id=s.get('youtube_id',''),listening_status='가사 내용・발매 정보 검토 / 실제 마디 청취 확인 전' if s.get('section_content_reviewed') else '내용 검토 전'))
+            w.writerow(dict(id=s['id'],title=s['title'],artist=s['artist'],lead_in_start_sec=s.get('lead_in_start_sec',''),start_sec=s.get('start_sec'),end_sec=s.get('end_sec'),duration_sec=duration,lines=len(s.get('answer_lyrics','').splitlines()),selection_reason=s.get('section_rationale',''),context_reason=s.get('lead_in_rationale',''),boundary_basis=s.get('boundary_basis',''),recording_title=s.get('video_title',''),youtube_id=s.get('youtube_id',''),listening_status='가사 내용・발매 정보 검토 / 실제 마디 청취 확인 전' if s.get('section_content_reviewed') else '내용 검토 전'))
     report={'total':len(songs),'filled_candidates':count,'embed_allowed':sum(s.get('embed_verified') is True for s in songs),'verified':sum(s.get('status')=='verified' for s in songs),'missing':len(songs)-count,'needs_review':sum(s.get('status')!='verified' for s in songs),'target':80,'target_met':count>=80}
     report.update(content_reviewed=sum(s.get('section_content_reviewed') is True for s in songs),boundary_listened=sum(s.get('boundary_verified') is True for s in songs))
+    report.update(context_reviewed=sum(s.get('section_context_reviewed') is True for s in songs),auto_pause_before_question=False)
     (ROOT/'preparation_report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
     print(json.dumps(report),flush=True)
 

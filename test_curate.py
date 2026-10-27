@@ -64,5 +64,10 @@ class CurationTests(unittest.TestCase):
                 self.assertFalse(result['boundary_verified'])
                 with self.assertRaises(ValueError):
                     apply_section_overrides([dict(row,lyric_id=8)],lyrics)
+                spec=json.loads((root/'section_overrides.json').read_text(encoding='utf-8'))
+                spec['1']['lead_in_first_line']=2
+                (root/'section_overrides.json').write_text(json.dumps(spec),encoding='utf-8')
+                with self.assertRaises(ValueError):
+                    apply_section_overrides([row],lyrics)
 
 if __name__=='__main__':unittest.main()

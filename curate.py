@@ -126,7 +126,7 @@ def passage_from_lines(lyric,spec):
     lines=parse_lrc(lyric['syncedLyrics'])
     first,last=spec['first_line'],spec['stop_before_line']
     if not 0<=first<last<len(lines): raise ValueError('Invalid editorial line range')
-    return lines[first][0],lines[last][0],'\n'.join(t for _,t in lines[first:last] if t),not bool(lines[last][1])
+    return round(lines[first][0],2),round(lines[last][0],2),'\n'.join(t for _,t in lines[first:last] if t),not bool(lines[last][1])
 
 def apply_section_overrides(rows, lyrics):
     """Editorial passage selection; LRC boundaries still need listening review."""
@@ -148,9 +148,13 @@ def apply_section_overrides(rows, lyrics):
                    review_notes=spec['reason']+' 가사 내용·단락 전환 기준으로 선정했으며 실제 가창 종료·마디·잔향·줄 싱크는 청취 확인 전입니다.')
         if 'lead_in_first_line' in spec:
             lines=parse_lrc(lyrics[spec['lyric_id']]['syncedLyrics'])
-            lead=lines[spec['lead_in_first_line']][0]
+            if not 0<=spec['lead_in_first_line']<spec['first_line']: raise ValueError('Invalid context line range')
+            lead=round(lines[spec['lead_in_first_line']][0],2)
             if not 0<=lead<start: raise ValueError('Invalid lead-in range')
             row['lead_in_start_sec']=lead
+            row['lead_in_rationale']=spec.get('lead_in_reason','')
+            row['section_context_reviewed']=spec.get('context_reviewed',False)
+            row['playback_mode']='continuous_context'
     return rows
 
 def lyric_matches(item,song):

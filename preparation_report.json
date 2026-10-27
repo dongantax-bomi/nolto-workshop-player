@@ -8,5 +8,7 @@
   "target": 80,
   "target_met": true,
   "content_reviewed": 100,
-  "boundary_listened": 0
+  "boundary_listened": 0,
+  "context_reviewed": 100,
+  "auto_pause_before_question": false
 }
