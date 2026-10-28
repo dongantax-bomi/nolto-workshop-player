@@ -25,6 +25,14 @@ for s,a in zip(data,audio_audit):
     assert a['review_state']=='signal_and_lyric_reviewed_not_listened'
     for key in ['lead_in_start_sec','start_sec','end_sec']:
         assert s[key]==a[key]
+    if s['id'] in [28,39]:
+        # These replacement passages must end after the singing, inside a
+        # sustained measured vocal rest, rather than at a brief energy dip.
+        rest=a['ending_rest']
+        assert rest['threshold_db']==-30 and rest['end']-rest['start']>=.5
+        assert rest['start']<=s['end_sec']<=rest['end']
+        assert a['edge_vocal_db']['end']<=-30
+        assert s['section_revision']>=7
 for s, source in zip(data,original):
     assert s['id']==int(source['id']) and s['artist']==source['artist'] and s['title']==source['title']
     if s.get('youtube_id'):

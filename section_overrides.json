@@ -45,25 +45,25 @@
   },
   "28": {
     "lyric_id": 5303078,
-    "first_line": 26,
-    "stop_before_line": 34,
-    "reason": "답장을 늦추는 행동과 마음이 더 커질까 걱정하는 속내가 이어지는 랩 단락.",
+    "first_line": 63,
+    "stop_before_line": 69,
+    "reason": "마지막 후렴에서 마음을 쉽게 주지 않는 이유와 속마음을 감추는 내용을 한 단락으로 선정. 마지막 연결 구절과 곡 끝 연주까지 포함.",
     "youtube_id": "prWVZFgZ3Zc",
-    "start_sec": 78.91,
-    "end_sec": 101.54,
-    "lead_in_first_line": 23,
-    "revision": 6,
-    "lead_in_reason": "후렴의 마지막 고백과 연결 구절을 들은 뒤 두 번째 벌스의 빠른 랩으로 이어집니다.",
+    "start_sec": 185.1,
+    "end_sec": 203.0,
+    "lead_in_first_line": 60,
+    "revision": 7,
+    "lead_in_reason": "마지막 영어 랩 한 구절과 익숙한 Cheer up 훅을 들은 뒤 한국어 후렴 본문으로 이어집니다. 원하는 자리에서 수동 일시정지 후 이어서 재생합니다.",
     "context_reviewed": true,
     "audio_boundaries": {
       "youtube_id": "prWVZFgZ3Zc",
       "lyric_id": 5303078,
       "audio_sha256": "6640ecf1f3b55d17de48a448ea88e2bdd54b6bd330f501ac38918fe371582462",
-      "lead_in_start_sec": 71.05,
-      "start_sec": 78.9,
-      "end_sec": 101.09
+      "lead_in_start_sec": 176.86,
+      "start_sec": 184.8,
+      "end_sec": 208.8
     },
-    "audio_review_note": "빠른 랩 네 줄과 이어지는 속마음 네 줄. 다음 사과 구절에 들어가기 전 가창 전환부의 상대 보컬 저점에서 종료. 배경 보컬이 이어져 완전한 무음은 아님."
+    "audio_review_note": "기존의 연속 랩 전환부 대신 마지막 후렴 본문으로 교체. 가창 후 검출된 4초 이상의 보컬 쉼을 거쳐 곡 끝 연주까지 재생."
   },
   "42": {
     "lyric_id": 27584737,
@@ -111,25 +111,25 @@
   },
   "39": {
     "lyric_id": 4254941,
-    "first_line": 7,
-    "stop_before_line": 15,
-    "reason": "닫힌 마음이 무너지는 벌스에서 그리움과 사랑의 대답을 바라는 프리코러스까지 연결. 반복되는 롤린 후렴은 제외.",
+    "first_line": 11,
+    "stop_before_line": 23,
+    "reason": "그리움과 사랑의 대답을 바라는 프리코러스부터 첫 후렴 전체까지 한 단락으로 선정. 첫 후렴 뒤 간주 마디를 마친 뒤 종료.",
     "youtube_id": "0ZCCBPeRVLo",
-    "start_sec": 22.35,
-    "end_sec": 53.69,
-    "lead_in_first_line": 2,
-    "revision": 6,
-    "lead_in_reason": "첫 만남을 떠올리는 첫 벌스부터 이어서 재생하고, 이어지는 마음 고백을 받쓰로 사용합니다.",
+    "start_sec": 38.05,
+    "end_sec": 68.79,
+    "lead_in_first_line": 8,
+    "revision": 7,
+    "lead_in_reason": "상대에게 이끌려 마음이 무너지는 앞 벌스를 들은 뒤 그리움을 말하는 프리코러스로 이어집니다. 자동정지 없이 수동으로 멈췄다가 이어갑니다.",
     "context_reviewed": true,
     "audio_boundaries": {
       "youtube_id": "0ZCCBPeRVLo",
       "lyric_id": 4254941,
       "audio_sha256": "60cc562f7a2f4a08754c042abdb42552db6e5358a6644974f0316e262aa81126",
-      "lead_in_start_sec": 6.35,
-      "start_sec": 22.25,
-      "end_sec": 53.45
+      "lead_in_start_sec": 25.32,
+      "start_sec": 37.9,
+      "end_sec": 73.35
     },
-    "audio_review_note": "앞 벌스와 프리코러스를 함께 포함해 약 31초로 확장. 다음 반복 후렴 진입 전 저점에서 종료하며 잔향이 겹치는 전환부라 무음 경계는 아님."
+    "audio_review_note": "기존 후렴 진입 직전의 보컬 겹침 경계를 버리고 첫 후렴을 끝까지 포함. 마지막 가창과 잔향 뒤의 보컬 쉼에서 다음 간주 마디 직전 종료."
   },
   "6": {
     "lyric_id": 2493617,

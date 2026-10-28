@@ -60,9 +60,9 @@
     "youtube_id": "prWVZFgZ3Zc",
     "lyric_id": 5303078,
     "audio_sha256": "6640ecf1f3b55d17de48a448ea88e2bdd54b6bd330f501ac38918fe371582462",
-    "lead_in_start_sec": 71.05,
-    "start_sec": 78.9,
-    "end_sec": 101.09,
+    "lead_in_start_sec": 176.86,
+    "start_sec": 184.8,
+    "end_sec": 208.8,
     "review_state": "signal_and_lyric_reviewed_not_listened",
     "models": [
       "Demucs htdemucs",
@@ -70,15 +70,22 @@
       "faster-whisper small int8"
     ],
     "analysis_crop": {
-      "start": 56.55,
-      "end": 111.54
+      "start": 158.6,
+      "end": 208.869
     },
     "edge_vocal_db": {
-      "lead": -2.26,
-      "start": -9.54,
-      "end": -14.95
+      "lead": -32.66,
+      "start": -1.4,
+      "end": -74.62
     },
-    "selection_note": "빠른 랩 네 줄과 이어지는 속마음 네 줄. 다음 사과 구절에 들어가기 전 가창 전환부의 상대 보컬 저점에서 종료. 배경 보컬이 이어져 완전한 무음은 아님."
+    "selection_note": "기존의 연속 랩 전환부 대신 마지막 후렴 본문으로 교체. 가창 후 검출된 4초 이상의 보컬 쉼을 거쳐 곡 끝 연주까지 재생.",
+    "ending_rest": {
+      "start": 204.445,
+      "end": 208.835,
+      "threshold_db": -30
+    },
+    "ending_type": "recording_outro",
+    "last_asr_word_end_sec": 202.4
   },
   {
     "song_id": 42,
@@ -141,9 +148,9 @@
     "youtube_id": "0ZCCBPeRVLo",
     "lyric_id": 4254941,
     "audio_sha256": "60cc562f7a2f4a08754c042abdb42552db6e5358a6644974f0316e262aa81126",
-    "lead_in_start_sec": 6.35,
-    "start_sec": 22.25,
-    "end_sec": 53.45,
+    "lead_in_start_sec": 25.32,
+    "start_sec": 37.9,
+    "end_sec": 73.35,
     "review_state": "signal_and_lyric_reviewed_not_listened",
     "models": [
       "Demucs htdemucs",
@@ -151,15 +158,23 @@
       "faster-whisper small int8"
     ],
     "analysis_crop": {
-      "start": 0,
-      "end": 63.683
+      "start": 12.100000000000001,
+      "end": 79.3
     },
     "edge_vocal_db": {
-      "lead": -8.71,
-      "start": -3.0,
-      "end": -5.69
+      "lead": -5.45,
+      "start": -0.53,
+      "end": -43.31
     },
-    "selection_note": "앞 벌스와 프리코러스를 함께 포함해 약 31초로 확장. 다음 반복 후렴 진입 전 저점에서 종료하며 잔향이 겹치는 전환부라 무음 경계는 아님."
+    "selection_note": "기존 후렴 진입 직전의 보컬 겹침 경계를 버리고 첫 후렴을 끝까지 포함. 마지막 가창과 잔향 뒤의 보컬 쉼에서 다음 간주 마디 직전 종료.",
+    "ending_rest": {
+      "start": 72.155,
+      "end": 73.385,
+      "threshold_db": -30
+    },
+    "ending_type": "instrumental_bar_after_chorus",
+    "last_asr_word_end_sec": 69.46,
+    "next_instrumental_downbeat_sec": 73.4
   },
   {
     "song_id": 6,

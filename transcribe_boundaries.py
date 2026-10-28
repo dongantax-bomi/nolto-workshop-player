@@ -11,8 +11,10 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--songs',nargs='+',type=int,required=True)
     args=parser.parse_args()
+    cached_model=WORK/'whisper-models/models--Systran--faster-whisper-small/snapshots'
     model=WhisperModel('small',device='cpu',compute_type='int8',cpu_threads=2,
-                       download_root=str(WORK/'whisper-models'))
+                       download_root=str(WORK/'whisper-models'),
+                       local_files_only=cached_model.exists())
     for song_id in args.songs:
         job=WORK/'probes'/str(song_id)
         report=json.loads((job/'report.json').read_text(encoding='utf-8'))
