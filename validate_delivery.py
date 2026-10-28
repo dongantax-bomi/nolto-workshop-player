@@ -25,14 +25,20 @@ for s,a in zip(data,audio_audit):
     assert a['review_state']=='signal_and_lyric_reviewed_not_listened'
     for key in ['lead_in_start_sec','start_sec','end_sec']:
         assert s[key]==a[key]
-    if s['id'] in [28,39]:
-        # These replacement passages must end after the singing, inside a
-        # sustained measured vocal rest, rather than at a brief energy dip.
-        rest=a['ending_rest']
+    if s['id'] in [83,28,58,39]:
+        # User-approved structure: introductory lyrics, an instrumental/vocal
+        # rest, then the first dictation phrase. Do not substitute an end rest.
+        rest=a['intro_rest']
         assert rest['threshold_db']==-30 and rest['end']-rest['start']>=.5
-        assert rest['start']<=s['end_sec']<=rest['end']
-        assert a['edge_vocal_db']['end']<=-30
-        assert s['section_revision']>=7
+        assert s['lead_in_start_sec']<rest['start']<=a['pause_cue_sec']<=s['start_sec']<=rest['end']
+        assert a['edge_vocal_db']['start']<=-30
+        assert s['section_revision']>=8
+    if s['id']==6:
+        assert s['answer_lyrics'].splitlines()[-1]=='그런 반전 있는 여자'
+        assert s['end_sec']<29
+    if s['id']==42:
+        assert s['answer_lyrics'].splitlines()[-1].endswith('예쁘장한 savage')
+        assert s['end_sec']<36.62
 for s, source in zip(data,original):
     assert s['id']==int(source['id']) and s['artist']==source['artist'] and s['title']==source['title']
     if s.get('youtube_id'):

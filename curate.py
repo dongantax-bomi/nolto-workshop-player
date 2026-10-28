@@ -126,7 +126,15 @@ def passage_from_lines(lyric,spec):
     lines=parse_lrc(lyric['syncedLyrics'])
     first,last=spec['first_line'],spec['stop_before_line']
     if not 0<=first<last<len(lines): raise ValueError('Invalid editorial line range')
-    return round(lines[first][0],2),round(lines[last][0],2),'\n'.join(t for _,t in lines[first:last] if t),not bool(lines[last][1])
+    selected=[t for _,t in lines[first:last] if t]
+    if spec.get('omit_parenthetical_adlibs'):
+        selected=[re.sub(r'\([^)]*\)','',t).strip() for t in selected]
+    answer='\n'.join(t for t in selected if t)
+    if 'answer_format' in spec:
+        if norm(spec['answer_format'])!=norm(answer):
+            raise ValueError('Answer formatting must preserve the selected lyric words')
+        answer=spec['answer_format']
+    return round(lines[first][0],2),round(lines[last][0],2),answer,not bool(lines[last][1])
 
 def apply_section_overrides(rows, lyrics):
     """Editorial passage selection; LRC boundaries still need listening review."""
