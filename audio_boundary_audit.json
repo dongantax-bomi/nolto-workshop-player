@@ -163,8 +163,8 @@
     "lyric_id": 4254941,
     "audio_sha256": "60cc562f7a2f4a08754c042abdb42552db6e5358a6644974f0316e262aa81126",
     "lead_in_start_sec": 64.9,
-    "start_sec": 80.3,
-    "end_sec": 104.1,
+    "start_sec": 85.45,
+    "end_sec": 101.6,
     "review_state": "signal_and_lyric_reviewed_not_listened",
     "models": [
       "Demucs htdemucs",
@@ -177,17 +177,18 @@
     },
     "edge_vocal_db": {
       "lead": -1.0,
-      "start": -59.07,
-      "end": -4.94
+      "start": -3.54,
+      "end": -3.34
     },
-    "selection_note": "첫 후렴 끝을 도입으로 듣고 간주를 지난 뒤, 반복 훅과 두 번째 벌스의 다가와 달라는 랩 단락을 받쓰로 사용. 마지막 I wanna you 구절까지 포함. 도입 뒤의 실제 보컬 쉼을 검출하고 시작점을 쉼 안에 두었습니다.",
+    "selection_note": "승인된 도입 시작 64.9초는 유지하고 지정된 가사 범위만 줄였습니다. 첫 I 앞과 마지막 말아 뒤로 보조 음성 인식 시각을 대조했습니다.",
     "intro_rest": {
       "start": 78.905,
       "end": 80.695,
       "threshold_db": -30
     },
     "pause_cue_sec": 79.8,
-    "asr_input": "separated_vocals"
+    "asr_input": "separated_vocals",
+    "entry_policy": "user_selected_phrase_after_approved_intro"
   },
   {
     "song_id": 6,

@@ -129,6 +129,11 @@ def passage_from_lines(lyric,spec):
     selected=[t for _,t in lines[first:last] if t]
     if spec.get('omit_parenthetical_adlibs'):
         selected=[re.sub(r'\([^)]*\)','',t).strip() for t in selected]
+    if 'omit_leading_adlib' in spec:
+        prefix=spec['omit_leading_adlib']
+        if not selected or not selected[0].startswith(prefix):
+            raise ValueError('Leading adlib must match the selected source')
+        selected[0]=selected[0][len(prefix):].strip()
     answer='\n'.join(t for t in selected if t)
     if 'answer_format' in spec:
         if norm(spec['answer_format'])!=norm(answer):

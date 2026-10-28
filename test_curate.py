@@ -13,6 +13,11 @@ class CurationTests(unittest.TestCase):
         self.assertEqual(passage_from_lines(lyric,spec)[2],'first phrase\nsecond phrase')
         with self.assertRaises(ValueError):
             passage_from_lines(lyric,dict(spec,answer_format='first changed phrase'))
+        lyric=dict(syncedLyrics='[00:10]Hey, I just wanna be with you\n[00:20]next')
+        spec=dict(first_line=0,stop_before_line=1,omit_leading_adlib='Hey, ')
+        self.assertEqual(passage_from_lines(lyric,spec)[2],'I just wanna be with you')
+        with self.assertRaises(ValueError):
+            passage_from_lines(lyric,dict(spec,omit_leading_adlib='Wrong prefix'))
 
     def setUp(self):
         self.song={'id':60,'artist':'BTS','title':'Dynamite','section_hint':'1절 벌스 (영어)'}
