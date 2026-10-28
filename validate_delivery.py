@@ -25,7 +25,7 @@ for s,a in zip(data,audio_audit):
     assert a['review_state']=='signal_and_lyric_reviewed_not_listened'
     for key in ['lead_in_start_sec','start_sec','end_sec']:
         assert s[key]==a[key]
-    if s['id'] in [83,58]:
+    if s['id'] in [83]:
         # User-approved structure: introductory lyrics, an instrumental/vocal
         # rest, then the first dictation phrase. Do not substitute an end rest.
         rest=a['intro_rest']
@@ -39,6 +39,11 @@ for s,a in zip(data,audio_audit):
         assert s['answer_lyrics'].splitlines()[0]=='안절부절 목소리가 여기까지 들려'
         assert s['answer_lyrics'].splitlines()[-1]=='메시지만 읽고 확인 안 하는 건 기본'
         assert len(s['answer_lyrics'].splitlines())==4
+    if s['id']==58:
+        assert s['lead_in_start_sec']==108.5
+        assert s['start_sec']==116.6 and s['end_sec']==134.0
+        assert s['answer_lyrics'].splitlines()[0]=='떠나질 못할 바엔'
+        assert s['answer_lyrics'].splitlines()[-1]=='그래 봤자 우리끼린데'
     if s['id']==39:
         assert s['lead_in_start_sec']==64.9
         assert s['answer_lyrics'].splitlines()[0]=='I just wanna be with you'

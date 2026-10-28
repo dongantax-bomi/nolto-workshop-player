@@ -91,26 +91,27 @@
   },
   "58": {
     "lyric_id": 13591206,
-    "first_line": 25,
+    "first_line": 24,
     "stop_before_line": 28,
-    "reason": "앞의 떠나질 못할 바엔 구절 뒤 반주 쉼을 지나, 밖을 보지 않고 우리끼리 편하게 놀자는 2절의 완결된 단락을 받쓰로 사용.",
+    "reason": "사용자가 직접 고른 구간: 떠나질 못할 바엔부터 그래 봤자 우리끼린데까지. 앞 구절과 다음 랩은 받쓰에서 제외합니다.",
     "youtube_id": "GOtF5_Ow0_Y",
-    "start_sec": 121.13,
+    "start_sec": 116.87,
     "end_sec": 134.01,
-    "lead_in_first_line": 23,
-    "revision": 8,
-    "lead_in_reason": "한 곡 더 틀자는 앞 구절과 짧은 조건절을 듣고 약 0.8초 보컬 쉼에서 멈춥니다. 설명 후 창밖을 보지 않겠다는 다음 구절부터 이어서 받쓰합니다.",
+    "lead_in_first_line": 22,
+    "revision": 10,
+    "lead_in_reason": "아무개로 살래 잠시부터 도입을 재생하고, 떠나질 못할 바엔부터 받쓰로 이어집니다.",
     "context_reviewed": true,
     "audio_boundaries": {
       "youtube_id": "GOtF5_Ow0_Y",
       "lyric_id": 13591206,
       "audio_sha256": "46a42c726003edea2ac58e0192e9fd7387e9a0a3d7c853a49a8d5af6fe70f5ed",
-      "lead_in_start_sec": 111.05,
-      "start_sec": 120.8,
+      "lead_in_start_sec": 108.5,
+      "start_sec": 116.6,
       "end_sec": 134.0
     },
-    "audio_review_note": "앞의 떠나질 못할 바엔 구절 뒤 반주 쉼을 지나, 밖을 보지 않고 우리끼리 편하게 놀자는 2절의 완결된 단락을 받쓰로 사용. 도입 뒤의 실제 보컬 쉼을 검출하고 시작점을 쉼 안에 두었습니다.",
-    "answer_format": "창밖은 쳐다도 안 봐\n회까닥해서 추태를 부려도\nNo worries at all\n이미지 왜 챙겨\n그래 봤자 우리끼린데"
+    "audio_review_note": "사용자 지정 도입은 108.5초, 받쓰는 116.6~134.0초입니다. 원본 믹스의 보조 음성 인식과 싱크 가사를 대조했습니다.",
+    "answer_format": "떠나질 못할 바엔\n창밖은 쳐다도 안 봐\n회까닥해서 추태를 부려도\nNo worries at all\n이미지 왜 챙겨\n그래 봤자 우리끼린데",
+    "selection_authority": "user"
   },
   "39": {
     "lyric_id": 4254941,
