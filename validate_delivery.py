@@ -25,14 +25,11 @@ for s,a in zip(data,audio_audit):
     assert a['review_state']=='signal_and_lyric_reviewed_not_listened'
     for key in ['lead_in_start_sec','start_sec','end_sec']:
         assert s[key]==a[key]
-    if s['id'] in [83]:
-        # User-approved structure: introductory lyrics, an instrumental/vocal
-        # rest, then the first dictation phrase. Do not substitute an end rest.
-        rest=a['intro_rest']
-        assert rest['threshold_db']==-30 and rest['end']-rest['start']>=.5
-        assert s['lead_in_start_sec']<rest['start']<=a['pause_cue_sec']<=s['start_sec']<=rest['end']
-        assert a['edge_vocal_db']['start']<=-30
-        assert s['section_revision']>=8
+    if s['id']==83:
+        assert s['lead_in_start_sec']==85.9
+        assert s['start_sec']==100.6 and s['end_sec']==s['video_duration']
+        assert s['answer_lyrics'].splitlines()[0]=='상다리가 부러지고'
+        assert s['answer_lyrics'].splitlines()[-1]=='한 개뿐이야, 달디단, 밤양갱'
     if s['id']==28:
         assert s['lead_in_start_sec']==66.55
         assert s['start_sec']==78.91 and s['end_sec']==90.12

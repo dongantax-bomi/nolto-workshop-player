@@ -1,25 +1,26 @@
 {
   "83": {
     "lyric_id": 16376925,
-    "first_line": 19,
+    "first_line": 17,
     "stop_before_line": 24,
-    "reason": "나를 몰랐던 상대가 떠나며 한 말과, 내가 원했던 것을 답하는 마지막 벌스 전체. 앞 두 구절 뒤의 보컬 쉼을 지나 문제에 진입.",
+    "reason": "사용자 지정 구간: 상다리가 부러지고부터 마지막 한 개뿐이야 달디단 밤양갱까지 받쓰. 마지막 가창 뒤 연주도 곡이 끝날 때까지 재생합니다.",
     "youtube_id": "cvQQEs4TDGM",
-    "start_sec": 110.78,
+    "start_sec": 101.11,
     "end_sec": 132.05,
-    "lead_in_first_line": 17,
-    "revision": 8,
-    "lead_in_reason": "상다리가 부러지는 식사 비유의 앞 두 구절을 듣고 약 0.7초 보컬 쉼에서 멈춰 설명한 뒤, 다음 벌스부터 이어서 받쓰합니다.",
+    "lead_in_first_line": 15,
+    "revision": 11,
+    "lead_in_reason": "상다리가 부러지고 직전에 나오는 후반부 달디달고 후렴부터 도입을 재생합니다.",
     "context_reviewed": true,
     "audio_boundaries": {
       "youtube_id": "cvQQEs4TDGM",
       "lyric_id": 16376925,
       "audio_sha256": "72b04a975ffe29d7652a0bec54f24f3668c1f4b9705df13b2e62a02a0ca9df06",
-      "lead_in_start_sec": 100.5,
-      "start_sec": 110.4,
-      "end_sec": 134.0
+      "lead_in_start_sec": 85.9,
+      "start_sec": 100.6,
+      "end_sec": 147
     },
-    "audio_review_note": "나를 몰랐던 상대가 떠나며 한 말과, 내가 원했던 것을 답하는 마지막 벌스 전체. 앞 두 구절 뒤의 보컬 쉼을 지나 문제에 진입. 도입 뒤의 실제 보컬 쉼을 검출하고 시작점을 쉼 안에 두었습니다."
+    "audio_review_note": "후반부 달디달고 도입 85.9초, 상다리가 부러지고 앞 100.6초부터 영상 끝 147초까지. 마지막 연주를 포함하며 가창 도중에 종료하지 않습니다.",
+    "selection_authority": "user"
   },
   "3": {
     "lyric_id": 36659073,

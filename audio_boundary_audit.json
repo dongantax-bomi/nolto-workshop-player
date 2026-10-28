@@ -6,32 +6,18 @@
     "youtube_id": "cvQQEs4TDGM",
     "lyric_id": 16376925,
     "audio_sha256": "72b04a975ffe29d7652a0bec54f24f3668c1f4b9705df13b2e62a02a0ca9df06",
-    "lead_in_start_sec": 100.5,
-    "start_sec": 110.4,
-    "end_sec": 134.0,
+    "lead_in_start_sec": 85.9,
+    "start_sec": 100.6,
+    "end_sec": 147,
     "review_state": "signal_and_lyric_reviewed_not_listened",
     "models": [
       "Demucs htdemucs",
       "Beat This small0",
       "faster-whisper small int8"
     ],
-    "analysis_crop": {
-      "start": 91,
-      "end": 143.5
-    },
-    "edge_vocal_db": {
-      "lead": -0.21,
-      "start": -59.62,
-      "end": -58.22
-    },
-    "selection_note": "나를 몰랐던 상대가 떠나며 한 말과, 내가 원했던 것을 답하는 마지막 벌스 전체. 앞 두 구절 뒤의 보컬 쉼을 지나 문제에 진입. 도입 뒤의 실제 보컬 쉼을 검출하고 시작점을 쉼 안에 두었습니다.",
-    "intro_rest": {
-      "start": 109.795,
-      "end": 110.475,
-      "threshold_db": -30
-    },
-    "pause_cue_sec": 110.15,
-    "asr_input": "separated_vocals"
+    "selection_note": "후반부 달디달고 도입 85.9초, 상다리가 부러지고 앞 100.6초부터 영상 끝 147초까지. 마지막 연주를 포함하며 가창 도중에 종료하지 않습니다.",
+    "selection_authority": "user",
+    "ending_type": "recording_end_including_outro"
   },
   {
     "song_id": 3,
