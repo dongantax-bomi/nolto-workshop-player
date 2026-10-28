@@ -1,19 +1,18 @@
 {
   "artists": {
-    "아이유": "IU",
-    "싸이": "PSY",
-    "트와이스": "TWICE",
     "블랙핑크": "BLACKPINK",
-    "브레이브걸스": "Brave Girls",
-    "지코": "ZICO",
-    "비비": "BIBI"
+    "다비치": "DAVICHI",
+    "빅뱅": "BIGBANG",
+    "볼빨간사춘기": "BOL4",
+    "보이넥스트도어": "BOYNEXTDOOR",
+    "도경수": "D.O."
   },
   "titles": {
-    "3": "Good Day",
-    "6": "Gangnam Style",
-    "39": "Rollin'",
     "42": "DDU-DU DDU-DU",
-    "58": "Any song",
-    "83": "Bam Yang Gang"
+    "101": "TIME CAPSULE",
+    "102": "Sunset Glow",
+    "103": "Please Summer!",
+    "104": "IF I SAY, I LOVE YOU",
+    "105": "Popcorn"
   }
 }

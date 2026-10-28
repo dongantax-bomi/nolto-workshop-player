@@ -13,41 +13,35 @@ catalog=json.loads((root/'recording_catalog.json').read_text(encoding='utf-8'))
 audio_audit=json.loads((root/'audio_boundary_audit.json').read_text(encoding='utf-8'))
 with (root/'songs.csv').open(encoding='utf-8-sig',newline='') as f:
     original=list(csv.DictReader(f))
-expected=[83,3,28,42,58,39,6]
-assert len(data)==len(original)==7
+expected=[101,103,104,42,102,105]
+assert len(data)==len(original)==6
 assert [s['id'] for s in data]==expected
-assert [s['round_label'] for s in data]==['1R','2R','3R','4R','5R','연장','예비']
-assert [s['round_points'] for s in data]==[1,1,1,1,2,1,1]
+assert [s['round_label'] for s in data]==['1R','2R','3R','4R','5R','연장']
+assert [s['round_points'] for s in data]==[1,1,1,1,2,1]
 assert set(sections)==set(catalog)=={str(i) for i in expected}
-assert [r['song_id'] for r in audio_audit]==expected
-for s,a in zip(data,audio_audit):
+# 교체한 곡(101~105)은 싱크 가사 기준 구간이며 실제 오디오 분석 기록이 없습니다.
+analyzed=[s for s in data if s.get('audio_analyzed')]
+assert [r['song_id'] for r in audio_audit]==[s['id'] for s in analyzed]
+assert {s['id'] for s in data}-{s['id'] for s in analyzed}=={101,102,103,104,105}
+for s,a in zip(analyzed,audio_audit):
     assert s['youtube_id']==a['youtube_id'] and s['audio_sha256']==a['audio_sha256']
     assert a['review_state']=='signal_and_lyric_reviewed_not_listened'
     for key in ['lead_in_start_sec','start_sec','end_sec']:
         assert s[key]==a[key]
-    if s['id']==83:
-        assert s['lead_in_start_sec']==85.9
-        assert s['start_sec']==100.6 and s['end_sec']==s['video_duration']
-        assert s['answer_lyrics'].splitlines()[0]=='상다리가 부러지고'
-        assert s['answer_lyrics'].splitlines()[-1]=='한 개뿐이야, 달디단, 밤양갱'
-    if s['id']==28:
-        assert s['lead_in_start_sec']==66.55
-        assert s['start_sec']==78.91 and s['end_sec']==90.12
-        assert s['answer_lyrics'].splitlines()[0]=='안절부절 목소리가 여기까지 들려'
-        assert s['answer_lyrics'].splitlines()[-1]=='메시지만 읽고 확인 안 하는 건 기본'
-        assert len(s['answer_lyrics'].splitlines())==4
-    if s['id']==58:
-        assert s['lead_in_start_sec']==108.5
-        assert s['start_sec']==116.6 and s['end_sec']==134.0
-        assert s['answer_lyrics'].splitlines()[0]=='떠나질 못할 바엔'
-        assert s['answer_lyrics'].splitlines()[-1]=='그래 봤자 우리끼린데'
-    if s['id']==39:
-        assert s['lead_in_start_sec']==64.9
-        assert s['answer_lyrics'].splitlines()[0]=='I just wanna be with you'
-        assert s['answer_lyrics'].splitlines()[-1]=='늦게 놓치고 후회 말아'
-    if s['id']==6:
-        assert s['answer_lyrics'].splitlines()[-1]=='그런 반전 있는 여자'
-        assert s['end_sec']<29
+# 사용자 지정 구간: (도입, 시작, 끝, 첫 줄, 마지막 줄)
+user_sections={
+    101:(91.16,118.82,137.16,'어제의 나를 담은 일기장과는','나아가려던 꼬마 아이잖아'),
+    103:(161.75,182.49,199.06,'짧은 머리 눈이 부신 그대가 좋아','드라마도 끊겠어요'),
+    104:(27.64,42.09,55.81,'그날 이후로 난 이렇게 살고','웃기지 그런데'),
+    102:(50.04,64.68,79.59,'혹시 그대가 미안해한다면','저 붉은 노을을 닮아 더 슬퍼지는 걸'),
+    105:(51.54,67.89,87.06,'매일의 새로운 면도','"펑" 하고 터질 것 같은 기분'),
+}
+for s in data:
+    if s['id'] in user_sections:
+        lead,start,end,first,last=user_sections[s['id']]
+        assert (s['lead_in_start_sec'],s['start_sec'],s['end_sec'])==(lead,start,end)
+        assert s['answer_lyrics'].splitlines()[0]==first
+        assert s['answer_lyrics'].splitlines()[-1]==last
     if s['id']==42:
         assert s['answer_lyrics'].splitlines()[-1].endswith('예쁘장한 savage')
         assert s['end_sec']<36.62
@@ -90,8 +84,8 @@ embedded=html.split('<script id="songData" type="application/json">')[1].split('
 assert json.loads(embedded)==data
 report=json.loads((root/'preparation_report.json').read_text(encoding='utf-8'))
 assert report['filled_candidates']==sum(bool(s.get('youtube_id')) for s in data)
-assert report['target']==report['total']==7 and report['target_met'] is True
-assert report['audio_analyzed']==7
+assert report['target']==report['total']==6 and report['target_met'] is True
+assert report['audio_analyzed']==len(analyzed)==1
 with (root/'needs_review.csv').open(encoding='utf-8-sig',newline='') as f:
     review=list(csv.DictReader(f))
 assert {int(s['id']) for s in review}=={s['id'] for s in data if s['status']!='verified'}
@@ -101,4 +95,4 @@ try:
     subprocess.run(['node','--check',str(check)],check=True)
 finally:
     check.unlink(missing_ok=True)
-print(f"PASS: selected seven rounds only; {report['filled_candidates']} valid candidates; HTML/JSON/report consistent; JS syntax valid")
+print(f"PASS: selected six rounds only; {report['filled_candidates']} valid candidates; HTML/JSON/report consistent; JS syntax valid")
