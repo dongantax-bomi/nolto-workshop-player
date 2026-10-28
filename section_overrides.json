@@ -45,25 +45,26 @@
   },
   "28": {
     "lyric_id": 5303078,
-    "first_line": 50,
-    "stop_before_line": 55,
-    "reason": "상처받을까 걱정되는 마음을 고백하고 조금 더 다가오라고 말하는 브리지의 한국어 다섯 구절. 앞 후렴 연결구 뒤의 보컬 쉼을 지나 시작.",
+    "first_line": 26,
+    "stop_before_line": 30,
+    "reason": "사용자가 직접 고른 네 줄의 빠른 랩: 안절부절 목소리가 여기까지 들려부터 메시지만 읽고 확인 안 하는 건 기본까지. 다른 가사는 덧붙이지 않습니다.",
     "youtube_id": "prWVZFgZ3Zc",
-    "start_sec": 145.91,
-    "end_sec": 166.49,
-    "lead_in_first_line": 47,
-    "revision": 8,
-    "lead_in_reason": "앞 후렴의 마지막 고백과 연결구를 듣고 약 0.5초 보컬 쉼에서 멈춰 설명한 뒤 브리지로 이어갑니다. 자동정지는 하지 않습니다.",
+    "start_sec": 78.91,
+    "end_sec": 90.12,
+    "lead_in_first_line": 22,
+    "revision": 10,
+    "lead_in_reason": "태연하게 연기할래 아무렇지 않게부터 도입을 재생하고, 안절부절 목소리가 여기까지 들려부터 받쓰로 이어갑니다.",
     "context_reviewed": true,
     "audio_boundaries": {
       "youtube_id": "prWVZFgZ3Zc",
       "lyric_id": 5303078,
       "audio_sha256": "6640ecf1f3b55d17de48a448ea88e2bdd54b6bd330f501ac38918fe371582462",
-      "lead_in_start_sec": 139.4,
-      "start_sec": 147.1,
-      "end_sec": 166.45
+      "lead_in_start_sec": 66.55,
+      "start_sec": 78.91,
+      "end_sec": 90.12
     },
-    "audio_review_note": "상처받을까 걱정되는 마음을 고백하고 조금 더 다가오라고 말하는 브리지의 한국어 다섯 구절. 앞 후렴 연결구 뒤의 보컬 쉼을 지나 시작. 도입 뒤의 실제 보컬 쉼을 검출하고 시작점을 쉼 안에 두었습니다."
+    "audio_review_note": "사용자가 선택한 도입·첫 구절·끝 구절을 싱크 가사에 고정했습니다. 약 11.21초, 한국어 네 줄이며 곡은 교체하지 않습니다.",
+    "selection_authority": "user"
   },
   "42": {
     "lyric_id": 27584737,

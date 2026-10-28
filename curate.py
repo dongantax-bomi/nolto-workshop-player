@@ -184,6 +184,9 @@ def apply_section_overrides(rows, lyrics):
             row.update(boundary_basis='vocal_energy_and_downbeats_with_lyric_passage',
                        audio_analyzed=True,audio_sha256=bounds['audio_sha256'],
                        review_notes=spec['reason']+' 실제 오디오의 분리 보컬과 박자 분석으로 경계를 보정했습니다. 사람의 청취 검증과는 구분합니다.')
+            if spec.get('selection_authority')=='user':
+                row.update(boundary_basis='user_selected_lyric_cue',
+                           review_notes=spec.get('audio_review_note',spec['reason']))
     return rows
 
 def lyric_matches(item,song):

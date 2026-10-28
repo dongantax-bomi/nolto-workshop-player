@@ -67,9 +67,9 @@
     "youtube_id": "prWVZFgZ3Zc",
     "lyric_id": 5303078,
     "audio_sha256": "6640ecf1f3b55d17de48a448ea88e2bdd54b6bd330f501ac38918fe371582462",
-    "lead_in_start_sec": 139.4,
-    "start_sec": 147.1,
-    "end_sec": 166.45,
+    "lead_in_start_sec": 66.55,
+    "start_sec": 78.91,
+    "end_sec": 90.12,
     "review_state": "signal_and_lyric_reviewed_not_listened",
     "models": [
       "Demucs htdemucs",
@@ -77,22 +77,11 @@
       "faster-whisper small int8"
     ],
     "analysis_crop": {
-      "start": 129,
-      "end": 178.5
+      "start": 56.55,
+      "end": 111.54
     },
-    "edge_vocal_db": {
-      "lead": -7.14,
-      "start": -38.8,
-      "end": 1.34
-    },
-    "selection_note": "상처받을까 걱정되는 마음을 고백하고 조금 더 다가오라고 말하는 브리지의 한국어 다섯 구절. 앞 후렴 연결구 뒤의 보컬 쉼을 지나 시작. 도입 뒤의 실제 보컬 쉼을 검출하고 시작점을 쉼 안에 두었습니다.",
-    "intro_rest": {
-      "start": 146.715,
-      "end": 147.255,
-      "threshold_db": -30
-    },
-    "pause_cue_sec": 147.0,
-    "asr_input": "separated_vocals"
+    "selection_note": "사용자가 선택한 도입·첫 구절·끝 구절을 싱크 가사에 고정했습니다. 약 11.21초, 한국어 네 줄이며 곡은 교체하지 않습니다.",
+    "selection_authority": "user"
   },
   {
     "song_id": 42,
